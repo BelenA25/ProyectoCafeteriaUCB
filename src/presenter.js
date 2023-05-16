@@ -26,6 +26,7 @@ form.addEventListener("submit", (event) => {
   menu.agregarStockSopa(10);
 
   menu.agregarReservaSopa(7);
+  menu.agregarReservaSegundo(4);
 
   divSopa.innerHTML = "Sopa: " + menu.sopa;
   divSegundo.innerHTML = "Segundo: " + menu.segundo;

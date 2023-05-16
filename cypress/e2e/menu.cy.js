@@ -37,4 +37,9 @@ describe("Reservas del menu", () => {
     cy.get("#mostrar-button").click();
     cy.get("#reservas-sopa").should("contain", "(Reservas = 7)");
   });
+  it("deberia mostrar el numero de reservas de cada elemento del menu", () => {
+    cy.visit("/");
+    cy.get("#mostrar-button").click();
+    cy.get("#reservas-segundo").should("contain", "(Reservas = 4)");
+  });
 });
