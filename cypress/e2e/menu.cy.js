@@ -30,9 +30,11 @@ describe("Stock del menu", () => {
     cy.get("#mostrar-button").click();
     cy.get("#stock-segundo").should("contain", "(Stock = 20)");
   });
-  it("deberia mostrar 'agotado' cuando el stock es igual a 0", () => {
+});
+describe("Reservas del menu", () => {
+  it("deberia mostrar el numero de reservas de cada elemento del menu", () => {
     cy.visit("/");
     cy.get("#mostrar-button").click();
-    cy.get("div").should("contain", "(Stock = AGOTADO)");
+    cy.get("#reservas-sopa").should("contain", "(Reservas = 7)");
   });
 });
