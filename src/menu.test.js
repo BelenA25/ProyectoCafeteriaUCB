@@ -16,4 +16,9 @@ describe("Agregrar stock al menu", () => {
     menu.agregarStockSopa(15);
     expect(menu.stockSopa).toEqual(15);
   });
+  it("deberia devolver el valor de stock del segundo", () => {
+    const menu = new Menu("Sopa de mani", "Silpancho");
+    menu.agregarStockSegundo(20);
+    expect(menu.stockSegundo).toEqual(20);
+  });
 });
