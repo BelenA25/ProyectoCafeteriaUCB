@@ -24,6 +24,7 @@ describe("Menu y precio", () => {
     cy.get("div").should("contain", "Solo Segundo = 13 Bs.");
   });
 });
+
 describe("Stock del menu", () => {
   it("deberia mostrar el stock de cada elemento del menu", () => {
     cy.visit("/");
@@ -41,5 +42,10 @@ describe("Reservas del menu", () => {
     cy.visit("/");
     cy.get("#mostrar-button").click();
     cy.get("#reservas-sopa").should("contain", "Ya no se permiten mas reservas");
+  });
+  it("Debería mostrar el formulario de reservas", () => {
+    cy.visit("/");
+    cy.get("#reservar-button").click();
+    cy.get("#reserva-sopa").should("contain", "Reservar sopa:");
   });
 });

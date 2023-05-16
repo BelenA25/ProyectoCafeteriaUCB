@@ -10,6 +10,7 @@ describe("Crear menu", () => {
     expect(menu.segundo).toEqual("Silpancho");
   });
 });
+
 describe("Agregrar stock al menu", () => {
   it("deberia devolver el valor de stock de la sopa", () => {
     const menu = new Menu("Sopa de mani", "Silpancho");
@@ -22,6 +23,7 @@ describe("Agregrar stock al menu", () => {
     expect(menu.stockSegundo).toEqual(20);
   });
 });
+
 describe("Agregrar reservas al menu", () => {
   it("deberia devolver el valor de reservas de la sopa", () => {
     const menu = new Menu("Sopa de mani", "Silpancho");

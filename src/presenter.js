@@ -1,6 +1,9 @@
 import Menu from "./menu.js";
 
 const form = document.querySelector("#menu-form");
+const formReservas = document.querySelector("#reservar-form");
+const botonMostrar = document.querySelector("#mostrar-button");
+const botonReservar = document.querySelector("#reservar-button");
 const divSopa = document.querySelector("#sopa");
 const divSegundo = document.querySelector("#segundo");
 const divStockSopa = document.querySelector("#stock-sopa");
@@ -26,10 +29,15 @@ function comprobarReservasSopa(menu){
     return "(Reservas = "+ menu.reservasSopa+")";
   }
 }
-
+function showForm() {
+  document.getElementById('reservar-form').style.display = "block";
+}
+botonReservar.style.display='none';
+formReservas.style.display='none';
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-
+  botonMostrar.remove();
+  botonReservar.style.display = 'block';
   const menu = new Menu("Sopa de mani", "Silpancho");
 
   menu.agregarStockSegundo(20);

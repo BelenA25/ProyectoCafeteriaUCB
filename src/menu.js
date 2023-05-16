@@ -8,10 +8,10 @@ class Menu {
     this.reservasSegundo = 0;
   }
   agregarStockSopa(stock){
-    this.stockSopa= stock;
+    this.stockSopa = stock;
   }
   agregarStockSegundo(stock){
-    this.stockSegundo= stock;
+    this.stockSegundo = stock;
   }
   agregarReservaSopa(reserva){
     if(this.reservasSopa < this.stockSopa){
