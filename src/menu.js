@@ -19,7 +19,9 @@ class Menu {
     }
   }
   agregarReservaSegundo(reserva){
-    this.reservasSegundo = this.reservasSegundo + reserva;
+    if(this.reservasSegundo < this.stockSegundo){
+      this.reservasSegundo  = this.reservasSegundo +  reserva;
+    }
   }
 }
 

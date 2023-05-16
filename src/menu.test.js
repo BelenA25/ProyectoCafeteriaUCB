@@ -31,6 +31,7 @@ describe("Agregrar reservas al menu", () => {
   });
   it("deberia devolver el valor de reservas del segundo", () => {
     const menu = new Menu("Sopa de mani", "Silpancho");
+    menu.agregarStockSegundo(20);
     menu.agregarReservaSegundo(5);
     expect(menu.reservasSegundo).toEqual(5);
   });
@@ -50,11 +51,18 @@ describe("Agregrar reservas al menu", () => {
     menu.agregarReservaSopa(3);
     expect(menu.reservasSopa).toEqual(6);
   });
-  it("el valor de reservas no debe sobrepasar el stock (limite de reservas)", () => {
+  it("el valor de reservas no debe sobrepasar el stock (limite de reservas) de la sopa", () => {
     const menu = new Menu("Sopa de mani", "Silpancho");
     menu.agregarStockSopa(15);
     menu.agregarReservaSopa(15);
     menu.agregarReservaSopa(1);
     expect(menu.reservasSopa).toEqual(15);
+  });
+  it("el valor de reservas no debe sobrepasar el stock (limite de reservas) del segundo", () => {
+    const menu = new Menu("Sopa de mani", "Silpancho");
+    menu.agregarStockSegundo(15);
+    menu.agregarReservaSegundo(15);
+    menu.agregarReservaSegundo(1);
+    expect(menu.reservasSegundo).toEqual(15);
   });
 });
