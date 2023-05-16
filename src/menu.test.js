@@ -26,11 +26,18 @@ describe("Agregrar reservas al menu", () => {
   it("deberia devolver el valor de reservas de la sopa", () => {
     const menu = new Menu("Sopa de mani", "Silpancho");
     menu.agregarReservaSopa(2);
-    expect(menu.reservaSopa).toEqual(2);
+    expect(menu.reservasSopa).toEqual(2);
   });
   it("deberia devolver el valor de reservas del segundo", () => {
     const menu = new Menu("Sopa de mani", "Silpancho");
     menu.agregarReservaSegundo(5);
-    expect(menu.reservaSegundo).toEqual(5);
+    expect(menu.reservasSegundo).toEqual(5);
+  });
+  it("el valor de reservas deberia ser incremental", () => {
+    const menu = new Menu("Sopa de mani", "Silpancho");
+    menu.agregarReservaSegundo(2);
+    menu.agregarReservaSegundo(1);
+    menu.agregarReservaSegundo(3);
+    expect(menu.reservasSegundo).toEqual(6);
   });
 });
