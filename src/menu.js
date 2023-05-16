@@ -14,7 +14,9 @@ class Menu {
     this.stockSegundo= stock;
   }
   agregarReservaSopa(reserva){
-    this.reservasSopa  = this.reservasSopa +  reserva;
+    if(this.reservasSopa < this.stockSopa){
+      this.reservasSopa  = this.reservasSopa +  reserva;
+    }
   }
   agregarReservaSegundo(reserva){
     this.reservasSegundo = this.reservasSegundo + reserva;

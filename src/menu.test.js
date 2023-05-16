@@ -25,6 +25,7 @@ describe("Agregrar stock al menu", () => {
 describe("Agregrar reservas al menu", () => {
   it("deberia devolver el valor de reservas de la sopa", () => {
     const menu = new Menu("Sopa de mani", "Silpancho");
+    menu.agregarStockSopa(10);
     menu.agregarReservaSopa(2);
     expect(menu.reservasSopa).toEqual(2);
   });
@@ -35,6 +36,7 @@ describe("Agregrar reservas al menu", () => {
   });
   it("el valor de reservas deberia ser incremental", () => {
     const menu = new Menu("Sopa de mani", "Silpancho");
+    menu.agregarStockSegundo(15);
     menu.agregarReservaSegundo(2);
     menu.agregarReservaSegundo(1);
     menu.agregarReservaSegundo(3);
@@ -42,9 +44,17 @@ describe("Agregrar reservas al menu", () => {
   });
   it("el valor de reservas deberia ser incremental", () => {
     const menu = new Menu("Sopa de mani", "Silpancho");
+    menu.agregarStockSopa(15);
     menu.agregarReservaSopa(2);
     menu.agregarReservaSopa(1);
     menu.agregarReservaSopa(3);
     expect(menu.reservasSopa).toEqual(6);
+  });
+  it("el valor de reservas no debe sobrepasar el stock (limite de reservas)", () => {
+    const menu = new Menu("Sopa de mani", "Silpancho");
+    menu.agregarStockSopa(15);
+    menu.agregarReservaSopa(15);
+    menu.agregarReservaSopa(1);
+    expect(menu.reservasSopa).toEqual(15);
   });
 });
