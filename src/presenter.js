@@ -17,6 +17,16 @@ function comprobarAgotado(stock){
   }
 }
 
+function comprobarReservasSopa(menu){
+  if(menu.reservasSopa === menu.stockSopa){
+    return "Ya no se permiten mas reservas"
+  }
+  else
+  {
+    return "(Reservas = "+ menu.reservasSopa+")";
+  }
+}
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -25,13 +35,13 @@ form.addEventListener("submit", (event) => {
   menu.agregarStockSegundo(20);
   menu.agregarStockSopa(10);
 
-  menu.agregarReservaSopa(7);
+  menu.agregarReservaSopa(10);
   menu.agregarReservaSegundo(4);
 
   divSopa.innerHTML = "Sopa: " + menu.sopa;
   divSegundo.innerHTML = "Segundo: " + menu.segundo;
   divStockSopa.innerHTML = "(Stock = "+ comprobarAgotado(menu.stockSopa)+")";
   divStockSegundo.innerHTML = "(Stock = "+ comprobarAgotado(menu.stockSegundo)+")";
-  divReservasSopa.innerHTML = "(Reservas = "+ menu.reservasSopa+")";
+  divReservasSopa.innerHTML = comprobarReservasSopa(menu);
   divReservasSegundo.innerHTML = "(Reservas = "+ menu.reservasSegundo+")";
 });

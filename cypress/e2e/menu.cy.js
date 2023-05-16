@@ -35,11 +35,11 @@ describe("Reservas del menu", () => {
   it("deberia mostrar el numero de reservas de cada elemento del menu", () => {
     cy.visit("/");
     cy.get("#mostrar-button").click();
-    cy.get("#reservas-sopa").should("contain", "(Reservas = 7)");
+    cy.get("#reservas-segundo").should("contain", "(Reservas = 4)");
   });
-  it("deberia mostrar el numero de reservas de cada elemento del menu", () => {
+  it("Debería mostrar un mensaje si es que el plato no esta disponible", () => {
     cy.visit("/");
     cy.get("#mostrar-button").click();
-    cy.get("#reservas-segundo").should("contain", "(Reservas = 4)");
+    cy.get("#reservas-sopa").should("contain", "Ya no se permiten mas reservas");
   });
 });
