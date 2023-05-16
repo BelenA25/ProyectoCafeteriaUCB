@@ -14,8 +14,3 @@ class Menu {
 }
 
 export default Menu;
-// const menu = new Menu("Sopa", "Segundo");
-
-// export default function recuperarSopa() {
-//   return menu.sopa;
-// }

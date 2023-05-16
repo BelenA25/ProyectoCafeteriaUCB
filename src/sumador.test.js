@@ -1,7 +1,12 @@
-import sumar from "./sumador.js";
+import Menu from "./menu.js";
 
-describe("Sumar", () => {
-  it("deberia sumar dos numeros", () => {
-    expect(sumar(3, 2)).toEqual(5);
+describe("Crear menu", () => {
+  it("deberia devolver el valor de la sopa", () => {
+    const menu = new Menu("Sopa de mani", "Silpancho");
+    expect(menu.sopa).toEqual("Sopa de mani");
+  });
+  it("deberia devolver el valor del segundo", () => {
+    const menu = new Menu("Sopa de mani", "Silpancho");
+    expect(menu.segundo).toEqual("Silpancho");
   });
 });
