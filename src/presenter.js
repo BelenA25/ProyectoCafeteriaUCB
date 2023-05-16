@@ -12,8 +12,8 @@ form.addEventListener("submit", (event) => {
   menu.agregarStockSegundo(20);
   menu.agregarStockSopa(15);
   console.log(menu.sopa)
-  divSopa.innerHTML = menu.sopa;
-  divSegundo.innerHTML = menu.segundo;
-  divStockSopa.innerHTML = "(Stock = "+menu.stockSopa+")";
-  divStockSegundo.innerHTML = "(Stock = "+menu.stockSegundo+")";
+  divSopa.innerHTML = "Sopa: " + menu.sopa;
+  divSegundo.innerHTML = "Segundo: " + menu.segundo;
+  divStockSopa.innerHTML = "(Stock = "+ menu.stockSopa+")";
+  divStockSegundo.innerHTML = "(Stock = "+ menu.stockSegundo+")";
 });
