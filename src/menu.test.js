@@ -40,4 +40,11 @@ describe("Agregrar reservas al menu", () => {
     menu.agregarReservaSegundo(3);
     expect(menu.reservasSegundo).toEqual(6);
   });
+  it("el valor de reservas deberia ser incremental", () => {
+    const menu = new Menu("Sopa de mani", "Silpancho");
+    menu.agregarReservaSopa(2);
+    menu.agregarReservaSopa(1);
+    menu.agregarReservaSopa(3);
+    expect(menu.reservasSopa).toEqual(6);
+  });
 });
