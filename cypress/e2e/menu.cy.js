@@ -28,12 +28,11 @@ describe("Stock del menu", () => {
   it("deberia mostrar el stock de cada elemento del menu", () => {
     cy.visit("/");
     cy.get("#mostrar-button").click();
-    cy.get("div").should("contain", "(Stock = 15)");
+    cy.get("#stock-segundo").should("contain", "(Stock = 20)");
   });
-  it("deberia mostrar el stock de cada elemento del menu", () => {
+  it("deberia mostrar 'agotado' cuando el stock es igual a 0", () => {
     cy.visit("/");
     cy.get("#mostrar-button").click();
-    cy.get("div").should("contain", "(Stock = 20)");
-
+    cy.get("div").should("contain", "(Stock = AGOTADO)");
   });
 });
