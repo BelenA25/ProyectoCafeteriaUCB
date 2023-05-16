@@ -4,12 +4,17 @@ class Menu {
     this.segundo = segundo;
     this.stockSopa = 0;
     this.stockSegundo = 0;
+    this.reservasSopa = 0;
+    this.reservasSegundo = 0;
   }
   agregarStockSopa(stock){
     this.stockSopa= stock;
   }
   agregarStockSegundo(stock){
     this.stockSegundo= stock;
+  }
+  agregarReservaSopa(reserva){
+    this.reservaSopa= reserva;
   }
 }
 
