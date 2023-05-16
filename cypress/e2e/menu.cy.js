@@ -23,3 +23,10 @@ describe("Menu y precio", () => {
 
   });
 });
+describe("Stock del menu", () => {
+  it("deberia mostrar el stock de cada elemento del menu", () => {
+    cy.visit("/");
+    cy.get("div").should("contain", "(Stock = 15)");
+
+  });
+});
