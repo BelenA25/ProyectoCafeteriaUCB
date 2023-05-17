@@ -17,6 +17,18 @@ describe("Editar Menu", () => {
         cy.get("div:contains('Solo Segundo')").should("contain", `Solo Segundo = ${nuevoPrecioSegundo}`);
         cy.get("div:contains('Almuerzo completo')").should("contain", `Almuerzo completo = ${nuevoPrecioAlmuerzoCompleto}`);
     });
+    it("debería permitir editar el nombre de los platos del menú", () => {
+        cy.visit("/");
+        const nuevoNombreSopa = "Sopa de choclo";
+        const nuevoNombreSegundo = "Pizza";
+        const nuevoNombreAlmuerzoCompleto = "Menú completo";
+      
+        cy.get("div:contains('Solo Sopa')").invoke("text", `Solo ${nuevoNombreSopa} = 5 Bs.`).should("contain", `Solo ${nuevoNombreSopa} = 5 Bs.`);
+        cy.get("div:contains('Solo Segundo')").invoke("text", `Solo ${nuevoNombreSegundo} = 13 Bs.`).should("contain", `Solo ${nuevoNombreSegundo} = 13 Bs.`);
+        cy.get("div:contains('Almuerzo completo')").invoke("text", `${nuevoNombreAlmuerzoCompleto} = 16 Bs.`).should("contain", `${nuevoNombreAlmuerzoCompleto} = 16 Bs.`);
+      });
+      
+      
       
       
 });
