@@ -27,6 +27,16 @@ class Menu {
       this.reservasSegundo  = this.reservasSegundo +  reserva;
     }
   }
+  verificarStock(plato) {
+    if (plato === "Sopa de Chairo") {
+      return Math.max(0, this.stockSopa - this.reservasSopa);
+    } else if (plato ===  "Majadito") {
+      return Math.max(0, this.stockSegundo - this.reservasSegundo);
+    } else {
+      return -1; 
+    }
+  }
+  
 }
 
 export default Menu;

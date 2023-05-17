@@ -20,4 +20,12 @@ describe("Crear el menu del dia con stock", () => {
         menu.agregarStockSegundo("Asado", 5);
         expect(menu.StockCantidadSegundo).toEqual(5);
       });
+
+      it("debería verificar si hay suficiente stock para un plato", () => {
+        const menu = new Menu("Sopa de Chairo", "Majadito");
+        menu.agregarStockSopa(8);
+        expect(menu.verificarStock("Sopa de Chairo")).toBeGreaterThan(0);
+        expect(menu.verificarStock("Majadito")).toBe(0);
+      });
+      
 });
