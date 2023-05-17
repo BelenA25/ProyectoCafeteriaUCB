@@ -16,6 +16,14 @@ describe("Crear Menu", () => {
           expect(stockValue).to.be.greaterThan(0);
         });
       });
+    //   it("debería mostrar un mensaje de reserva agotada después de alcanzar el límite de stock", () => {
+    //     cy.visit("/");
+    //     cy.get("#mostrar-button").click();
+    //     cy.get("div").should("contain", "Sopa de mani");
+    //     cy.get("#reservar-sopa-button").click({ multiple: true, force: true });
+    //     cy.get("#reservas-sopa").should("contain", "Ya no se permiten más reservas");
+    //   });
+      
       
   });
 

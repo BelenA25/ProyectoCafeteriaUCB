@@ -59,7 +59,7 @@ describe("Crear el menu del dia con stock", () => {
       
 
  
-      });
+});
       
       
 });

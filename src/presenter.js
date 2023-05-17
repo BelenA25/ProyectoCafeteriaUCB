@@ -32,7 +32,6 @@ function comprobarReservasSopa(menu){
 function showForm() {
   document.getElementById('reservar-form').style.display = "block";
 }
-
 botonReservar.style.display='none';
 //formReservas.style.display='none';
 form.addEventListener("submit", (event) => {
@@ -47,13 +46,13 @@ form.addEventListener("submit", (event) => {
   menu.agregarReservaSopa(10);
   menu.agregarReservaSegundo(4);
 
+
   divSopa.innerHTML = "Sopa: " + menu.sopa;
   divSegundo.innerHTML = "Segundo: " + menu.segundo;
   divStockSopa.innerHTML = "(Stock = "+ comprobarAgotado(menu.stockSopa)+")";
   divStockSegundo.innerHTML = "(Stock = "+ comprobarAgotado(menu.stockSegundo)+")";
   divReservasSopa.innerHTML = comprobarReservasSopa(menu);
   divReservasSegundo.innerHTML = "(Reservas = "+ menu.reservasSegundo+")";
-  document.getElementById("reservar-segundo-button").addEventListener("click", showForm);
-  divStockSegundo.setAttribute("data-stock", menu.getStockSegundo());
+
 
 });

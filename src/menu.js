@@ -6,8 +6,9 @@ class Menu {
     this.stockSegundo = 0;
     this.reservasSopa = 0;
     this.reservasSegundo = 0;
-    this.StockCantidadSopa=0
-    this.StockCantidadSegundo=0
+    this.StockCantidadSopa=0;
+    this.StockCantidadSegundo=0;
+    
   }
   agregarStockSopa(stock, cantidad) {
     this.stockSopa = stock;
@@ -50,12 +51,15 @@ class Menu {
       }
     }
     else if (plato === this.segundo) {
-        if (this.getStockSegundo() > 0) {
+      if (this.getStockSegundo() > 0) {
           this.reservasSegundo++;
-        }
       }
-    }  
+    }
+  }
+  actualizarNombre(nuevoNombre) {
+    this.sopa = nuevoNombre;
+  }
+} 
   
-}
 
 export default Menu;
