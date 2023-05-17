@@ -7,12 +7,19 @@ class Menu {
     this.reservasSopa = 0;
     this.reservasSegundo = 0;
     this.horaReserva = 0;
+    this.StockCantidadSopa=0;
+    this.StockCantidadSegundo=0;
+    this.precio=0;
+    
   }
-  agregarStockSopa(stock){
+  agregarStockSopa(stock, cantidad) {
     this.stockSopa = stock;
+    this.StockCantidadSopa = cantidad;
   }
-  agregarStockSegundo(stock){
+
+  agregarStockSegundo(stock, cantidad) {
     this.stockSegundo = stock;
+    this.StockCantidadSegundo = cantidad;
   }
   agregarReservaSopa(reserva){
     if(this.reservasSopa < this.stockSopa){
@@ -28,6 +35,47 @@ class Menu {
     this.horaReserva = hora;
   }
   
-}
+
+  getStockSopa() {
+    return Math.max(0, this.stockSopa - this.reservasSopa);
+  }
+  getStockSegundo() {
+    return Math.max(0, this.stockSegundo - this.reservasSegundo);
+  }
+  verificarStock(plato) {
+    if (plato === this.sopa) {
+      return Math.max(0, this.stockSopa - this.reservasSopa >0);
+    } else if (plato ===  this.segundo) {
+      return Math.max(0, this.stockSegundo - this.reservasSegundo>0);
+    } else {
+      return -1; 
+    }
+  }
+  venderPlato(plato) {
+    if (plato === this.sopa) {
+      if (this.getStockSopa() > 0) {
+        this.reservasSopa++;
+      }
+    }
+    else if (plato === this.segundo) {
+      if (this.getStockSegundo() > 0) {
+          this.reservasSegundo++;
+      }
+    }
+  }
+  actualizarNombre(nuevoNombre) {
+    this.sopa = nuevoNombre;
+  }
+  actualizarPrecio(nuevoPrecio) {
+    this.precio = nuevoPrecio;
+  }
+  aumentarStock(cantidadAumento) {
+    this.stock += cantidadAumento;
+  }
+  reducirStock(cantidadReducir) {
+    this.stock -= cantidadReducir;
+  }
+} 
+  
 
 export default Menu;

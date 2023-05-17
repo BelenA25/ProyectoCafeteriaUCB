@@ -48,9 +48,8 @@ function comprobarReservasHora(menu){
 function showForm() {
   document.getElementById('reservar-form').style.display = "block";
 }
-
 botonReservar.style.display='none';
-formReservas.style.display='none';
+//formReservas.style.display='none';
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   botonMostrar.remove();
@@ -62,20 +61,11 @@ form.addEventListener("submit", (event) => {
 
   menu.agregarReservaSopa(10);
   menu.agregarReservaSegundo(4);
-  
+
   divSopa.innerHTML = "Sopa: " + menu.sopa;
   divSegundo.innerHTML = "Segundo: " + menu.segundo;
   divStockSopa.innerHTML = "(Stock = "+ comprobarAgotado(menu.stockSopa)+")";
   divStockSegundo.innerHTML = "(Stock = "+ comprobarAgotado(menu.stockSegundo)+")";
   divReservasSopa.innerHTML = comprobarReservasSopa(menu);
   divReservasSegundo.innerHTML = "(Reservas = "+ menu.reservasSegundo+")";
-
-  divReservasSopaHora.innerHTML = "(Hora = "+ menu.horaReserva+")";
-  menu.agregarHoraDeEntrega(12);
-  divReservasSopaHora.innerHTML = comprobarReservasHora(menu);
-
-  divReservasSegundoHora.innerHTML = "(Hora = "+ menu.horaReserva +")";
-  menu.agregarHoraDeEntrega(18);
-  divReservasSegundoHora.innerHTML = comprobarReservasHora(menu);
-  
 });

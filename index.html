@@ -10,9 +10,16 @@
       <div id="stock-sopa"></div>
       <div id="reservas-sopa"></div>
       <div id="reservas-sopa-hora"></div>
+      <div id="reservas-sopa">Ya no se permiten más reservas</div>
+      <script type="text/javascript">
+        function showform(){
+        document.getElementById("reservas-sopa").style.display = 'block';
+        }
+        </script>
       <br>
       <div id="segundo"></div>
-      <div id="stock-segundo"></div>
+      <div id="stock-segundo" data-stock="4"></div>
+  
       <div id="reservas-segundo"></div>
       <div id="reservas-segundo-hora"></div>
       <input type="submit" value="Mostrar menu" id="mostrar-button" />
@@ -26,7 +33,13 @@
     </form>
     <form id="reservar-form">
       <div>Reservar sopa:</div>
+
+      <input type="submit" value="Reservar Sopa" id="reservar-sopa-button" />
+      <div>Reservar Segundo:</div>
+      <input type="submit" value="Reservar Segundo" id="reservar-segundo-button" />
     </form>
+  
+    
       <h3>Precios: </h3>
       <div>Solo Sopa = 5 Bs.</div>
       <div>Solo Segundo = 13 Bs.</div>
