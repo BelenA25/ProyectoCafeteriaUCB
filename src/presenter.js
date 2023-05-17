@@ -34,7 +34,7 @@ function showForm() {
 }
 
 botonReservar.style.display='none';
-formReservas.style.display='none';
+//formReservas.style.display='none';
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   botonMostrar.remove();
@@ -53,5 +53,7 @@ form.addEventListener("submit", (event) => {
   divStockSegundo.innerHTML = "(Stock = "+ comprobarAgotado(menu.stockSegundo)+")";
   divReservasSopa.innerHTML = comprobarReservasSopa(menu);
   divReservasSegundo.innerHTML = "(Reservas = "+ menu.reservasSegundo+")";
- 
+  document.getElementById("reservar-segundo-button").addEventListener("click", showForm);
+  divStockSegundo.setAttribute("data-stock", menu.getStockSegundo());
+
 });
