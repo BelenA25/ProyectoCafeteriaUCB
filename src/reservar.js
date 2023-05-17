@@ -9,8 +9,15 @@ class User {
     ReducirStock(producto){
         producto.cantidad--;
     }
-    CalcularTotal(producto){
+    CalcularTotalProducto(producto){
         var total = producto.precio * producto.cantidad;
+        return total;
+    }
+    CalcularTotalPedido(){
+        var total = 0;
+        for(let i=0; i<this.reservas.length; i++){
+            total = total + this.CalcularTotalProducto(this.reservas[i]);
+        }
         return total;
     }
 }

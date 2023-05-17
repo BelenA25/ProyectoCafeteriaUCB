@@ -18,6 +18,9 @@ describe("Crear Reservar Producto", () => {
         expect(segundo.cantidad).toEqual(1);
     });
     it("Calcular el total del a pagar de un producto", () => {
-        expect(cliente.CalcularTotal(sopa)).toEqual(45);
+        expect(cliente.CalcularTotalProducto(sopa)).toEqual(45);
+    });
+    it("Calcular el total del a pagar del pedido", () => {
+        expect(cliente.CalcularTotalPedido()).toEqual(55);
     });
   });
