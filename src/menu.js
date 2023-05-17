@@ -6,6 +6,7 @@ class Menu {
     this.stockSegundo = 0;
     this.reservasSopa = 0;
     this.reservasSegundo = 0;
+    this.horaReserva = 0;
   }
   agregarStockSopa(stock){
     this.stockSopa = stock;
@@ -22,6 +23,9 @@ class Menu {
     if(this.reservasSegundo < this.stockSegundo){
       this.reservasSegundo  = this.reservasSegundo +  reserva;
     }
+  }
+  agregarHoraDeEntrega(hora){
+    this.horaReserva = hora;
   }
 }
 
