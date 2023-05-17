@@ -10,6 +10,7 @@ const divStockSopa = document.querySelector("#stock-sopa");
 const divStockSegundo = document.querySelector("#stock-segundo");
 const divReservasSopa = document.querySelector("#reservas-sopa");
 const divReservasSegundo = document.querySelector("#reservas-segundo");
+const errorMessage = document.getElementById("error-message");
 
 function comprobarAgotado(stock){
   if(stock == 0){
@@ -36,6 +37,9 @@ botonReservar.style.display='none';
 //formReservas.style.display='none';
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  const sopa = document.getElementById("sopa").textContent.trim();
+  const segundo = document.getElementById("segundo").textContent.trim();
+
   botonMostrar.remove();
   botonReservar.style.display = 'block';
   const menu = new Menu("Sopa de mani", "Silpancho");
@@ -45,7 +49,14 @@ form.addEventListener("submit", (event) => {
 
   menu.agregarReservaSopa(10);
   menu.agregarReservaSegundo(4);
-
+  
+  if (sopa === "Error: Nombre inválido" || segundo === "Error: Nombre inválido") {
+ 
+    errorMessage.textContent = "Error: Nombre inválido";
+  } else {
+ 
+    errorMessage.textContent = "";
+  }
 
   divSopa.innerHTML = "Sopa: " + menu.sopa;
   divSegundo.innerHTML = "Segundo: " + menu.segundo;

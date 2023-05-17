@@ -40,6 +40,20 @@ describe("Editar Menu", () => {
         cy.get("#stock-sopa").should("contain", `Stock: ${nuevoStockSopa}`);
         cy.get("#stock-segundo").should("contain", `Stock: ${nuevoStockSegundo}`);
       });
+      it("debería mostrar un mensaje de error si no se edita correctamente el nombre de los platos", () => {
+        cy.visit("/");
+        cy.get("#menu-form").submit();
+        cy.get("#sopa").should("not.contain", "Error: Nombre inválido");
+        cy.get("#sopa").invoke("text", "Error: Nombre inválido");
+        cy.get("#menu-form").submit();
+        cy.get("#error-message").should("contain", "Error: Nombre inválido");
+      });
+      
+      
+
+
+      
+      
       
       
       
