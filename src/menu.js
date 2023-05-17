@@ -63,6 +63,12 @@ class Menu {
   actualizarPrecio(nuevoPrecio) {
     this.precio = nuevoPrecio;
   }
+  aumentarStock(cantidadAumento) {
+    this.stock += cantidadAumento;
+  }
+  reducirStock(cantidadReducir) {
+    this.stock -= cantidadReducir;
+  }
 } 
   
 
