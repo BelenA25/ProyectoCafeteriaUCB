@@ -49,3 +49,11 @@ describe("Reservas del menu", () => {
     cy.get("#reserva-sopa").should("contain", "Reservar sopa:");
   });
 });
+  describe("Agregar hora de reserva de Producto", () => {
+  it("Deberia mostrar la hora en el pedido confirmado", () => {
+    cy.visit("/");
+    cy.get("#mostrar-button").click();
+    cy.get("#reservas-sopa").should("contain", "(Hora = 12)");
+  });
+  
+});

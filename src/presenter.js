@@ -10,6 +10,8 @@ const divStockSopa = document.querySelector("#stock-sopa");
 const divStockSegundo = document.querySelector("#stock-segundo");
 const divReservasSopa = document.querySelector("#reservas-sopa");
 const divReservasSegundo = document.querySelector("#reservas-segundo");
+const divReservasSopaHora = document.querySelector("#reservas-sopa-hora");
+const divReservasSegundoHora = document.querySelector("#reservas-segundo-hora");
 
 function comprobarAgotado(stock){
   if(stock == 0){
@@ -47,10 +49,14 @@ form.addEventListener("submit", (event) => {
   menu.agregarReservaSopa(10);
   menu.agregarReservaSegundo(4);
 
+  menu.agregarHoraDeEntrega(12);
+  
   divSopa.innerHTML = "Sopa: " + menu.sopa;
   divSegundo.innerHTML = "Segundo: " + menu.segundo;
   divStockSopa.innerHTML = "(Stock = "+ comprobarAgotado(menu.stockSopa)+")";
   divStockSegundo.innerHTML = "(Stock = "+ comprobarAgotado(menu.stockSegundo)+")";
   divReservasSopa.innerHTML = comprobarReservasSopa(menu);
   divReservasSegundo.innerHTML = "(Reservas = "+ menu.reservasSegundo+")";
+  divReservasSopaHora.innerHTML = "(Hora = "+ menu.horaReserva+")";
+  divReservasSegundoHora.innerHTML = "(Hora = "+ menu.horaReserva +")";
 });

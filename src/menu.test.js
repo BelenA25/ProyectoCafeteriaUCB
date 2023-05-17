@@ -69,7 +69,7 @@ describe("Agregrar reservas al menu", () => {
   });
 });
 
-  describe("Agregrar hora de reserva de Producto", () => {
+  describe("Agregar hora de reserva de Producto", () => {
     it("Deberia pedirme una hora aproximada de entrega del pedido", () =>{
       const menu = new Menu("Sopa de mani", "Silpancho");
       menu.agregarStockSopa(10);
@@ -77,5 +77,5 @@ describe("Agregrar reservas al menu", () => {
       menu.agregarHoraDeEntrega(13);
       expect(menu.horaReserva).toEqual(13);
     }); 
-  
+ 
 });
