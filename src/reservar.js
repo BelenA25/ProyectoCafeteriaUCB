@@ -7,7 +7,11 @@ class User {
         this.reservas.push(producto);
     }
     ReducirStock(producto){
-        producto.stock--;
+        producto.cantidad--;
+    }
+    CalcularTotal(producto){
+        var total = producto.precio * producto.cantidad;
+        return total;
     }
 }
   

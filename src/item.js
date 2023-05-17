@@ -1,8 +1,8 @@
 class Item{
-    constructor(nombre, precio, stock){
+    constructor(nombre, precio, cantidad){
         this.nombre = nombre;
         this.precio = precio;
-        this.stock = stock;
+        this.cantidad = cantidad;
     }
 }
 
