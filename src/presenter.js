@@ -31,6 +31,20 @@ function comprobarReservasSopa(menu){
     return "(Reservas = "+ menu.reservasSopa+")";
   }
 }
+
+function comprobarReservasHora(menu){
+  if(menu.horaReserva < 13){
+    return "Cato Break aun no abre las reservas del menu"
+  }
+  if(menu.horaReserva > 17){
+    return "Cato Break ya cerro las reservas del menu"
+  }
+  else
+  {
+    return "(Hora = "+ menu.horaReserva +")";
+  }
+}
+
 function showForm() {
   document.getElementById('reservar-form').style.display = "block";
 }
@@ -48,8 +62,6 @@ form.addEventListener("submit", (event) => {
 
   menu.agregarReservaSopa(10);
   menu.agregarReservaSegundo(4);
-
-  menu.agregarHoraDeEntrega(12);
   
   divSopa.innerHTML = "Sopa: " + menu.sopa;
   divSegundo.innerHTML = "Segundo: " + menu.segundo;
@@ -57,6 +69,13 @@ form.addEventListener("submit", (event) => {
   divStockSegundo.innerHTML = "(Stock = "+ comprobarAgotado(menu.stockSegundo)+")";
   divReservasSopa.innerHTML = comprobarReservasSopa(menu);
   divReservasSegundo.innerHTML = "(Reservas = "+ menu.reservasSegundo+")";
+
   divReservasSopaHora.innerHTML = "(Hora = "+ menu.horaReserva+")";
+  menu.agregarHoraDeEntrega(12);
+  divReservasSopaHora.innerHTML = comprobarReservasHora(menu);
+
   divReservasSegundoHora.innerHTML = "(Hora = "+ menu.horaReserva +")";
+  menu.agregarHoraDeEntrega(18);
+  divReservasSegundoHora.innerHTML = comprobarReservasHora(menu);
+  
 });

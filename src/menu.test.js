@@ -2,7 +2,7 @@ import Menu from "./menu.js";
 
 describe("Crear menu", () => {
   it("deberia devolver el valor de la sopa", () => {
-    const menu = new Menu("Sopa de mani", "Silpancho");
+    const menu = new Menu("Sopa de mani", "Silpancho",13);
     expect(menu.sopa).toEqual("Sopa de mani");
   });
   it("deberia devolver el valor del segundo", () => {
@@ -77,5 +77,11 @@ describe("Agregrar reservas al menu", () => {
       menu.agregarHoraDeEntrega(13);
       expect(menu.horaReserva).toEqual(13);
     }); 
- 
+    it("Deberia dar error si intento añadir la hora fuera del rango de atencion de la cafeteria", () => {
+      const menu = new Menu("Sopa de mani", "Silpancho");
+      menu.agregarStockSopa(15);
+      menu.agregarReservaSopa(15);
+      menu.agregarHoraDeEntrega(10);
+      expect(menu.horaReserva).toEqual(10);
+    });
 });

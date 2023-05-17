@@ -49,11 +49,22 @@ describe("Reservas del menu", () => {
     cy.get("#reserva-sopa").should("contain", "Reservar sopa:");
   });
 });
+
+
   describe("Agregar hora de reserva de Producto", () => {
   it("Deberia mostrar la hora en el pedido confirmado", () => {
     cy.visit("/");
     cy.get("#mostrar-button").click();
-    cy.get("#reservas-sopa").should("contain", "(Hora = 12)");
+    cy.get("#reservas-sopa-hora").should("contain", "(Hora = 12)");
   });
-  
+  it("Deberia dar error si intento añadir la hora antes de la hora de atencion", () => {
+    cy.visit("/");
+    cy.get("#mostrar-button").click();
+    cy.get("#reservas-sopa-hora").should("contain", "Cato Break aun no abre las reservas del menu");
+  });
+  it("Deberia dar error si intento añadir la hora despues de la hora de atencion", () => {
+    cy.visit("/");
+    cy.get("#mostrar-button").click();
+    cy.get("#reservas-segundo-hora").should("contain", "Cato Break ya cerro las reservas del menu");
+  });
 });

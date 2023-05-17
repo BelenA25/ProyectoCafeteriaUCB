@@ -27,6 +27,7 @@ class Menu {
   agregarHoraDeEntrega(hora){
     this.horaReserva = hora;
   }
+  
 }
 
 export default Menu;
