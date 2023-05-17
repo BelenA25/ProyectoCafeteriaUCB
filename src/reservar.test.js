@@ -1,3 +1,6 @@
+import Item from "./item";
+import User from "./reservar";
+
 describe("Crear menu", () => {
     var cliente = new User("Juan");
     it("Debería reservar almenos un item", () => {
