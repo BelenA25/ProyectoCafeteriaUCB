@@ -27,6 +27,10 @@ class Menu {
       this.reservasSegundo  = this.reservasSegundo +  reserva;
     }
   }
+  getStockSopa() {
+    return Math.max(0, this.stockSopa - this.reservasSopa);
+  }
+
   verificarStock(plato) {
     if (plato === this.sopa) {
       return Math.max(0, this.stockSopa - this.reservasSopa);
@@ -35,6 +39,13 @@ class Menu {
     } else {
       return -1; 
     }
+  }
+  venderPlato(plato) {
+    if (plato === this.sopa) {
+      if (this.getStockSopa() > 0) {
+        this.reservasSopa++;
+      }
+    }  
   }
   
 }
