@@ -43,11 +43,11 @@ describe("Reservas del menu", () => {
     cy.get("#mostrar-button").click();
     cy.get("#reservas-sopa").should("contain", "Ya no se permiten mas reservas");
   });
-  // it("Debería mostrar el formulario de reservas", () => {
-  //   cy.visit("/");
-  //   cy.get("#reservar-button").click();
-  //   cy.get("#reserva-sopa").should("contain", "Reservar sopa:");
-  // });
+  it("Debería mostrar el formulario de reservas", () => {
+    cy.visit("/");
+    cy.get("#reservar-button").click();
+    cy.get("#reserva-sopa").should("contain", "Reservar sopa:");
+  });
 });
 
 
@@ -67,4 +67,9 @@ describe("Reservas del menu", () => {
     cy.get("#mostrar-button").click();
     cy.get("#reservas-segundo-hora").should("contain", "Cato Break ya cerro las reservas del menu");
   });
+  // it("Debería mostrar el formulario de reservas", () => {
+  //   cy.visit("/");
+  //   cy.get("#reservar-button").click();
+  //   cy.get("#reserva-sopa").should("contain", "Reservar sopa:");
+  // });
 });

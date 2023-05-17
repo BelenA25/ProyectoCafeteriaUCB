@@ -61,6 +61,8 @@ form.addEventListener("submit", (event) => {
 
   menu.agregarReservaSopa(10);
   menu.agregarReservaSegundo(4);
+  
+
 
   divSopa.innerHTML = "Sopa: " + menu.sopa;
   divSegundo.innerHTML = "Segundo: " + menu.segundo;
@@ -68,4 +70,14 @@ form.addEventListener("submit", (event) => {
   divStockSegundo.innerHTML = "(Stock = "+ comprobarAgotado(menu.stockSegundo)+")";
   divReservasSopa.innerHTML = comprobarReservasSopa(menu);
   divReservasSegundo.innerHTML = "(Reservas = "+ menu.reservasSegundo+")";
+
+  divReservasSopaHora.innerHTML = "(Hora = "+ menu.horaReserva+")";
+  menu.agregarHoraDeEntrega(12);
+  divReservasSopaHora.innerHTML = comprobarReservasHora(menu);
+
+  divReservasSegundoHora.innerHTML = "(Hora = "+ menu.horaReserva +")";
+  menu.agregarHoraDeEntrega(18);
+  divReservasSegundoHora.innerHTML = comprobarReservasHora(menu);
+  
+
 });
