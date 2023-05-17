@@ -53,4 +53,5 @@ form.addEventListener("submit", (event) => {
   divStockSegundo.innerHTML = "(Stock = "+ comprobarAgotado(menu.stockSegundo)+")";
   divReservasSopa.innerHTML = comprobarReservasSopa(menu);
   divReservasSegundo.innerHTML = "(Reservas = "+ menu.reservasSegundo+")";
+ 
 });
