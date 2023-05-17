@@ -48,16 +48,12 @@ describe("Editar Menu", () => {
         cy.get("#menu-form").submit();
         cy.get("#error-message").should("contain", "Error: Nombre inválido");
       });
-      
-      
-
-
-      
-      
-      
-      
-      
-      
-      
+      it("debería mostrar un mensaje de éxito al editar el nombre de un plato correctamente", () => {
+        cy.visit("/");
+        cy.get("#sopa").invoke("text", "Sopa Editada");
+        cy.get("#menu-form").submit();
+        cy.get("#success-message").should("contain", "¡Nombre de plato editado exitosamente!");
+      });
+        
       
 });
