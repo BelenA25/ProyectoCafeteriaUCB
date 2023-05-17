@@ -4,7 +4,9 @@ class User {
         this.reservas = [];
     }
     AgregarProducto(producto){
-        this.reservas.push(producto);
+        if(producto.cantidad > 0){
+            this.reservas.push(producto);
+        }
     }
     ReducirStock(producto){
         producto.cantidad--;
