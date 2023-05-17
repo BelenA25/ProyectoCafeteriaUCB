@@ -38,5 +38,15 @@ describe("Crear el menu del dia con stock", () => {
         expect(stockFinal).toEqual(stockInicial - 1);
         
       });
+      it('debería reducir el stock al vender un plato', () => {
+        const menu = new Menu('Sopa de mani', 'Silpancho');
+        const platoVendido = 'Silpancho';
+        menu.agregarStockSegundo(8, 2);  
+        const stockInicial = menu.getStockSegundo(platoVendido); 
+        menu.venderPlato(platoVendido); 
+        const stockFinal = menu.getStockSegundo(platoVendido); 
+        expect(stockFinal).toEqual(stockInicial - 1);
+        
+      });
       
 });

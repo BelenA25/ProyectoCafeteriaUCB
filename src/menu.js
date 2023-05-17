@@ -30,7 +30,9 @@ class Menu {
   getStockSopa() {
     return Math.max(0, this.stockSopa - this.reservasSopa);
   }
-
+  getStockSegundo() {
+    return Math.max(0, this.stockSegundo - this.reservasSegundo);
+  }
   verificarStock(plato) {
     if (plato === this.sopa) {
       return Math.max(0, this.stockSopa - this.reservasSopa);
@@ -45,8 +47,13 @@ class Menu {
       if (this.getStockSopa() > 0) {
         this.reservasSopa++;
       }
+    }
+    else if (plato === this.segundo) {
+        if (this.getStockSegundo() > 0) {
+          this.reservasSegundo++;
+        }
+      }
     }  
-  }
   
 }
 
