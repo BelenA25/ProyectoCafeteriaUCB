@@ -6,7 +6,8 @@ class Menu {
     this.stockSegundo = 0;
     this.reservasSopa = 0;
     this.reservasSegundo = 0;
-
+    this.StockCantidadSopa=0
+    this.StockCantidadSegundo=0
   }
   agregarStockSopa(stock, cantidad) {
     this.stockSopa = stock;
@@ -35,9 +36,9 @@ class Menu {
   }
   verificarStock(plato) {
     if (plato === this.sopa) {
-      return Math.max(0, this.stockSopa - this.reservasSopa);
+      return Math.max(0, this.stockSopa - this.reservasSopa >0);
     } else if (plato ===  this.segundo) {
-      return Math.max(0, this.stockSegundo - this.reservasSegundo);
+      return Math.max(0, this.stockSegundo - this.reservasSegundo>0);
     } else {
       return -1; 
     }

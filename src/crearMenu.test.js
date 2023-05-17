@@ -48,5 +48,18 @@ describe("Crear el menu del dia con stock", () => {
         expect(stockFinal).toEqual(stockInicial - 1);
         
       });
+      it("no debería permitir agregar reservas superiores al stock disponible", () => {
+        const menu = new Menu("Sopa de Pescado", "Charque");
+        menu.agregarStockSopa("Sopa de Pescado", 5);
+        menu.agregarStockSegundo("Charque", 3)
+        menu.agregarReservaSopa(3);
+        menu.agregarReservaSegundo(2);
+        expect(menu.reservasSopa).toEqual(0);
+        expect(menu.reservasSegundo).toEqual(0);
+      
+
+ 
+      });
+      
       
 });
