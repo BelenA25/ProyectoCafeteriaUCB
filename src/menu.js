@@ -28,9 +28,9 @@ class Menu {
     }
   }
   verificarStock(plato) {
-    if (plato === "Sopa de Chairo") {
+    if (plato === this.sopa) {
       return Math.max(0, this.stockSopa - this.reservasSopa);
-    } else if (plato ===  "Majadito") {
+    } else if (plato ===  this.segundo) {
       return Math.max(0, this.stockSegundo - this.reservasSegundo);
     } else {
       return -1; 
