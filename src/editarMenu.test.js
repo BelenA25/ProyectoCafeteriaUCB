@@ -29,4 +29,11 @@ describe("Editar el menu del dia con stock", () => {
         menu.reducirStock(cantidadReduccion);
         expect(menu.stock).toBe(stockInicial - cantidadReduccion);
     });
+    // it("Deberia mostrar un mensaje de exito cuando se guarda correctamente", () => {
+      
+    //     const menu = new Menu("Sopa de Fideo", "Pique");
+    //     menu.guardarEdicion();
+    //     expect(menu.mensaje).toBe('¡Edición guardada correctamente!');
+     
+    // });
 });
