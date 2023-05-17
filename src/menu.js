@@ -8,6 +8,7 @@ class Menu {
     this.reservasSegundo = 0;
     this.StockCantidadSopa=0;
     this.StockCantidadSegundo=0;
+    this.precio=0;
     
   }
   agregarStockSopa(stock, cantidad) {
@@ -58,6 +59,9 @@ class Menu {
   }
   actualizarNombre(nuevoNombre) {
     this.sopa = nuevoNombre;
+  }
+  actualizarPrecio(nuevoPrecio) {
+    this.precio = nuevoPrecio;
   }
 } 
   

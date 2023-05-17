@@ -7,6 +7,13 @@ describe("Editar el menu del dia con stock", () => {
         menu.actualizarNombre(nuevoNombre);
         expect(menu.sopa).toBe(nuevoNombre);
       });
-      
+    it("debería actualizar el precio del plato en el menú", () => {
+
+        const menu = new Menu("Sopa de Fideo", "Pique");
+        const nuevoPrecio = 18;
+        menu.actualizarPrecio(nuevoPrecio);
+
+        expect(menu.precio).toBe(nuevoPrecio);
+    });
       
 });
