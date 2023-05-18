@@ -22,6 +22,16 @@ class User {
         }
         return total;
     }
+    MostrarPedidos() {
+        for (let i = 0; i < this.reservas.length; i++) {
+            const producto = this.reservas[i];
+            console.log("Producto: " + producto.nombre);
+            console.log("Precio: " + producto.precio);
+            console.log("Cantidad: " + producto.cantidad);
+            console.log("Total: " + this.CalcularTotalProducto(producto));
+            console.log("-------------------");
+        }
+    }
 }
   
 export default User;

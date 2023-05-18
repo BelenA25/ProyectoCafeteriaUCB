@@ -1,4 +1,6 @@
+import Item from "./item.js";
 import Menu from "./menu.js";
+import User from "./reservar.js";
 
 const form = document.querySelector("#menu-form");
 const formReservas = document.querySelector("#reservar-form");
@@ -10,6 +12,7 @@ const divStockSopa = document.querySelector("#stock-sopa");
 const divStockSegundo = document.querySelector("#stock-segundo");
 const divReservasSopa = document.querySelector("#reservas-sopa");
 const divReservasSegundo = document.querySelector("#reservas-segundo");
+const divPedidos = document.querySelector('#Pedidos');
 
 function comprobarAgotado(stock){
   if(stock == 0){
@@ -40,12 +43,20 @@ form.addEventListener("submit", (event) => {
   botonMostrar.remove();
   botonReservar.style.display = 'block';
   const menu = new Menu("Sopa de mani", "Silpancho");
-
+  const cliente = new User("Juan");
+  const sopa = new Item("Sopa de Mani",15,3);
+  const segundo = new Item("Pique",10,2);
+  const postre = new Item("Cheesecake",15,0);
   menu.agregarStockSegundo(20);
   menu.agregarStockSopa(10);
 
   menu.agregarReservaSopa(10);
   menu.agregarReservaSegundo(4);
+
+  cliente.AgregarProducto(sopa);
+  cliente.AgregarProducto(segundo);
+  cliente.AgregarProducto(postre);
+
 
   divSopa.innerHTML = "Sopa: " + menu.sopa;
   divSegundo.innerHTML = "Segundo: " + menu.segundo;
@@ -53,4 +64,5 @@ form.addEventListener("submit", (event) => {
   divStockSegundo.innerHTML = "(Stock = "+ comprobarAgotado(menu.stockSegundo)+")";
   divReservasSopa.innerHTML = comprobarReservasSopa(menu);
   divReservasSegundo.innerHTML = "(Reservas = "+ menu.reservasSegundo+")";
+  divPedidos.innerHTML = "(Pedidos Confirmados = " + cliente.MostrarPedidos + ")"; 
 });

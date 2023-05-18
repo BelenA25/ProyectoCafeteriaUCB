@@ -4,6 +4,12 @@ class Item{
         this.precio = precio;
         this.cantidad = cantidad;
     }
+    mostrarItem(item) {
+        console.log("Nombre: " + item.nombre);
+        console.log("Precio: " + item.precio);
+        console.log("Cantidad: " + item.cantidad);
+    }
+    
 }
 
 export default Item;
