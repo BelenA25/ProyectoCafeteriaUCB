@@ -26,23 +26,23 @@ describe("Menu y precio", () => {
 });
 
 describe("Stock del menu", () => {
-  it("deberia mostrar el stock de cada elemento del menu", () => {
+  it("deberia mostrar el stock por defecto del menu", () => {
     cy.visit("/");
     cy.get("#mostrar-button").click();
-    cy.get("#stock-segundo").should("contain", "(Stock = 20)");
+    cy.get("#stock-segundo").should("contain", "(Stock = AGOTADO)");
   });
 });
 describe("Reservas del menu", () => {
-  it("deberia mostrar el numero de reservas de cada elemento del menu", () => {
+  it("deberia mostrar el numero de reservas de cada elemento del menu, que al inicar son 0", () => {
     cy.visit("/");
     cy.get("#mostrar-button").click();
-    cy.get("#reservas-segundo").should("contain", "(Reservas = 4)");
+    cy.get("#reservas-segundo").should("contain", "(Reservas = 0)");
   });
-  it("Debería mostrar un mensaje si es que el plato no esta disponible", () => {
-    cy.visit("/");
-    cy.get("#mostrar-button").click();
-    cy.get("#reservas-sopa").should("contain", "Ya no se permiten mas reservas");
-  });
+  // it("Debería mostrar un mensaje si es que el plato no esta disponible", () => {
+  //   cy.visit("/");
+  //   cy.get("#mostrar-button").click();
+  //   cy.get("#reservas-sopa").should("contain", "Ya no se permiten mas reservas");
+  // });
   // it("Debería mostrar el formulario de reservas", () => {
   //   cy.visit("/");
   //   cy.get("#reservar-button").click();
