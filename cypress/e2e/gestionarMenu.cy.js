@@ -29,6 +29,18 @@ describe("Crear Menu", () => {
     cy.get("#sopa").should("contain", "Fideo");
     cy.get("#segundo").should("contain", "Silpancho");
   });
+  it("debería mostrar el stock de la sopa y segundo recien creados", () => {
+    cy.visit("/");
+    cy.get("#input-sopa-creada").type("Fideo");
+    cy.get("#input-segundo-creada").type("Silpancho")
+    cy.get("#input-sopa-stock-creada").type(200);
+    cy.get("#input-segundo-stock-creada").type(30)
+    cy.get("#crear-menu-button").click();
+    cy.get("#sopa").should("contain", "Fideo");
+    cy.get("#segundo").should("contain", "Silpancho");
+    cy.get("#stock-sopa").should("contain", "(Stock = 200)");
+    cy.get("#stock-segundo").should("contain", "(Stock = 30)");
+  });
 });
 describe("Editar Menu", () => {
   it("debería mostrar el formulario de edicion de menu", () => {
