@@ -4,9 +4,6 @@ const form = document.querySelector("#menu-form");
 const formReservas = document.querySelector("#reservar-form");
 const formCrearMenu = document.querySelector("#crear-menu-form");
 const formEditarMenu = document.querySelector("#editar-menu-form");
-const botonMostrar = document.querySelector("#mostrar-button");
-const botonReservar = document.querySelector("#reservar-button");
-const botonCrearMenu = document.querySelector("#crear-menu-button");
 const divSopa = document.querySelector("#sopa");
 const divSegundo = document.querySelector("#segundo");
 const divStockSopa = document.querySelector("#stock-sopa");
@@ -50,15 +47,11 @@ function comprobarReservasSegundo(menu) {
   }
 }
 let menu = new Menu("", "");
-botonReservar.style.display = "none";
-//formReservas.style.display='none';
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const sopa = document.getElementById("sopa").textContent.trim();
   const segundo = document.getElementById("segundo").textContent.trim();
-
-  botonMostrar.remove();
-  botonReservar.style.display = "block";
 
   if (
     sopa === "Error: Nombre inválido" ||
@@ -82,11 +75,6 @@ formCrearMenu.addEventListener("submit", (event) => {
   menu = new Menu(nombreCreadoSopa.value, nombreCreadoSegundo.value);
   menu.agregarStockSopa(stockCreadoSopa.value);
   menu.agregarStockSegundo(stockCreadoSegundo.value);
-  divSopa.innerHTML = "Sopa: " + menu.sopa;
-  divSegundo.innerHTML = "Segundo: " + menu.segundo;
-  divStockSopa.innerHTML = "(Stock = " + comprobarAgotado(menu.stockSopa) + ")";
-  divStockSegundo.innerHTML =
-    "(Stock = " + comprobarAgotado(menu.stockSegundo) + ")";
   nombreEditadoSopa.value = menu.sopa;
   nombreEditadoSegundo.value = menu.segundo;
   stockEditadoSopa.value = menu.stockSopa;
@@ -98,9 +86,5 @@ formEditarMenu.addEventListener("submit", (event) => {
   menu.actualizarNombreSegundo(nombreEditadoSegundo.value);
   menu.agregarStockSopa(stockEditadoSopa.value);
   menu.agregarStockSegundo(stockEditadoSegundo.value);
-  divSopa.innerHTML = "Sopa: " + menu.sopa;
-  divSegundo.innerHTML = "Segundo: " + menu.segundo;
-  divStockSopa.innerHTML = "(Stock = " + comprobarAgotado(menu.stockSopa) + ")";
-  divStockSegundo.innerHTML =
-    "(Stock = " + comprobarAgotado(menu.stockSegundo) + ")";
+
 });
