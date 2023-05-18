@@ -109,3 +109,4 @@ formReservas.addEventListener("submit", (event) => {
   miPedidoSopa.innerHTML = "Sopa: " + pedido.sopa;
   miPedidoSegundo.innerHTML = "Segundo: " + pedido.segundo;
 });
+

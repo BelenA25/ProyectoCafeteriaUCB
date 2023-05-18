@@ -9,8 +9,8 @@ class Menu {
     this.StockCantidadSopa=0;
     this.StockCantidadSegundo=0;
     this.precio=0;
-    
   }
+
   agregarStockSopa(stock) {
     this.stockSopa = stock;
   }
@@ -28,6 +28,11 @@ class Menu {
       this.reservasSegundo  = this.reservasSegundo +  reserva;
     }
   }
+
+  decrementarReservasSopa(reserva){
+    this.reservasSopa = this.reservasSopa - reserva;
+  }
+
   getStockSopa() {
     return Math.max(0, this.stockSopa - this.reservasSopa);
   }

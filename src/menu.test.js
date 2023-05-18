@@ -68,3 +68,12 @@ describe("Agregrar reservas al menu", () => {
     expect(menu.reservasSegundo).toEqual(15);
   });
 });
+describe("Agregrar reservas al menu", () => {
+  it("deberia decrementar el numero de reservas cuando se cancela un pedido", () => {
+    const menu = new Menu("", "");
+    menu.agregarStockSopa(15);
+    menu.agregarReservaSopa(8);
+    menu.decrementarReservasSopa(6);
+    expect(menu.reservasSopa).toEqual(2);
+  });
+});
