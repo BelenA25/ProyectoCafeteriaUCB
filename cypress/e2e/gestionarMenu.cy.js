@@ -25,4 +25,12 @@ describe("Crear Menu", () => {
     cy.visit("/");
     cy.get("#editar-sopa").should("contain", "Editar sopa:");
   });
+  it("debería mostrar la sopa y segundo recien creados", () => {
+    cy.visit("/");
+    cy.get("#input-sopa-creada").type("Fideo");
+    cy.get("#input-segundo-creada").type("Silpancho")
+    cy.get("#crear-menu-button").click();
+    cy.get("#sopa").should("contain", "Fideo");
+    cy.get("#segundo").should("contain", "Silpancho");
+  });
 });

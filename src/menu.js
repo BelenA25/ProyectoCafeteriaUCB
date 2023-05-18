@@ -11,14 +11,12 @@ class Menu {
     this.precio=0;
     
   }
-  agregarStockSopa(stock, cantidad) {
+  agregarStockSopa(stock) {
     this.stockSopa = stock;
-    this.StockCantidadSopa = cantidad;
   }
 
-  agregarStockSegundo(stock, cantidad) {
+  agregarStockSegundo(stock) {
     this.stockSegundo = stock;
-    this.StockCantidadSegundo = cantidad;
   }
   agregarReservaSopa(reserva){
     if(this.reservasSopa < this.stockSopa){

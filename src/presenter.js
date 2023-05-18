@@ -2,8 +2,10 @@ import Menu from "./menu.js";
 
 const form = document.querySelector("#menu-form");
 const formReservas = document.querySelector("#reservar-form");
+const formCrearMenu= document.querySelector("#crear-menu-form");
 const botonMostrar = document.querySelector("#mostrar-button");
 const botonReservar = document.querySelector("#reservar-button");
+const botonCrearMenu = document.querySelector("#crear-menu-button");
 const divSopa = document.querySelector("#sopa");
 const divSegundo = document.querySelector("#segundo");
 const divStockSopa = document.querySelector("#stock-sopa");
@@ -11,6 +13,8 @@ const divStockSegundo = document.querySelector("#stock-segundo");
 const divReservasSopa = document.querySelector("#reservas-sopa");
 const divReservasSegundo = document.querySelector("#reservas-segundo");
 const errorMessage = document.getElementById("error-message");
+const nombreCreadoSopa = document.getElementById("input-sopa-creada");
+const nombreCreadoSegundo = document.getElementById("input-segundo-creada");
 
 function comprobarAgotado(stock){
   if(stock == 0){
@@ -33,6 +37,7 @@ function comprobarReservasSopa(menu){
 function showForm() {
   document.getElementById('reservar-form').style.display = "block";
 }
+let menu = new Menu("", "");
 botonReservar.style.display='none';
 //formReservas.style.display='none';
 form.addEventListener("submit", (event) => {
@@ -42,7 +47,7 @@ form.addEventListener("submit", (event) => {
 
   botonMostrar.remove();
   botonReservar.style.display = 'block';
-  const menu = new Menu("Sopa de mani", "Silpancho");
+  
 
   menu.agregarStockSegundo(20);
   menu.agregarStockSopa(10);
@@ -66,4 +71,10 @@ form.addEventListener("submit", (event) => {
   divReservasSegundo.innerHTML = "(Reservas = "+ menu.reservasSegundo+")";
 
 
+});
+formCrearMenu.addEventListener("submit", (event) => {
+  event.preventDefault();
+  menu = new Menu(nombreCreadoSopa.value, nombreCreadoSegundo.value);
+  divSopa.innerHTML = "Sopa: " + menu.sopa;
+  divSegundo.innerHTML = "Segundo: " + menu.segundo;
 });
