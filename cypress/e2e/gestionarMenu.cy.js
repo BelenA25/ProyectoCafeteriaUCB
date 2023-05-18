@@ -26,6 +26,7 @@ describe("Crear Menu", () => {
     cy.get("#input-sopa-creada").type("Fideo");
     cy.get("#input-segundo-creada").type("Silpancho")
     cy.get("#crear-menu-button").click();
+    cy.get("#mostrar-button").click();
     cy.get("#sopa").should("contain", "Fideo");
     cy.get("#segundo").should("contain", "Silpancho");
   });
@@ -36,6 +37,7 @@ describe("Crear Menu", () => {
     cy.get("#input-sopa-stock-creada").type(200);
     cy.get("#input-segundo-stock-creada").type(30)
     cy.get("#crear-menu-button").click();
+    cy.get("#mostrar-button").click();
     cy.get("#sopa").should("contain", "Fideo");
     cy.get("#segundo").should("contain", "Silpancho");
     cy.get("#stock-sopa").should("contain", "(Stock = 200)");
@@ -55,6 +57,7 @@ describe("Editar Menu", () => {
     cy.get("#input-sopa-editada").type("Corbatitas");
     cy.get("#input-segundo-editada").type("Pique")
     cy.get("#editar-button").click();
+    cy.get("#mostrar-button").click();
     cy.get("#sopa").should("contain", "Corbatitas");
     cy.get("#segundo").should("contain", "Pique");
   });
@@ -65,11 +68,12 @@ describe("Editar Menu", () => {
     cy.get("#input-sopa-stock-creada").type(200);
     cy.get("#input-segundo-stock-creada").type(30)
     cy.get("#crear-menu-button").click();
-    cy.get("#sopa").should("contain", "Fideo");
-    cy.get("#segundo").should("contain", "Silpancho");
-    cy.get("#input-sopa-stock-editada").type(60);
+    cy.get("#input-sopa-stock-editada").clear()
+    cy.get("#input-segundo-stock-editada").clear()
     cy.get("#input-segundo-stock-editada").type(20)
+    cy.get("#input-sopa-stock-editada").type(60);
     cy.get("#editar-button").click();
+    cy.get("#mostrar-button").click();
     cy.get("#stock-sopa").should("contain", "(Stock = 60)");
     cy.get("#stock-segundo").should("contain", "(Stock = 20)");
   });
