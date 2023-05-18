@@ -1,4 +1,5 @@
 import Menu from "./menu.js";
+import Pedido from "./pedido.js";
 
 const form = document.querySelector("#menu-form");
 const formReservas = document.querySelector("#reservar-form");
@@ -21,6 +22,8 @@ const stockEditadoSopa = document.getElementById("input-sopa-stock-editada");
 const stockEditadoSegundo = document.getElementById("input-segundo-stock-editada");
 const numeroReservasSopa = document.querySelector("#input-reserva-sopa");
 const numeroReservasSegundo = document.querySelector("#input-reserva-segundo");
+const miPedidoSopa = document.querySelector("#mi-pedido-sopa");
+const miPedidoSegundo = document.querySelector("#mi-pedido-segundo");
 
 function comprobarAgotado(stock) {
   if (stock == 0) {
@@ -51,6 +54,7 @@ function comprobarReservasSegundo(menu) {
   }
 }
 let menu = new Menu("", "");
+let pedido = new Pedido();
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -97,4 +101,10 @@ formReservas.addEventListener("submit", (event) => {
 
   menu.agregarReservaSopa(parseInt(numeroReservasSopa.value));
   menu.agregarReservaSegundo(parseInt(numeroReservasSegundo.value));
+
+  pedido.agregarPedidoSegundo(parseInt(numeroReservasSegundo.value));
+  pedido.agregarPedidoSopa(parseInt(numeroReservasSopa.value));
+
+  miPedidoSopa.innerHTML = "Sopa: " + pedido.sopa;
+  miPedidoSegundo.innerHTML = "Segundo: " + pedido.segundo;
 });
