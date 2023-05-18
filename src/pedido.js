@@ -9,5 +9,8 @@ class Pedido{
     agregarPedidoSegundo(numSegundos){
         this.segundo += numSegundos;
     }
+    eliminarPedido(){
+        this.constructor();
+    }
 }
 export default Pedido;

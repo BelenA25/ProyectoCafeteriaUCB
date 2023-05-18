@@ -1,89 +1,91 @@
 <html>
-  <body>
-    <h1>Cato-Break</h1>
-    <center>
+
+<body>
+  <h1>Cato-Break</h1>
+  <center>
+    <form id="mis-pedidos-form">
+      <h3 id="tittle-mis-pedidos">Mis pedidos:</h1>
+        <div id="mi-pedido-sopa"></div>
+        <div id="mi-pedido-segundo"></div>
+        
+    </form>
+
     <form id="menu-form">
-      <h3 id="tittle-mis-pedidos">Mis pedidos</h1>
-      <div id="mi-pedido-sopa"></div>
-      <div id="mi-pedido-segundo"></div>
+
       <h3>Menu:</h3>
       <br>
-      
+
       <div id="sopa"></div>
-    
       <div id="stock-sopa"><span id="stock-value-sopa"></span></div>
       <div id="reservas-sopa"></div>
       <script type="text/javascript">
-        function showform(){
-        document.getElementById("reservas-sopa").style.display = 'block';
+        function showform() {
+          document.getElementById("reservas-sopa").style.display = 'block';
         }
-        </script>
+      </script>
       <br>
       <div id="segundo"></div>
       <div id="stock-segundo" data-stock="4"><span id="stock-value-segundo"></span></div>
-  
       <div id="reservas-segundo"></div>
+
       <input type="submit" value="Mostrar menu" id="mostrar-button" />
       <br>
       <script type="text/javascript">
-        function showform(){
-        document.getElementById("reservar-form").style.display = 'block';
+        function showform() {
+          document.getElementById("reservar-form").style.display = 'block';
         }
-        </script>
-      
+      </script>
+
     </form>
-    
+
     <form id="reservar-form">
       <div id="reserva-sopa">Reservar sopa:</div>
       <input type="text" value="0" id="input-reserva-sopa" />
       <div id="reserva-segundo">Reservar segundo:</div>
       <input type="text" value="0" id="input-reserva-segundo" />
       <br />
-      <input
-        type="submit"
-        value="Reservar platos"
-        id="reserva-hecha-button"
-      />
+      <input type="submit" value="Reservar platos" id="reserva-hecha-button" />
     </form>
-    
-      <h3>Precios: </h3>
-      <div id="precio-sopa">Solo Sopa = 5 Bs.</div>
-      <div id="precio-segundo">Solo Segundo = 13 Bs.</div>
-      <div id="precio-almuerzo">Almuerzo completo = 16 Bs.</div>
-      <br>
-      <div id="error-message"></div>
-      <div id="success-message">¡Nombre de plato editado exitosamente!</div>
-      
 
-      <h3>Crear Menu</h3>
-      <form id="crear-menu-form">
-        <div id="crear-sopa">Crear sopa:</div>
-        <input type="text" id="input-sopa-creada" />
-        <div id="crear-stock-sopa">Stock sopa:</div>
-        <input type="text" id="input-sopa-stock-creada" />
-        <div id="crerar-segundo">Crear segundo:</div>
-        <input type="text" id="input-segundo-creada" />
-        <div id="crear-stock-segundo">Stock segundo:</div>
-        <input type="text" id="input-segundo-stock-creada" />
-        <br />
-        <input type="submit" value="Crear platos" id="crear-menu-button" />
-      </form>
+    <h3>Precios: </h3>
+    <div id="precio-sopa">Solo Sopa = 5 Bs.</div>
+    <div id="precio-segundo">Solo Segundo = 13 Bs.</div>
+    <div id="precio-almuerzo">Almuerzo completo = 16 Bs.</div>
+    <br>
+    <div id="error-message"></div>
+    <div id="success-message">¡Nombre de plato editado exitosamente!</div>
 
-      <h3>Editar Menu</h3>
-      <form id="editar-menu-form">
-        <div id="editar-sopa">Editar sopa:</div>
-        <input type="text" id="input-sopa-editada" />
-        <div id="crear-stock-sopa">Stock sopa:</div>
-        <input type="text" id="input-sopa-stock-editada" />
-        <div id="editar-segundo">Editar segundo:</div>
-        <input type="text" id="input-segundo-editada" />
-        <div id="crear-stock-segundo">Stock segundo:</div>
-        <input type="text" id="input-segundo-stock-editada" />
-        <br />
-        <input type="submit" value="Editar platos" id="editar-button" />
-      </form>
-    </center>
 
-    <script type="module" src="./src/presenter.js"></script>
-  </body>
+    <h3>Crear Menu</h3>
+    <form id="crear-menu-form">
+      <div id="crear-sopa">Crear sopa:</div>
+      <input type="text" id="input-sopa-creada" />
+      <div id="crear-stock-sopa">Stock sopa:</div>
+      <input type="text" id="input-sopa-stock-creada" />
+      <div id="crerar-segundo">Crear segundo:</div>
+      <input type="text" id="input-segundo-creada" />
+      <div id="crear-stock-segundo">Stock segundo:</div>
+      <input type="text" id="input-segundo-stock-creada" />
+      <br />
+      <input type="submit" value="Crear platos" id="crear-menu-button" />
+    </form>
+
+    <h3>Editar Menu</h3>
+    <form id="editar-menu-form">
+      <div id="editar-sopa">Editar sopa:</div>
+      <input type="text" id="input-sopa-editada" />
+      <div id="crear-stock-sopa">Stock sopa:</div>
+      <input type="text" id="input-sopa-stock-editada" />
+      <div id="editar-segundo">Editar segundo:</div>
+      <input type="text" id="input-segundo-editada" />
+      <div id="crear-stock-segundo">Stock segundo:</div>
+      <input type="text" id="input-segundo-stock-editada" />
+      <br />
+      <input type="submit" value="Editar platos" id="editar-button" />
+    </form>
+  </center>
+
+  <script type="module" src="./src/presenter.js"></script>
+</body>
+
 </html>

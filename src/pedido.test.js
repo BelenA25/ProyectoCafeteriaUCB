@@ -24,4 +24,11 @@ describe("Apartado de mis pedidos", () => {
         pedidos.agregarPedidoSegundo(3);
         expect(pedidos.segundo).toEqual(6);
       });
+      it("deberia poder eliminar mi pedido y reestablecerlo en 0", () => {
+        const pedidos = new Pedido();
+        pedidos.agregarPedidoSegundo(3);
+        pedidos.agregarPedidoSegundo(3);
+        pedidos.eliminarPedido();
+        expect(pedidos.segundo).toEqual(0);
+      });
   });

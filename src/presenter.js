@@ -5,6 +5,7 @@ const form = document.querySelector("#menu-form");
 const formReservas = document.querySelector("#reservar-form");
 const formCrearMenu = document.querySelector("#crear-menu-form");
 const formEditarMenu = document.querySelector("#editar-menu-form");
+const formMisPedidos = document.querySelector("#mis-pedidos-form");
 const divSopa = document.querySelector("#sopa");
 const divSegundo = document.querySelector("#segundo");
 const divStockSopa = document.querySelector("#stock-sopa");
