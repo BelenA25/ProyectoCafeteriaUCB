@@ -57,8 +57,11 @@ class Menu {
       }
     }
   }
-  actualizarNombre(nuevoNombre) {
+  actualizarNombreSopa(nuevoNombre) {
     this.sopa = nuevoNombre;
+  }
+  actualizarNombreSegundo(nuevoNombre) {
+    this.segundo = nuevoNombre;
   }
   actualizarPrecio(nuevoPrecio) {
     this.precio = nuevoPrecio;
