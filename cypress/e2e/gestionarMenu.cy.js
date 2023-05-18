@@ -21,10 +21,6 @@ describe("Crear Menu", () => {
     cy.visit("/");
     cy.get("#crear-sopa").should("contain", "Crear sopa:");
   });
-  it("debería mostrar el formulario de edicion de menu", () => {
-    cy.visit("/");
-    cy.get("#editar-sopa").should("contain", "Editar sopa:");
-  });
   it("debería mostrar la sopa y segundo recien creados", () => {
     cy.visit("/");
     cy.get("#input-sopa-creada").type("Fideo");
@@ -32,5 +28,22 @@ describe("Crear Menu", () => {
     cy.get("#crear-menu-button").click();
     cy.get("#sopa").should("contain", "Fideo");
     cy.get("#segundo").should("contain", "Silpancho");
+  });
+});
+describe("Editar Menu", () => {
+  it("debería mostrar el formulario de edicion de menu", () => {
+    cy.visit("/");
+    cy.get("#editar-sopa").should("contain", "Editar sopa:");
+  });
+  it("debería mostrar la sopa y segundo recien editados", () => {
+    cy.visit("/");
+    cy.get("#input-sopa-creada").type("Fideo");
+    cy.get("#input-segundo-creada").type("Silpancho");
+    cy.get("#crear-menu-button").click();
+    cy.get("#input-sopa-editada").type("Corbatitas");
+    cy.get("#input-segundo-editada").type("Pique")
+    cy.get("#editar-button").click();
+    cy.get("#sopa").should("contain", "Corbatitas");
+    cy.get("#segundo").should("contain", "Pique");
   });
 });

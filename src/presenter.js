@@ -3,6 +3,7 @@ import Menu from "./menu.js";
 const form = document.querySelector("#menu-form");
 const formReservas = document.querySelector("#reservar-form");
 const formCrearMenu= document.querySelector("#crear-menu-form");
+const formEditarMenu= document.querySelector("#editar-menu-form");
 const botonMostrar = document.querySelector("#mostrar-button");
 const botonReservar = document.querySelector("#reservar-button");
 const botonCrearMenu = document.querySelector("#crear-menu-button");
@@ -15,6 +16,8 @@ const divReservasSegundo = document.querySelector("#reservas-segundo");
 const errorMessage = document.getElementById("error-message");
 const nombreCreadoSopa = document.getElementById("input-sopa-creada");
 const nombreCreadoSegundo = document.getElementById("input-segundo-creada");
+const nombreEditadoSopa = document.getElementById("input-sopa-editada");
+const nombreEditadoSegundo = document.getElementById("input-segundo-editada");
 
 function comprobarAgotado(stock){
   if(stock == 0){
@@ -75,6 +78,13 @@ form.addEventListener("submit", (event) => {
 formCrearMenu.addEventListener("submit", (event) => {
   event.preventDefault();
   menu = new Menu(nombreCreadoSopa.value, nombreCreadoSegundo.value);
+  divSopa.innerHTML = "Sopa: " + menu.sopa;
+  divSegundo.innerHTML = "Segundo: " + menu.segundo;
+});
+formEditarMenu.addEventListener("submit", (event) => {
+  event.preventDefault();
+  menu.actualizarNombreSopa(nombreEditadoSopa.value);
+  menu.actualizarNombreSegundo(nombreEditadoSegundo.value)
   divSopa.innerHTML = "Sopa: " + menu.sopa;
   divSegundo.innerHTML = "Segundo: " + menu.segundo;
 });

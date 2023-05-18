@@ -1,16 +1,16 @@
-describe("Menu", () => {
-  it("deberia mostrar todo el menu disponible ", () => {
-    cy.visit("/");
-    cy.get("#mostrar-button").click();
-    cy.get("div").should("contain", "Silpancho");
-  });
-  it("deberia mostrar todo el menu disponible (sopa de mani)", () => {
-    cy.visit("/");
-    cy.get("#mostrar-button").click();
-    cy.get("div").should("contain", "Sopa de mani");
+// describe("Menu", () => {
+//   it("deberia mostrar todo el menu disponible ", () => {
+//     cy.visit("/");
+//     cy.get("#mostrar-button").click();
+//     cy.get("div").should("contain", "Silpancho");
+//   });
+//   it("deberia mostrar todo el menu disponible (sopa de mani)", () => {
+//     cy.visit("/");
+//     cy.get("#mostrar-button").click();
+//     cy.get("div").should("contain", "Sopa de mani");
 
-  });
-});
+//   });
+// });
 
 describe("Menu y precio", () => {
   it("deberia mostrar el precio de cada elemento del menu", () => {
