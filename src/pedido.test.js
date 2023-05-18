@@ -18,4 +18,10 @@ describe("Apartado de mis pedidos", () => {
         pedidos.agregarPedidoSegundo(2);
         expect(pedidos.segundo).toEqual(2);
       });
+      it("deberia devolver el valor de mis reservas del segundo de manera incremental", () => {
+        const pedidos = new Pedido();
+        pedidos.agregarPedidoSegundo(3);
+        pedidos.agregarPedidoSegundo(3);
+        expect(pedidos.segundo).toEqual(6);
+      });
   });

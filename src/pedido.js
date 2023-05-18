@@ -7,7 +7,7 @@ class Pedido{
         this.sopa += numSopa;
     }
     agregarPedidoSegundo(numSegundos){
-        this.segundo = numSegundos;
+        this.segundo += numSegundos;
     }
 }
 export default Pedido;
