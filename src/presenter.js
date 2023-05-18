@@ -32,15 +32,21 @@ function comprobarAgotado(stock) {
 
 function comprobarReservasSopa(menu) {
   if (menu.reservasSopa < menu.stockSopa) {
+    numeroReservasSopa.disabled = false;
     return "(Reservas = " + menu.reservasSopa + ")";
   } else {
+    numeroReservasSopa.value = 0;
+    numeroReservasSopa.disabled = true;
     return "Ya no se permiten mas reservas";
   }
 }
 function comprobarReservasSegundo(menu) {
   if (menu.reservasSegundo < menu.stockSegundo) {
+    numeroReservasSegundo.disabled = false;
     return "(Reservas = " + menu.reservasSegundo + ")";
   } else {
+    numeroReservasSegundo.value = 0;
+    numeroReservasSegundo.disabled = true;
     return "Ya no se permiten mas reservas";
   }
 }
