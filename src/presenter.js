@@ -109,4 +109,14 @@ formReservas.addEventListener("submit", (event) => {
   miPedidoSopa.innerHTML = "Sopa: " + pedido.sopa;
   miPedidoSegundo.innerHTML = "Segundo: " + pedido.segundo;
 });
+formMisPedidos.addEventListener("submit", (event) => {
+  event.preventDefault();
 
+  menu.decrementarReservasSopa(pedido.sopa);
+  menu.decrementarReservasSegundo(pedido.segundo);
+  
+  pedido.eliminarPedido();
+
+  miPedidoSopa.innerHTML = "Sopa: " + pedido.sopa;
+  miPedidoSegundo.innerHTML = "Segundo: " + pedido.segundo;
+});

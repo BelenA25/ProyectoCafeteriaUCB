@@ -10,7 +10,8 @@ class Pedido{
         this.segundo += numSegundos;
     }
     eliminarPedido(){
-        this.constructor();
+        this.sopa=0;
+        this.segundo=0;
     }
 }
 export default Pedido;
