@@ -33,10 +33,10 @@ describe("Stock del menu", () => {
   });
 });
 describe("Reservas del menu", () => {
-  it("deberia mostrar el numero de reservas de cada elemento del menu, que al inicar son 0", () => {
+  it("deberia mostrar el numero de reservas de cada elemento del menu, que al inicar no se permite debido a que es 0", () => {
     cy.visit("/");
     cy.get("#mostrar-button").click();
-    cy.get("#reservas-segundo").should("contain", "(Reservas = 0)");
+    cy.get("#reservas-segundo").should("contain", "Ya no se permiten mas reservas");
   });
   // it("Debería mostrar un mensaje si es que el plato no esta disponible", () => {
   //   cy.visit("/");
