@@ -32,7 +32,9 @@ class Menu {
   decrementarReservasSopa(reserva){
     this.reservasSopa = this.reservasSopa - reserva;
   }
-
+  decrementarReservasSegundo(reserva){
+    this.reservasSegundo = this.reservasSegundo - reserva;
+  }
   getStockSopa() {
     return Math.max(0, this.stockSopa - this.reservasSopa);
   }
