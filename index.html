@@ -6,7 +6,7 @@
       
       <h3>Menu:</h3>
       <br>
-
+      
       <div id="sopa">Solo Sopa</div>
     
       <div id="stock-sopa"><span id="stock-value-sopa"></span></div>
@@ -31,13 +31,17 @@
       <input type="submit" value="Reservar" id="reservar-button" onclick="showform()"/>
     </form>
     <form id="reservar-form">
-      <div>Reservar sopa:</div>
-
-      <input type="submit" value="Reservar Sopa" id="reservar-sopa-button" />
-      <div>Reservar Segundo:</div>
-      <input type="submit" value="Reservar Segundo" id="reservar-segundo-button" />
+      <div id="reserva-sopa">Reservar sopa:</div>
+      <input type="text" value="0" id="input-sopa" />
+      <div id="reserva-segundo">Reservar segundo:</div>
+      <input type="text" value="0" id="input-segundo" />
+      <br />
+      <input
+        type="submit"
+        value="Reservar platos"
+        id="reserva-hecha-button"
+      />
     </form>
-  
     
       <h3>Precios: </h3>
       <div id="precio-sopa">Solo Sopa = 5 Bs.</div>
@@ -46,6 +50,17 @@
       <br>
       <div id="error-message"></div>
       <div id="success-message">¡Nombre de plato editado exitosamente!</div>
+      
+
+      <h3>Crear Menu</h3>
+      <form id="crear-menu-form">
+        <div id="crear-sopa">Crear sopa:</div>
+        <input type="text" id="input-sopa" />
+        <div id="crerar-segundo">Crear segundo:</div>
+        <input type="text" id="input-segundo" />
+        <br />
+        <input type="submit" value="Agregar platos" id="agregar-button" />
+      </form>
 
     </center>
 
