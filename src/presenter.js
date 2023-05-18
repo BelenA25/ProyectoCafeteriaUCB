@@ -36,13 +36,19 @@ function comprobarAgotado(stock) {
 }
 
 function comprobarReservasSopa(menu) {
-  if (menu.reservasSopa === menu.stockSopa) {
-    return "Ya no se permiten mas reservas";
-  } else {
+  if (menu.reservasSopa <= menu.stockSopa) {
     return "(Reservas = " + menu.reservasSopa + ")";
+  } else {
+    return "Ya no se permiten mas reservas";
   }
 }
-
+function comprobarReservasSegundo(menu) {
+  if (menu.reservasSegundo <= menu.stockSegundo) {
+    return "(Reservas = " + menu.reservasSegundo + ")";
+  } else {
+    return "Ya no se permiten mas reservas";
+  }
+}
 let menu = new Menu("", "");
 botonReservar.style.display = "none";
 //formReservas.style.display='none';
@@ -53,12 +59,6 @@ form.addEventListener("submit", (event) => {
 
   botonMostrar.remove();
   botonReservar.style.display = "block";
-
-  menu.agregarStockSegundo(20);
-  menu.agregarStockSopa(10);
-
-  menu.agregarReservaSopa(10);
-  menu.agregarReservaSegundo(4);
 
   if (
     sopa === "Error: Nombre inválido" ||
@@ -75,7 +75,7 @@ form.addEventListener("submit", (event) => {
   divStockSegundo.innerHTML =
     "(Stock = " + comprobarAgotado(menu.stockSegundo) + ")";
   divReservasSopa.innerHTML = comprobarReservasSopa(menu);
-  divReservasSegundo.innerHTML = "(Reservas = " + menu.reservasSegundo + ")";
+  divReservasSegundo.innerHTML = comprobarReservasSegundo(menu);
 });
 formCrearMenu.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -87,6 +87,10 @@ formCrearMenu.addEventListener("submit", (event) => {
   divStockSopa.innerHTML = "(Stock = " + comprobarAgotado(menu.stockSopa) + ")";
   divStockSegundo.innerHTML =
     "(Stock = " + comprobarAgotado(menu.stockSegundo) + ")";
+  nombreEditadoSopa.value = menu.sopa;
+  nombreEditadoSegundo.value = menu.segundo;
+  stockEditadoSopa.value = menu.stockSopa;
+  stockEditadoSegundo.value = menu.stockSegundo;
 });
 formEditarMenu.addEventListener("submit", (event) => {
   event.preventDefault();
