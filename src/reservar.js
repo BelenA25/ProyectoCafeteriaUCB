@@ -22,6 +22,16 @@ class User {
         }
         return total;
     }
+    eliminarReserva(Producto)
+    {
+        this.reservas = this.reservas.filter
+        (
+            (elemento) => elemento.nombre !== Producto.nombre
+    
+        );
+        Producto.cantidad++;
+    }
+
     MostrarPedidos() {
         for (let i = 0; i < this.reservas.length; i++) {
             const producto = this.reservas[i];

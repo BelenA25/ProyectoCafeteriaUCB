@@ -36,8 +36,6 @@ function showForm() {
   document.getElementById('reservar-form').style.display = "block";
 }
 
-botonReservar.style.display='none';
-formReservas.style.display='none';
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   botonMostrar.remove();
