@@ -8,4 +8,7 @@ describe("Iniciar Sesion", () => {
     it("Deberia iniciar sesion con la contraseña", () => {
         expect(admin.password).toEqual("password");
     });
+    it("Deberia iniciar sesion con username y password", () => {
+        expect(admin).toEqual({"password": "password", "username": "admin"});
+    });
   });
