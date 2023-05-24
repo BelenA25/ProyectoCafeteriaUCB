@@ -5,7 +5,7 @@ class Admin {
     }
   
     loginAdmin() {
-      return this.username, this.password;
+      return {"username":this.username,"password":this.password};
     }
   }
   
