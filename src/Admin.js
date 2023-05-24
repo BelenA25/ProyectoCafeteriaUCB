@@ -1,7 +1,7 @@
 class Admin {
     constructor() {
       this.username = "admin"
-      this.password = "password";
+      this.password = "password"
     }
   
     loginAdmin() {
