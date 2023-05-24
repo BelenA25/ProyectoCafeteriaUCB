@@ -1,10 +1,11 @@
 class Admin {
     constructor() {
-      this.username = "admin";
+      this.username = "admin"
+      this.password = "password";
     }
   
     loginAdmin() {
-      return this.username;
+      return this.username, this.password;
     }
   }
   
