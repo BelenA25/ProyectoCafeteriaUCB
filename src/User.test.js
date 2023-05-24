@@ -5,4 +5,7 @@ describe("Iniciar Sesion como comunidad UCB", () => {
     it("Deberia iniciar sesion con el nombre de usuario", () => {
         expect(user.username).toEqual("user");
     });
+    it("Deberia iniciar sesion con la contraseña", () => {
+        expect(user.password).toEqual("password");
+    });
 });
