@@ -9,7 +9,6 @@ describe("Reservas menu", () => {
     cy.get("#boton-reserva-sopa").click();
     cy.get("#boton-reserva-sopa").click();
     cy.get("#boton-reserva-sopa").click();
-    cy.get("#mostrar-button").click();
     cy.get("#reservas-sopa").should("contain", "(Reservas = 3)")
   });
 });

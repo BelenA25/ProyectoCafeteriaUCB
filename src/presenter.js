@@ -24,6 +24,9 @@ const stockEditadoSegundo = document.getElementById("input-segundo-stock-editada
 const miPedidoSopa = document.querySelector("#mi-pedido-sopa");
 const miPedidoSegundo = document.querySelector("#mi-pedido-segundo");
 
+let menu = new Menu("", "");
+let pedido = new Pedido();
+
 document.getElementById("boton-reserva-sopa").onclick = reservarSopa;
 document.getElementById("boton-reserva-segundo").onclick = reservarSegundo;  
 
@@ -32,6 +35,7 @@ function reservarSopa(evento) {
   pedido.agregarPedidoSopa(1);
   miPedidoSopa.innerHTML = "Sopa: " + pedido.sopa;
   alert("Se añadio una sopa al pedido!");
+  mostrarMenu();
 }
 
 function reservarSegundo(evento) {
@@ -39,6 +43,7 @@ function reservarSegundo(evento) {
   pedido.agregarPedidoSegundo(1);
   miPedidoSegundo.innerHTML = "Segundo: " + pedido.segundo;
   alert("Se añadio un segundo al pedido!");
+  mostrarMenu();
 }
 
 function comprobarAgotado(stock) {
@@ -56,9 +61,24 @@ function comprobarReservas(reservas, stock) {
     return "Ya no se permiten mas reservas";
   }
 }
-let menu = new Menu("", "");
-let pedido = new Pedido();
 
+
+function mostrarMenu() {
+  const sopa = document.getElementById("sopa");
+  const stockSopa = document.getElementById("stock-value-sopa");
+  const reservasSopa = document.getElementById("reservas-sopa");
+  const segundo = document.getElementById("segundo");
+  const stockSegundo = document.getElementById("stock-value-segundo");
+  const reservasSegundo = document.getElementById("reservas-segundo");
+
+  sopa.textContent = "Sopa: " + menu.sopa;
+  stockSopa.textContent = "(Stock = " + comprobarAgotado(menu.stockSopa) + ")";
+  reservasSopa.textContent = comprobarReservas(menu.reservasSopa, menu.stockSopa);
+  segundo.textContent = "Segundo: " + menu.segundo;
+  stockSegundo.textContent = "(Stock = " + comprobarAgotado(menu.stockSegundo) + ")";
+  reservasSegundo.textContent = comprobarReservas(menu.reservasSegundo, menu.stockSegundo);
+  // console.log(comprobarReservas(menu.reservasSegundo, menu.stockSegundo));
+}
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const sopa = document.getElementById("sopa").textContent.trim();
@@ -73,13 +93,11 @@ form.addEventListener("submit", (event) => {
     errorMessage.textContent = "";
   }
 
-  divSopa.innerHTML = "Sopa: " + menu.sopa;
-  divSegundo.innerHTML = "Segundo: " + menu.segundo;
-  divStockSopa.innerHTML = "(Stock = " + comprobarAgotado(menu.stockSopa) + ")";
-  divStockSegundo.innerHTML = "(Stock = " + comprobarAgotado(menu.stockSegundo) + ")";
-  divReservasSopa.innerHTML = comprobarReservas(menu.reservasSopa, menu.stockSopa);
-  divReservasSegundo.innerHTML = comprobarReservas(menu.reservasSegundo, menu.stockSegundo);
+ 
 });
+
+window.addEventListener("load", mostrarMenu);
+
 formCrearMenu.addEventListener("submit", (event) => {
   event.preventDefault();
   menu = new Menu(nombreCreadoSopa.value, nombreCreadoSegundo.value);
@@ -89,6 +107,7 @@ formCrearMenu.addEventListener("submit", (event) => {
   nombreEditadoSegundo.value = menu.segundo;
   stockEditadoSopa.value = menu.stockSopa;
   stockEditadoSegundo.value = menu.stockSegundo;
+  mostrarMenu();
 });
 formEditarMenu.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -96,6 +115,7 @@ formEditarMenu.addEventListener("submit", (event) => {
   menu.actualizarNombreSegundo(nombreEditadoSegundo.value);
   menu.agregarStockSopa(stockEditadoSopa.value);
   menu.agregarStockSegundo(stockEditadoSegundo.value);
+  mostrarMenu();
 
 });
 formMisPedidos.addEventListener("submit", (event) => {
@@ -108,4 +128,5 @@ formMisPedidos.addEventListener("submit", (event) => {
 
   miPedidoSopa.innerHTML = "Sopa: " + pedido.sopa;
   miPedidoSegundo.innerHTML = "Segundo: " + pedido.segundo;
+
 });
