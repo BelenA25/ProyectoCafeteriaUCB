@@ -11,5 +11,14 @@
             return "Ya no se permiten mas reservas";
         }
     }
+
+    comprobarAgotado(stock) {
+        if (stock == 0) {
+          return "AGOTADO";
+        } else {
+          return stock;
+        }
+    }
+      
 }
 export default Reservas;

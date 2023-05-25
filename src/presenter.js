@@ -41,31 +41,15 @@ function reservarSegundo(evento) {
   mostrarMenu();
 }
 
-function comprobarAgotado(stock) {
-  if (stock == 0) {
-    return "AGOTADO";
-  } else {
-    return stock;
-  }
-}
-
 function mostrarMenu() {
-  const sopa = document.getElementById("sopa");
-  const stockSopa = document.getElementById("stock-value-sopa");
-  const reservasSopa = document.getElementById("reservas-sopa");
-  const segundo = document.getElementById("segundo");
-  const stockSegundo = document.getElementById("stock-value-segundo");
-  const reservasSegundo = document.getElementById("reservas-segundo");
-
-  sopa.textContent = "Sopa: " + menu.sopa;
-  stockSopa.textContent = "(Stock = " + comprobarAgotado(menu.stockSopa) + ")";
-  //reservasSopa.textContent = comprobarReservas(menu.reservasSopa, menu.stockSopa);
-  reservasSopa.textContent = reservaciones.comprobarReservas(menu.reservasSopa, menu.stockSopa);
-  segundo.textContent = "Segundo: " + menu.segundo;
-  stockSegundo.textContent = "(Stock = " + comprobarAgotado(menu.stockSegundo) + ")";
-  reservasSegundo.textContent = reservaciones.comprobarReservas(menu.reservasSegundo, menu.stockSegundo);
-  // console.log(comprobarReservas(menu.reservasSegundo, menu.stockSegundo));
+  document.getElementById("sopa").textContent = "Sopa: " + menu.sopa;
+  document.getElementById("stock-value-sopa").textContent = "(Stock = " + reservaciones.comprobarAgotado(menu.stockSopa) + ")";
+  document.getElementById("reservas-sopa").textContent = reservaciones.comprobarReservas(menu.reservasSopa, menu.stockSopa);
+  document.getElementById("segundo").textContent = "Segundo: " + menu.segundo;
+  document.getElementById("stock-value-segundo").textContent = "(Stock = " + reservaciones.comprobarAgotado(menu.stockSegundo) + ")";
+  document.getElementById("reservas-segundo").textContent = reservaciones.comprobarReservas(menu.reservasSegundo, menu.stockSegundo);
 }
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const sopa = document.getElementById("sopa").textContent.trim();
