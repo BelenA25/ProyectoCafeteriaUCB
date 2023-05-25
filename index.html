@@ -5,8 +5,7 @@
   <center>
     <form id="mis-pedidos-form">
       <h3 id="tittle-mis-pedidos">Mis pedidos:</h1>
-        <div id="mi-pedido-sopa"></div>
-        <div id="mi-pedido-segundo"></div>
+        <div id="mi-pedido"></div>
         <input type="submit" value="Eliminar pedido" id="eliminar-button" />
     </form>
 
@@ -15,27 +14,22 @@
       <h3>Menu:</h3>
       <br>
 
-      <div id="sopa"></div>
-      <div id="stock-sopa"><span id="stock-value-sopa"></span></div>
-      <div id="reservas-sopa"></div>
-      <br>
-      <div id="segundo"></div>
-      <div id="stock-segundo" data-stock="4"><span id="stock-value-segundo"></span></div>
-      <div id="reservas-segundo"></div>
+      <div id="producto"></div>
+      <div id="stock-producto"><span id="stock-value-producto"></span></div>
+      <div id="reservas-producto"></div>
+      
       <br>
 
     </form>
 
     <form id="reservar-form">
-      <div id="reserva-sopa">Reservar sopa:</div>
-      <input type="button" onclick="sumarUnaSopa()" value="+1" id="boton-reserva-sopa" />
-      <div id="reserva-segundo">Reservar segundo:</div>
-      <input type="button" onclick="sumarUnSegundo()" value="+1" id="boton-reserva-segundo" />
+      <div id="reserva-producto">Reservar Producto:</div>
+      <input type="button" onclick="sumarUnaproducto()" value="+1" id="boton-reserva" />
       <br />
     </form>
 
     <h3>Precios: </h3>
-    <div id="precio-sopa">Solo Sopa = 5 Bs.</div>
+    <div id="precio-producto">Solo producto = 5 Bs.</div>
     <div id="precio-segundo">Solo Segundo = 13 Bs.</div>
     <div id="precio-almuerzo">Almuerzo completo = 16 Bs.</div>
     <br>
@@ -45,28 +39,30 @@
 
     <h3>Crear Menu</h3>
     <form id="crear-menu-form">
-      <div id="crear-sopa">Crear sopa:</div>
-      <input type="text" id="input-sopa-creada" />
-      <div id="crear-stock-sopa">Stock sopa:</div>
-      <input type="text" id="input-sopa-stock-creada" />
-      <div id="crerar-segundo">Crear segundo:</div>
-      <input type="text" id="input-segundo-creada" />
-      <div id="crear-stock-segundo">Stock segundo:</div>
-      <input type="text" id="input-segundo-stock-creada" />
+      <div id="crear-producto">Crear Producto:</div>
+      <input type="text" id="input-producto-creado" />
+
+      <div id="crear-descripcion">Descripcion Producto:</div>
+      <input type="text" id="input-descripcion-creada" />
+
+      <div id="crear-precio">Precio Producto:</div>
+      <input type="text" id="input-precio-creado" />
+
+      <div id="crear-categoria">Categoria Producto:</div>
+      <input type="text" id="input-categoria-creada" />
+
+      <div id="crear-stock">Stock Producto:</div>
+      <input type="text" id="input-stock-creada" />
       <br />
       <input type="submit" value="Crear platos" id="crear-menu-button" />
     </form>
 
     <h3>Editar Menu</h3>
     <form id="editar-menu-form">
-      <div id="editar-sopa">Editar sopa:</div>
-      <input type="text" id="input-sopa-editada" />
-      <div id="crear-stock-sopa">Stock sopa:</div>
-      <input type="text" id="input-sopa-stock-editada" />
-      <div id="editar-segundo">Editar segundo:</div>
-      <input type="text" id="input-segundo-editada" />
-      <div id="crear-stock-segundo">Stock segundo:</div>
-      <input type="text" id="input-segundo-stock-editada" />
+      <div id="editar-producto">Editar producto:</div>
+      <input type="text" id="input-producto-editada" />
+      <div id="crear-stock-producto">Stock producto:</div>
+      <input type="text" id="input-producto-stock-editada" />
       <br />
       <input type="submit" value="Editar platos" id="editar-button" />
     </form>

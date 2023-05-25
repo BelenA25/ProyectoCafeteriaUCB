@@ -1,17 +1,12 @@
 class Pedido{
     constructor(){
-        this.sopa=0;
-        this.segundo=0;
+        this.producto=0;
     }
-    agregarPedidoSopa(numSopa){
-        this.sopa += numSopa;
-    }
-    agregarPedidoSegundo(numSegundos){
-        this.segundo += numSegundos;
+    agregarPedido(num){
+        this.producto += num;
     }
     eliminarPedido(){
-        this.sopa=0;
-        this.segundo=0;
+        this.producto=0;
     }
 }
 export default Pedido;

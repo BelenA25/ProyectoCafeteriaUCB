@@ -30,5 +30,18 @@ class Item {
     actualizarStock(nuevoStock) {
         this.stock = nuevoStock;
     }
+    agregarStock(nuevoStock) {
+        this.stock = nuevoStock;
+      }
+
+    getStock() {
+        return Math.max(0, this.stock - this.reservas);
+    }
+    aumentarStock(cantidadAumento) {
+        this.stock += cantidadAumento;
+    }
+    reducirStock(cantidadReducir) {
+        this.stock -= cantidadReducir;
+    }
 }
 export default Item;
