@@ -1,8 +1,8 @@
 import Menu from "./menu.js";
 import Pedido from "./pedido.js";
+import Reservas from "./reservas.js";
 
 const form = document.querySelector("#menu-form");
-const formReservas = document.querySelector("#reservar-form");
 const formCrearMenu = document.querySelector("#crear-menu-form");
 const formEditarMenu = document.querySelector("#editar-menu-form");
 const formMisPedidos = document.querySelector("#mis-pedidos-form");
@@ -20,6 +20,7 @@ const miPedidoSegundo = document.querySelector("#mi-pedido-segundo");
 
 let menu = new Menu("", "");
 let pedido = new Pedido();
+let reservaciones = new Reservas();
 
 document.getElementById("boton-reserva-sopa").onclick = reservarSopa;
 document.getElementById("boton-reserva-segundo").onclick = reservarSegundo;  
@@ -48,15 +49,6 @@ function comprobarAgotado(stock) {
   }
 }
 
-function comprobarReservas(reservas, stock) {
-  if (reservas < stock) {
-    return "(Reservas = " + reservas + ")";
-  } else {
-    return "Ya no se permiten mas reservas";
-  }
-}
-
-
 function mostrarMenu() {
   const sopa = document.getElementById("sopa");
   const stockSopa = document.getElementById("stock-value-sopa");
@@ -67,10 +59,11 @@ function mostrarMenu() {
 
   sopa.textContent = "Sopa: " + menu.sopa;
   stockSopa.textContent = "(Stock = " + comprobarAgotado(menu.stockSopa) + ")";
-  reservasSopa.textContent = comprobarReservas(menu.reservasSopa, menu.stockSopa);
+  //reservasSopa.textContent = comprobarReservas(menu.reservasSopa, menu.stockSopa);
+  reservasSopa.textContent = reservaciones.comprobarReservas(menu.reservasSopa, menu.stockSopa);
   segundo.textContent = "Segundo: " + menu.segundo;
   stockSegundo.textContent = "(Stock = " + comprobarAgotado(menu.stockSegundo) + ")";
-  reservasSegundo.textContent = comprobarReservas(menu.reservasSegundo, menu.stockSegundo);
+  reservasSegundo.textContent = reservaciones.comprobarReservas(menu.reservasSegundo, menu.stockSegundo);
   // console.log(comprobarReservas(menu.reservasSegundo, menu.stockSegundo));
 }
 form.addEventListener("submit", (event) => {
