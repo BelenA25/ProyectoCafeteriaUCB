@@ -21,10 +21,25 @@ const nombreEditadoSopa = document.getElementById("input-sopa-editada");
 const nombreEditadoSegundo = document.getElementById("input-segundo-editada");
 const stockEditadoSopa = document.getElementById("input-sopa-stock-editada");
 const stockEditadoSegundo = document.getElementById("input-segundo-stock-editada");
-const numeroReservasSopa = document.querySelector("#input-reserva-sopa");
-const numeroReservasSegundo = document.querySelector("#input-reserva-segundo");
 const miPedidoSopa = document.querySelector("#mi-pedido-sopa");
 const miPedidoSegundo = document.querySelector("#mi-pedido-segundo");
+
+document.getElementById("boton-reserva-sopa").onclick = reservarSopa;
+document.getElementById("boton-reserva-segundo").onclick = reservarSegundo;  
+
+function reservarSopa(evento) {
+  menu.agregarReservaSopa(1);
+  pedido.agregarPedidoSopa(1);
+  miPedidoSopa.innerHTML = "Sopa: " + pedido.sopa;
+  alert("Se añadio una sopa al pedido!");
+}
+
+function reservarSegundo(evento) {
+  menu.agregarReservaSegundo(1);
+  pedido.agregarPedidoSegundo(1);
+  miPedidoSegundo.innerHTML = "Segundo: " + pedido.segundo;
+  alert("Se añadio un segundo al pedido!");
+}
 
 function comprobarAgotado(stock) {
   if (stock == 0) {
@@ -34,23 +49,10 @@ function comprobarAgotado(stock) {
   }
 }
 
-function comprobarReservasSopa(menu) {
-  if (menu.reservasSopa < menu.stockSopa) {
-    numeroReservasSopa.disabled = false;
-    return "(Reservas = " + menu.reservasSopa + ")";
+function comprobarReservas(reservas, stock) {
+  if (reservas < stock) {
+    return "(Reservas = " + reservas + ")";
   } else {
-    numeroReservasSopa.value = 0;
-    numeroReservasSopa.disabled = true;
-    return "Ya no se permiten mas reservas";
-  }
-}
-function comprobarReservasSegundo(menu) {
-  if (menu.reservasSegundo < menu.stockSegundo) {
-    numeroReservasSegundo.disabled = false;
-    return "(Reservas = " + menu.reservasSegundo + ")";
-  } else {
-    numeroReservasSegundo.value = 0;
-    numeroReservasSegundo.disabled = true;
     return "Ya no se permiten mas reservas";
   }
 }
@@ -74,10 +76,9 @@ form.addEventListener("submit", (event) => {
   divSopa.innerHTML = "Sopa: " + menu.sopa;
   divSegundo.innerHTML = "Segundo: " + menu.segundo;
   divStockSopa.innerHTML = "(Stock = " + comprobarAgotado(menu.stockSopa) + ")";
-  divStockSegundo.innerHTML =
-    "(Stock = " + comprobarAgotado(menu.stockSegundo) + ")";
-  divReservasSopa.innerHTML = comprobarReservasSopa(menu);
-  divReservasSegundo.innerHTML = comprobarReservasSegundo(menu);
+  divStockSegundo.innerHTML = "(Stock = " + comprobarAgotado(menu.stockSegundo) + ")";
+  divReservasSopa.innerHTML = comprobarReservas(menu.reservasSopa, menu.stockSopa);
+  divReservasSegundo.innerHTML = comprobarReservas(menu.reservasSegundo, menu.stockSegundo);
 });
 formCrearMenu.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -96,18 +97,6 @@ formEditarMenu.addEventListener("submit", (event) => {
   menu.agregarStockSopa(stockEditadoSopa.value);
   menu.agregarStockSegundo(stockEditadoSegundo.value);
 
-});
-formReservas.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  menu.agregarReservaSopa(parseInt(numeroReservasSopa.value));
-  menu.agregarReservaSegundo(parseInt(numeroReservasSegundo.value));
-
-  pedido.agregarPedidoSegundo(parseInt(numeroReservasSegundo.value));
-  pedido.agregarPedidoSopa(parseInt(numeroReservasSopa.value));
-
-  miPedidoSopa.innerHTML = "Sopa: " + pedido.sopa;
-  miPedidoSegundo.innerHTML = "Segundo: " + pedido.segundo;
 });
 formMisPedidos.addEventListener("submit", (event) => {
   event.preventDefault();
