@@ -12,7 +12,6 @@ describe("Editar Menu", () => {
         cy.visit("/");
         const nuevoNombreSopa = "Sopa de choclo";
         const nuevoNombreSegundo = "Pizza";
-        const nuevoNombreAlmuerzoCompleto = "Menú completo";
       
         cy.get("div:contains('Solo Sopa')").invoke("text", `Solo ${nuevoNombreSopa} = 5 Bs.`).should("contain", `Solo ${nuevoNombreSopa} = 5 Bs.`);
         cy.get("div:contains('Solo Segundo')").invoke("text", `Solo ${nuevoNombreSegundo} = 13 Bs.`).should("contain", `Solo ${nuevoNombreSegundo} = 13 Bs.`);
