@@ -11,4 +11,8 @@ formulario.addEventListener("submit", (event) => {
     window.location.href = "index.html";
     alert("Welcome Admin!");
   }
+  if(!admin.validarDatos()){
+    alert("Datos Invalidos");
+    window.location.reload();
+  }
 });
