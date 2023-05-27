@@ -6,7 +6,7 @@ const password = document.querySelector("#inputpassword");
 
 formulario.addEventListener("submit", (event) => {
   event.preventDefault();
-  var admin = new Admin(password.value, usuario.value);
+  var admin = new Admin(usuario.value, password.value);
   if (admin.Admin()) {
     window.location.href = "index.html";
     alert("Welcome Admin!");
