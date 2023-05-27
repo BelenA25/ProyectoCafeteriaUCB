@@ -1,4 +1,5 @@
 import Admin from "./Admin";
+import User from "./User";
 
 const formulario = document.querySelector("#loginForm");
 const usuario = document.querySelector("#inputUsername");
@@ -7,6 +8,7 @@ const password = document.querySelector("#inputpassword");
 formulario.addEventListener("submit", (event) => {
   event.preventDefault();
   var admin = new Admin(usuario.value, password.value);
+  var user = new User(usuario.value, password.value);
   if (admin.Admin()) {
     window.location.href = "index.html";
     alert("Welcome Admin!");

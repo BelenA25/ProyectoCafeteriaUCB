@@ -11,6 +11,10 @@ class User{
     Usuario() {
         return this.username == "user" && this.password == "contra";
     }
+
+    validarDatos(){
+        return this.username != "" && this.password != "";
+    }
 }
 
 export default User;
