@@ -1,3 +1,4 @@
+import Admin from "./Admin";
 
 describe("Iniciar Sesion como Admin", () => {
     var admin = new Admin();
