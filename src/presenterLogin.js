@@ -13,7 +13,15 @@ formulario.addEventListener("submit", (event) => {
     window.location.href = "index.html";
     alert("Welcome Admin!");
   }
-  if(!admin.validarDatos()){
+  else if(!admin.validarDatos()){
+    alert("Datos Invalidos");
+    window.location.reload();
+  }
+  else if(user.Usuario()){
+    window.location.href = "index.html";
+    alert("Welcome User!");
+  }
+  else if(user.VerifyData()){
     alert("Datos Invalidos");
     window.location.reload();
   }
