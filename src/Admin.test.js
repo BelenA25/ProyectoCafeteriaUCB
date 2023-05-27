@@ -11,4 +11,7 @@ describe("Iniciar Sesion como Admin", () => {
     it("Deberia iniciar sesion con username y password", () => {
         expect(admin).toEqual({"password": "password", "username": "admin"});
     });
+    it("Deberia iniciar sesion con username y password con una funcion", () => {
+        expect(admin.loginAdmin()).toEqual({"password": "password", "username": "admin"});
+    });
   });
