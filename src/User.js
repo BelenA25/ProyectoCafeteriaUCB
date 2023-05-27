@@ -7,6 +7,10 @@ class User{
     loginUser() {
         return {"username":this.username,"password":this.password};
     }
+
+    Usuario() {
+        return this.username == "user" && this.password == "contra";
+    }
 }
 
 export default User;
