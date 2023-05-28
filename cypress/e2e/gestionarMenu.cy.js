@@ -32,6 +32,17 @@ describe("Crear Menu", () => {
     cy.get("td").should("contain", "Sopa");
     cy.get("td").should("contain", "5");
   });
+  it("debería mostrar las reservvas iniciales en 0", () => {
+    cy.visit("/");
+    cy.get("#input-nombre-creada").type("Sopa");
+    cy.get("#input-descripcion-creada").type("Sopa de fideo");
+    cy.get("#input-precio-creada").type(5);
+    cy.get("#input-categoria-creada").type("Almuerzo cotidiano");
+    cy.get("#input-stock-creada").type(20);
+    cy.get("#crear-menu-button").click();
+    cy.get("td").should("contain", 0);
+  });
+});
 describe("Editar Menu", () => {
   it("debería mostrar el formulario de edicion de menu", () => {
     cy.visit("/");

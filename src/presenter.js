@@ -85,7 +85,9 @@ function mostrarMenu() {
     var celda_stock = document.createElement("td");
     celda_stock.textContent = items[item]["stock"];
     fila.appendChild(celda_stock);
-
+    var celda_reservas = document.createElement("td");
+    celda_reservas.textContent = items[item]["reservas"];
+    fila.appendChild(celda_reservas);
     tabla.appendChild(fila);
   }
 
