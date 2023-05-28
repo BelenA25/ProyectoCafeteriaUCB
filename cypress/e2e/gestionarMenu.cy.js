@@ -21,27 +21,17 @@ describe("Crear Menu", () => {
     cy.visit("/");
     cy.get("#crear-nombre").should("contain", "Nombre:");
   });
-  // it("debería mostrar la sopa y segundo recien creados", () => {
-  //   cy.visit("/");
-  //   cy.get("#input-sopa-creada").type("Fideo");
-  //   cy.get("#input-segundo-creada").type("Silpancho")
-  //   cy.get("#crear-menu-button").click();
-  //   cy.get("#sopa").should("contain", "Fideo");
-  //   cy.get("#segundo").should("contain", "Silpancho");
-  // });
-  // it("debería mostrar el stock de la sopa y segundo recien creados", () => {
-  //   cy.visit("/");
-  //   cy.get("#input-sopa-creada").type("Fideo");
-  //   cy.get("#input-segundo-creada").type("Silpancho")
-  //   cy.get("#input-sopa-stock-creada").type(200);
-  //   cy.get("#input-segundo-stock-creada").type(30)
-  //   cy.get("#crear-menu-button").click();
-  //   cy.get("#sopa").should("contain", "Fideo");
-  //   cy.get("#segundo").should("contain", "Silpancho");
-  //   cy.get("#stock-sopa").should("contain", "(Stock = 200)");
-  //   cy.get("#stock-segundo").should("contain", "(Stock = 30)");
-  // });
-});
+  it("debería mostrar la sopa recien creados", () => {
+    cy.visit("/");
+    cy.get("#input-nombre-creada").type("Sopa");
+    cy.get("#input-descripcion-creada").type("Sopa de fideo");
+    cy.get("#input-precio-creada").type(5);
+    cy.get("#input-categoria-creada").type("Almuerzo cotidiano");
+    cy.get("#input-stock-creada").type(20);
+    cy.get("#crear-menu-button").click();
+    cy.get("td").should("contain", "Sopa");
+    cy.get("td").should("contain", "5");
+  });
 describe("Editar Menu", () => {
   it("debería mostrar el formulario de edicion de menu", () => {
     cy.visit("/");

@@ -10,21 +10,25 @@
         <input type="submit" value="Eliminar pedido" id="eliminar-button" />
     </form>
 
-    <form id="menu-form">
+    <table id="mostrar-items">
+      <thead>
+        <tr>
 
-      <h3>Menu:</h3>
-      <br>
+          <th scope="row">Nombre</th>
 
-      <div id="sopa"></div>
-      <div id="stock-sopa"><span id="stock-value-sopa"></span></div>
-      <div id="reservas-sopa"></div>
-      <br>
-      <div id="segundo"></div>
-      <div id="stock-segundo" data-stock="4"><span id="stock-value-segundo"></span></div>
-      <div id="reservas-segundo"></div>
-      <br>
+          <th>Descripcion</th>
 
-    </form>
+          <th>Precio</th>
+
+          <th>Categoria</th>
+
+          <th>Stock</th>
+
+        </tr>
+      </thead>
+      <tbody id="cuerpoTabla">
+      </tbody>
+    </table>
 
     <form id="reservar-form">
       <div id="reserva-sopa">Reservar sopa:</div>
