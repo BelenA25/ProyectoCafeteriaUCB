@@ -6,13 +6,6 @@ import Item from "./item.js";
 const formCrearItem = document.querySelector("#crear-menu-form");
 const formEditarMenu = document.querySelector("#editar-menu-form");
 const formMisPedidos = document.querySelector("#mis-pedidos-form");
-const errorMessage = document.getElementById("error-message");
-const nombreCreadoSopa = document.getElementById("input-sopa-creada");
-const nombreCreadoSegundo = document.getElementById("input-segundo-creada");
-const stockCreadoSopa = document.getElementById("input-sopa-stock-creada");
-const stockCreadoSegundo = document.getElementById(
-  "input-segundo-stock-creada"
-);
 const nombreEditadoSopa = document.getElementById("input-sopa-editada");
 const nombreEditadoSegundo = document.getElementById("input-segundo-editada");
 const stockEditadoSopa = document.getElementById("input-sopa-stock-editada");
@@ -55,12 +48,6 @@ function comprobarAgotado(stock) {
 }
 
 function mostrarMenu() {
-  // const sopa = document.getElementById("sopa");
-  // const stockSopa = document.getElementById("stock-value-sopa");
-  // const reservasSopa = document.getElementById("reservas-sopa");
-  // const segundo = document.getElementById("segundo");
-  // const stockSegundo = document.getElementById("stock-value-segundo");
-  // const reservasSegundo = document.getElementById("reservas-segundo");
 
   var tabla = document.getElementById("cuerpoTabla");
  
@@ -69,7 +56,6 @@ function mostrarMenu() {
   }
   for (var item in items) {
     var fila = document.createElement("tr");
-
     var celda_nombre = document.createElement("td");
     celda_nombre.textContent = items[item]["nombre"];
     fila.appendChild(celda_nombre);
@@ -88,28 +74,33 @@ function mostrarMenu() {
     var celda_reservas = document.createElement("td");
     celda_reservas.textContent = items[item]["reservas"];
     fila.appendChild(celda_reservas);
+    var boton_reservar = document.createElement("button");
+    boton_reservar.textContent = "+1";
+    boton_reservar.id = item;
+    fila.appendChild(boton_reservar);
     tabla.appendChild(fila);
   }
 
-  
+  var botones = document.getElementsByTagName("button");
 
-  // sopa.textContent = "Sopa: " + menu.sopa;
-  // stockSopa.textContent = "(Stock = " + comprobarAgotado(menu.stockSopa) + ")";
-  // //reservasSopa.textContent = comprobarReservas(menu.reservasSopa, menu.stockSopa);
-  // reservasSopa.textContent = reservaciones.comprobarReservas(menu.reservasSopa, menu.stockSopa);
-  // segundo.textContent = "Segundo: " + menu.segundo;
-  // stockSegundo.textContent = "(Stock = " + comprobarAgotado(menu.stockSegundo) + ")";
-  // reservasSegundo.textContent = reservaciones.comprobarReservas(menu.reservasSegundo, menu.stockSegundo);
-  // console.log(comprobarReservas(menu.reservasSegundo, menu.stockSegundo));
+  for (var i = 0; i < botones.length; i++) {
+    botones[i].addEventListener("click", function(event) {
+      var botonID = event.target.id;
+      var elementoEncontrado = items.find(function(item) {
+        return parseInt(item.id) === parseInt(botonID);
+      });
+      if (elementoEncontrado) {
+        elementoEncontrado.agregarReserva(1);
+        mostrarMenu();
+      }
+    });
+  }
 }
 
 window.addEventListener("load", mostrarMenu);
 
 formCrearItem.addEventListener("submit", (event) => {
   event.preventDefault();
-  // menu = new Menu(nombreCreadoSopa.value, nombreCreadoSegundo.value);
-  // menu.agregarStockSopa(stockCreadoSopa.value);
-  // menu.agregarStockSegundo(stockCreadoSegundo.value);
   const nombre = document.getElementById("input-nombre-creada");
   const descripcion = document.getElementById("input-descripcion-creada");
   const precio = document.getElementById("input-precio-creada");
@@ -117,6 +108,7 @@ formCrearItem.addEventListener("submit", (event) => {
   const stock = document.getElementById("input-stock-creada");
 
   let item = new Item(
+    items.length,
     nombre.value,
     descripcion.value,
     precio.value,
@@ -124,11 +116,6 @@ formCrearItem.addEventListener("submit", (event) => {
     stock.value
   );
   items.push(item);
-  console.log(items);
-  // nombreEditadoSopa.value = menu.sopa;
-  // nombreEditadoSegundo.value = menu.segundo;
-  // stockEditadoSopa.value = menu.stockSopa;
-  // stockEditadoSegundo.value = menu.stockSegundo;
   mostrarMenu();
 });
 formEditarMenu.addEventListener("submit", (event) => {
