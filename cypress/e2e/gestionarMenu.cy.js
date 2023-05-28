@@ -1,11 +1,4 @@
 describe("Crear Menu", () => {
-  // it("debería agregar una reserva y verificar el stock actualizado", () => {
-  //     cy.visit("/");
-  //     cy.get("#mostrar-button").click();
-  //     cy.get("div").should("contain", "Silpancho");
-  //     cy.get("#reservar-segundo-button").click();
-  //     cy.get("#stock-segundo").should("have.attr", "data-stock", "4");
-  //   });
   //   it("debería verificar el stock de un plato específico después de agregar reservas", () => {
   //     cy.visit("/");
   //     cy.get("#mostrar-button").click();
@@ -32,7 +25,7 @@ describe("Crear Menu", () => {
     cy.get("td").should("contain", "Sopa");
     cy.get("td").should("contain", "5");
   });
-  it("debería mostrar las reservvas iniciales en 0", () => {
+  it("debería mostrar las reservas iniciales en 0", () => {
     cy.visit("/");
     cy.get("#input-nombre-creada").type("Sopa");
     cy.get("#input-descripcion-creada").type("Sopa de fideo");
@@ -74,4 +67,29 @@ describe("Editar Menu", () => {
   //   cy.get("#stock-sopa").should("contain", "(Stock = 60)");
   //   cy.get("#stock-segundo").should("contain", "(Stock = 20)");
   // });
+});
+describe("Reservas menu", () => {
+  it("debería mostrar las reservas en el menu", () => {
+    cy.visit("/");
+    cy.get("#input-nombre-creada").type("Sopa");
+    cy.get("#input-descripcion-creada").type("Sopa de fideo");
+    cy.get("#input-precio-creada").type(5);
+    cy.get("#input-categoria-creada").type("Almuerzo cotidiano");
+    cy.get("#input-stock-creada").type(20);
+    cy.get("#crear-menu-button").click();
+    cy.get("button").click();
+    cy.get("td").should("contain", "1");
+  });
+  it("Debería mostrar un mensaje si es que el plato no esta disponible", () => {
+    cy.visit("/");
+    cy.get("#input-nombre-creada").type("Sopa");
+    cy.get("#input-descripcion-creada").type("Sopa de fideo");
+    cy.get("#input-precio-creada").type(5);
+    cy.get("#input-categoria-creada").type("Almuerzo cotidiano");
+    cy.get("#input-stock-creada").type(2);
+    cy.get("#crear-menu-button").click();
+    cy.get("button").click();
+    cy.get("button").click();
+    cy.get("td").should("contain", "Ya no se permiten mas reservas");
+  });
 });

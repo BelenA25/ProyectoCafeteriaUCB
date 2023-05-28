@@ -74,10 +74,18 @@ function mostrarMenu() {
     var celda_reservas = document.createElement("td");
     celda_reservas.textContent = items[item]["reservas"];
     fila.appendChild(celda_reservas);
-    var boton_reservar = document.createElement("button");
-    boton_reservar.textContent = "+1";
-    boton_reservar.id = item;
-    fila.appendChild(boton_reservar);
+    if(items[item]["reservas"] < items[item]["stock"])
+    {
+      var boton_reservar = document.createElement("button");
+      boton_reservar.textContent = "+1";
+      boton_reservar.id = item;
+      fila.appendChild(boton_reservar);
+    }
+    else {
+      var celda_restrictiva = document.createElement("td");
+      celda_restrictiva.textContent = "Ya no se permiten mas reservas";
+      fila.appendChild(celda_restrictiva);
+    }
     tabla.appendChild(fila);
   }
 
