@@ -1,9 +1,10 @@
 import Menu from "./menu.js";
 import Pedido from "./pedido.js";
 import Reservas from "./reservas.js";
+import Item from "./item.js";
 
 const form = document.querySelector("#menu-form");
-const formCrearMenu = document.querySelector("#crear-menu-form");
+const formCrearItem = document.querySelector("#crear-menu-form");
 const formEditarMenu = document.querySelector("#editar-menu-form");
 const formMisPedidos = document.querySelector("#mis-pedidos-form");
 const errorMessage = document.getElementById("error-message");
@@ -21,6 +22,7 @@ const miPedidoSegundo = document.querySelector("#mi-pedido-segundo");
 let menu = new Menu("", "");
 let pedido = new Pedido();
 let reservaciones = new Reservas();
+let items = new Array();
 
 document.getElementById("boton-reserva-sopa").onclick = reservarSopa;
 document.getElementById("boton-reserva-segundo").onclick = reservarSegundo;  
@@ -85,15 +87,24 @@ form.addEventListener("submit", (event) => {
 
 window.addEventListener("load", mostrarMenu);
 
-formCrearMenu.addEventListener("submit", (event) => {
+formCrearItem.addEventListener("submit", (event) => {
   event.preventDefault();
-  menu = new Menu(nombreCreadoSopa.value, nombreCreadoSegundo.value);
-  menu.agregarStockSopa(stockCreadoSopa.value);
-  menu.agregarStockSegundo(stockCreadoSegundo.value);
-  nombreEditadoSopa.value = menu.sopa;
-  nombreEditadoSegundo.value = menu.segundo;
-  stockEditadoSopa.value = menu.stockSopa;
-  stockEditadoSegundo.value = menu.stockSegundo;
+  // menu = new Menu(nombreCreadoSopa.value, nombreCreadoSegundo.value);
+  // menu.agregarStockSopa(stockCreadoSopa.value);
+  // menu.agregarStockSegundo(stockCreadoSegundo.value);
+  const nombre = document.getElementById("input-nombre-creada");
+  const descripcion = document.getElementById("input-descripcion-creada");
+  const precio = document.getElementById("input-precio-creada");
+  const categoria = document.getElementById("input-categoria-creada");
+  const stock = document.getElementById("input-stock-creada");
+
+  let item = new Item(nombre.value, descripcion.value, precio.value, categoria.value, stock.value);
+  items.push(item);
+  console.log(item)
+  // nombreEditadoSopa.value = menu.sopa;
+  // nombreEditadoSegundo.value = menu.segundo;
+  // stockEditadoSopa.value = menu.stockSopa;
+  // stockEditadoSegundo.value = menu.stockSegundo;
   mostrarMenu();
 });
 formEditarMenu.addEventListener("submit", (event) => {
