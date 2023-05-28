@@ -1,17 +1,11 @@
 class Pedido{
-    constructor(){
-        this.sopa=0;
-        this.segundo=0;
+    constructor(nombre){
+        this.nombre=nombre;
+        this.numero = 0;
     }
-    agregarPedidoSopa(numSopa){
-        this.sopa += numSopa;
-    }
-    agregarPedidoSegundo(numSegundos){
-        this.segundo += numSegundos;
-    }
-    eliminarPedido(){
-        this.sopa=0;
-        this.segundo=0;
+    agregarReserva()
+    {
+        this.numero = this.numero + 1;
     }
 }
 export default Pedido;
