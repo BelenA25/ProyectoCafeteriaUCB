@@ -7,6 +7,10 @@ describe("Menu y precio", () => {
     cy.visit("/");   
     cy.get("div").should("contain", "Solo Segundo = 13 Bs.");
   });
+  it("deberia mostrar las reservas de cada elemento del menu", () => {
+    cy.visit("/");   
+    cy.get("th").should("contain", "Reservas");
+  });
 });
   // it("Debería mostrar un mensaje si es que el plato no esta disponible", () => {
   //   cy.visit("/");
