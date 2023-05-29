@@ -13,6 +13,35 @@ function editarItem(elementoEncontrado){
   document.getElementById("input-precio-editado").value =  elementoEncontrado.precio;
   document.getElementById("input-categoria-editado").value =  elementoEncontrado.categoria;
   document.getElementById("input-stock-editado").value =  elementoEncontrado.stock;
+  
+  formEditarMenu.addEventListener("submit", (event) => {
+    event.preventDefault();
+    
+    // items = items.filter(function(elemento) {
+    //   return elemento.id !== elementoEncontrado.id;
+    // });
+    // console.log(items);
+    let nombre = document.getElementById("input-nombre-editado").value;
+    let descripcion = document.getElementById("input-descripcion-editado").value;
+    let precio = document.getElementById("input-precio-editado").value;
+    let categoria = document.getElementById("input-categoria-editado").value;
+    let stock = document.getElementById("input-stock-editado").value;
+  
+    elementoEncontrado.nombre=nombre;
+    elementoEncontrado.descripcion=descripcion;
+    elementoEncontrado.precio=precio;
+    elementoEncontrado.categoria=categoria;
+    elementoEncontrado.stock=stock;
+    
+    console.log("Cambie items: ", items);
+   mostrarMenu();
+  // document.getElementById("input-nombre-editado").value= "";
+  // document.getElementById("input-descripcion-editado").value =   "";
+  // document.getElementById("input-precio-editado").value = "";
+  // document.getElementById("input-categoria-editado").value = "";
+  // document.getElementById("input-stock-editado").value = "";
+  
+  });
 }
 
 function mostrarPedidos(){
@@ -134,7 +163,6 @@ function mostrarMenu() {
       });
       if (elementoEncontrado) {
         editarItem(elementoEncontrado);
-        mostrarMenu();
       }
     });
   }
@@ -161,9 +189,4 @@ formCrearItem.addEventListener("submit", (event) => {
   );
   items.push(item);
   mostrarMenu();
-});
-formEditarMenu.addEventListener("click", (event) => {
-  event.preventDefault();
-  
-  
 });
