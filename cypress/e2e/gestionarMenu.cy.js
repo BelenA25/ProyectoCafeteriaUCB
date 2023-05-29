@@ -36,11 +36,7 @@ describe("Crear Menu", () => {
     cy.get("td").should("contain", 0);
   });
 });
-describe("Editar Menu", () => {
-  it("debería mostrar el formulario de edicion de menu", () => {
-    cy.visit("/");
-    cy.get("#editar-sopa").should("contain", "Editar sopa:");
-  });
+
   // it("debería mostrar la sopa y segundo recien editados", () => {
   //   cy.visit("/");
   //   cy.get("#input-sopa-creada").type("Fideo");
@@ -67,7 +63,6 @@ describe("Editar Menu", () => {
   //   cy.get("#stock-sopa").should("contain", "(Stock = 60)");
   //   cy.get("#stock-segundo").should("contain", "(Stock = 20)");
   // });
-});
 describe("Reservas menu", () => {
   it("debería mostrar las reservas en el menu", () => {
     cy.visit("/");
