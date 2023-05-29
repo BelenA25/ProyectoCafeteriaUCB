@@ -10,6 +10,10 @@ const formMisPedidos = document.querySelector("#mis-pedidos-form");
 let pedidos = new Array();
 let items = new Array();
 
+function mostrarPedidos(){
+  
+}
+
 function mostrarMenu() {
 
   var tabla = document.getElementById("cuerpoTabla");
@@ -42,15 +46,6 @@ function mostrarMenu() {
       var boton_reservar = document.createElement("button");
       boton_reservar.textContent = "+1";
       boton_reservar.id = item;
-      let item = new Pedido(
-        items.length,
-        nombre.value,
-        descripcion.value,
-        precio.value,
-        categoria.value,
-        stock.value
-      );
-      items.push(item);
       fila.appendChild(boton_reservar);
     }
     else {
@@ -71,7 +66,10 @@ function mostrarMenu() {
       });
       if (elementoEncontrado) {
         elementoEncontrado.agregarReserva(1);
+        let pedido = new Pedido(elementoEncontrado.nombre);
+        pedido.agregarReserva();
         mostrarMenu();
+
       }
     });
   }
