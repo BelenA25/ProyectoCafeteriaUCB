@@ -11,7 +11,21 @@ let pedidos = new Array();
 let items = new Array();
 
 function mostrarPedidos(){
-  
+  var tabla = document.getElementById("cuerpoTablaPedidos");
+ 
+  while (tabla.firstChild) {
+    tabla.removeChild(tabla.firstChild);
+  }
+  for (var pedido in pedidos) {
+    var fila = document.createElement("tr");
+    var celda_nombre = document.createElement("td");
+    celda_nombre.textContent = pedidos[pedido]["nombre"];
+    fila.appendChild(celda_nombre);
+    var celda_cantidad = document.createElement("td");
+    celda_cantidad.textContent = pedidos[pedido]["numero"];
+    fila.appendChild(celda_cantidad);
+    tabla.appendChild(fila);
+  }
 }
 
 function mostrarMenu() {
@@ -68,6 +82,8 @@ function mostrarMenu() {
         elementoEncontrado.agregarReserva(1);
         let pedido = new Pedido(elementoEncontrado.nombre);
         pedido.agregarReserva();
+        pedidos.push(pedido);
+        mostrarPedidos();
         mostrarMenu();
 
       }
