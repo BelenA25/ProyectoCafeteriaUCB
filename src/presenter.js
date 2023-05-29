@@ -5,7 +5,6 @@ import Item from "./item.js";
 
 const formCrearItem = document.querySelector("#crear-menu-form");
 const formEditarMenu = document.querySelector("#editar-menu-form");
-const formMisPedidos = document.querySelector("#mis-pedidos-form");
 
 let pedidos = new Array();
 let items = new Array();
@@ -26,8 +25,26 @@ function mostrarPedidos(){
     fila.appendChild(celda_cantidad);
     var boton_eliminar = document.createElement("button");
     boton_eliminar.textContent = "Eliminar";
+    boton_eliminar.id = pedido;
+    boton_eliminar.classList.add("eliminar-reservas");
     fila.appendChild(boton_eliminar);
     tabla.appendChild(fila);
+  }
+  var botones = document.getElementsByClassName("eliminar-reservas");
+
+  for (var i = 0; i < botones.length; i++) {
+    botones[i].addEventListener("click", function(event) {
+      var botonID = event.target.id;
+      var elementoEncontrado = pedidos.find(function(pedido) {
+        return parseInt(pedido.id) === parseInt(botonID);
+      });
+      if (elementoEncontrado) {
+        pedidos = pedidos.filter(function(elemento) {
+          return elemento !== elementoEncontrado;
+        });
+        mostrarPedidos();
+      }
+    });
   }
 }
 
@@ -63,6 +80,7 @@ function mostrarMenu() {
       var boton_reservar = document.createElement("button");
       boton_reservar.textContent = "+1";
       boton_reservar.id = item;
+      boton_reservar.classList.add("reservas-items");
       fila.appendChild(boton_reservar);
     }
     else {
@@ -73,7 +91,7 @@ function mostrarMenu() {
     tabla.appendChild(fila);
   }
 
-  var botones = document.getElementsByTagName("button");
+  var botones = document.getElementsByClassName("reservas-items");
 
   for (var i = 0; i < botones.length; i++) {
     botones[i].addEventListener("click", function(event) {
@@ -83,7 +101,7 @@ function mostrarMenu() {
       });
       if (elementoEncontrado) {
         elementoEncontrado.agregarReserva(1);
-        let pedido = new Pedido(elementoEncontrado.nombre);
+        let pedido = new Pedido(pedidos.length, elementoEncontrado.nombre);
         pedido.agregarReserva();
         pedidos.push(pedido);
         mostrarPedidos();
@@ -119,9 +137,4 @@ formEditarMenu.addEventListener("submit", (event) => {
   event.preventDefault();
   
   mostrarMenu();
-});
-formMisPedidos.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  pedido.eliminarPedido();
 });

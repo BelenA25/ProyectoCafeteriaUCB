@@ -72,8 +72,8 @@ describe("Reservas menu", () => {
     cy.get("#input-categoria-creada").type("Almuerzo cotidiano");
     cy.get("#input-stock-creada").type(2);
     cy.get("#crear-menu-button").click();
-    cy.get("button").click();
-    cy.get("button").click();
+    cy.get(".reservas-items").click();
+    cy.get(".reservas-items").click();
     cy.get("td").should("contain", "Ya no se permiten mas reservas");
   });
 });

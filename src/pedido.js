@@ -1,7 +1,9 @@
 class Pedido{
-    constructor(nombre){
-        this.nombre=nombre;
+    constructor(id,nombre, id_item){
+        this.id = id;
+        this.nombre = nombre;
         this.numero = 0;
+        this.id_item = id_item;
     }
     agregarReserva()
     {

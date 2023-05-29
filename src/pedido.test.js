@@ -3,16 +3,16 @@ import Menu from "./menu.js";
 
 describe("Apartado de mis pedidos", () => {
     it("deberia devolver el valor de mi reserva de la sopa", () => {
-      const pedidos = new Pedido("Sopa");
+      const pedidos = new Pedido(1,"Sopa");
       expect(pedidos.nombre).toEqual("Sopa");
     });
       it("deberia devolver el valor numerico de reserva", () => {
-        const pedidos = new Pedido("Sopa");
+        const pedidos = new Pedido(1,"Sopa");
         pedidos.agregarReserva();
         expect(pedidos.numero).toEqual(1);
       });
       it("deberia devolver el valor de mis reservas del segundo de manera incremental", () => {
-        const pedidos = new Pedido("Sopa");
+        const pedidos = new Pedido(1,"Sopa");
         pedidos.agregarReserva();
         pedidos.agregarReserva();
         expect(pedidos.numero).toEqual(2);
