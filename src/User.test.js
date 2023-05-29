@@ -11,4 +11,7 @@ describe("Iniciar Sesion como User", () => {
     it("Deberia iniciar sesion como usuario con username y password", () => {
         expect(user).toEqual({"username": "user","password": "contra"});
     });
+    it("Deberia iniciar sesion como usuario con username y password con una funcion", () => {
+        expect(user.loginUser()).toEqual({"username": "user","password": "contra"});
+    });
 });
