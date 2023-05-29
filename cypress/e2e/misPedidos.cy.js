@@ -41,15 +41,17 @@ describe("Mis pedidos", () => {
     cy.get("#cuerpoTablaPedidos").should("contain", "");
 
   });
-  // it("deberia eliminar mi pedido", () => {
-  //   cy.visit("/");
-  //   cy.get("#input-sopa-creada").type("Fideo");
-  //   cy.get("#input-segundo-creada").type("Silpancho");
-  //   cy.get("#input-sopa-stock-creada").type(200);
-  //   cy.get("#input-segundo-stock-creada").type(30);
-  //   cy.get("#crear-menu-button").click();
-  //   cy.get("#boton-reserva-sopa").click();
-  //   cy.get("#eliminar-button").click();
-  //   cy.get("#mi-pedido-sopa").should("contain", "Sopa: 0");
-  // });
+  it("deberia eliminar un pedido y retornar la reserva a su valor anterior", () => {
+    cy.visit("/");
+    cy.get("#input-nombre-creada").type("Sopa");
+    cy.get("#input-descripcion-creada").type("Sopa de fideo");
+    cy.get("#input-precio-creada").type(5);
+    cy.get("#input-categoria-creada").type("Almuerzo cotidiano");
+    cy.get("#input-stock-creada").type(20);
+    cy.get("#crear-menu-button").click();
+    cy.get(".reservas-items").click();
+    cy.get(".eliminar-reservas").click();
+    cy.get("#cuerpoTabla").should("contain", "0");
+
+  });
 });

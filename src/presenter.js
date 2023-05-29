@@ -39,10 +39,14 @@ function mostrarPedidos(){
         return parseInt(pedido.id) === parseInt(botonID);
       });
       if (elementoEncontrado) {
+        items.find(function(item) {
+          return parseInt(item.id) === parseInt(elementoEncontrado.id_item);
+        }).decrementarReservas();
         pedidos = pedidos.filter(function(elemento) {
-          return elemento !== elementoEncontrado;
-        });
-        mostrarPedidos();
+        return elemento !== elementoEncontrado;
+      });
+      mostrarPedidos();
+      mostrarMenu();
       }
     });
   }
@@ -101,7 +105,7 @@ function mostrarMenu() {
       });
       if (elementoEncontrado) {
         elementoEncontrado.agregarReserva(1);
-        let pedido = new Pedido(pedidos.length, elementoEncontrado.nombre);
+        let pedido = new Pedido(pedidos.length, elementoEncontrado.nombre, elementoEncontrado.id);
         pedido.agregarReserva();
         pedidos.push(pedido);
         mostrarPedidos();

@@ -13,8 +13,8 @@ class Item {
             this.reservas = this.reservas + reserva;
         }
     }
-    decrementarReservas(reserva) {
-        this.reservas = this.reservas - reserva;
+    decrementarReservas() {
+        this.reservas = this.reservas - 1;
     }
     actualizarNombre(nuevoNombre) {
         this.nombre = nuevoNombre;
