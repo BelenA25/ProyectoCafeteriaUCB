@@ -24,6 +24,9 @@ function mostrarPedidos(){
     var celda_cantidad = document.createElement("td");
     celda_cantidad.textContent = pedidos[pedido]["numero"];
     fila.appendChild(celda_cantidad);
+    var boton_eliminar = document.createElement("button");
+    boton_eliminar.textContent = "Eliminar";
+    fila.appendChild(boton_eliminar);
     tabla.appendChild(fila);
   }
 }
