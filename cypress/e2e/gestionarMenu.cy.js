@@ -61,8 +61,8 @@ describe("Reservas menu", () => {
     cy.get("#input-categoria-creada").type("Almuerzo cotidiano");
     cy.get("#input-stock-creada").type(20);
     cy.get("#crear-menu-button").click();
-    cy.get("button").click();
-    cy.get("td").should("contain", "1");
+    cy.get(".reservas-items").click();
+    cy.get("#cuerpoTabla").should("contain", "1");
   });
   it("Debería mostrar un mensaje si es que el plato no esta disponible", () => {
     cy.visit("/");
@@ -75,5 +75,17 @@ describe("Reservas menu", () => {
     cy.get(".reservas-items").click();
     cy.get(".reservas-items").click();
     cy.get("td").should("contain", "Ya no se permiten mas reservas");
+  });
+});
+describe("Editar menu", () => {
+  it("debería mostrar el boton de edicion en el menu", () => {
+    cy.visit("/");
+    cy.get("#input-nombre-creada").type("Sopa");
+    cy.get("#input-descripcion-creada").type("Sopa de fideo");
+    cy.get("#input-precio-creada").type(5);
+    cy.get("#input-categoria-creada").type("Almuerzo cotidiano");
+    cy.get("#input-stock-creada").type(20);
+    cy.get("#crear-menu-button").click();
+    cy.get("#cuerpoTabla").should("contain", "Editar");
   });
 });
