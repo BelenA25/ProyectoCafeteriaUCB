@@ -1,11 +1,11 @@
 describe("Mis pedidos", () => {
 
   it("deberia mostrar el apartado de mis pedidos", () => {
-    cy.visit("/");
+    cy.visit("index.html");
     cy.get("#tittle-mis-pedidos").should("contain", "Mis pedidos");
   });
   it("deberia mostrar el apartado de mis pedidos con mi  pedido realizado", () => {
-    cy.visit("/");
+    cy.visit("index.html");
     cy.get("#input-nombre-creada").type("Sopa");
     cy.get("#input-descripcion-creada").type("Sopa de fideo");
     cy.get("#input-precio-creada").type(5);
@@ -17,7 +17,7 @@ describe("Mis pedidos", () => {
     cy.get("#mis-pedidos").should("contain", 1);
   });
   it("deberia mostrar el boton para eliminar un pedido", () => {
-    cy.visit("/");
+    cy.visit("index.html");
     cy.get("#input-nombre-creada").type("Sopa");
     cy.get("#input-descripcion-creada").type("Sopa de fideo");
     cy.get("#input-precio-creada").type(5);
@@ -29,7 +29,7 @@ describe("Mis pedidos", () => {
     cy.get("#mis-pedidos").should("contain", "Eliminar");
   });
   it("deberia eliminar un pedido", () => {
-    cy.visit("/");
+    cy.visit("index.html");
     cy.get("#input-nombre-creada").type("Sopa");
     cy.get("#input-descripcion-creada").type("Sopa de fideo");
     cy.get("#input-precio-creada").type(5);
@@ -42,7 +42,7 @@ describe("Mis pedidos", () => {
 
   });
   it("deberia eliminar un pedido y retornar la reserva a su valor anterior", () => {
-    cy.visit("/");
+    cy.visit("index.html");
     cy.get("#input-nombre-creada").type("Sopa");
     cy.get("#input-descripcion-creada").type("Sopa de fideo");
     cy.get("#input-precio-creada").type(5);

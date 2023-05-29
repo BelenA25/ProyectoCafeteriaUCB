@@ -1,10 +1,10 @@
 describe("Crear Menu", () => {
   it("debería mostrar el formulario de creacion de menu", () => {
-    cy.visit("/");
+    cy.visit("index.html");
     cy.get("#crear-nombre").should("contain", "Nombre:");
   });
   it("debería mostrar la sopa recien creados", () => {
-    cy.visit("/");
+    cy.visit("index.html");
     cy.get("#input-nombre-creada").type("Sopa");
     cy.get("#input-descripcion-creada").type("Sopa de fideo");
     cy.get("#input-precio-creada").type(5);
@@ -15,7 +15,7 @@ describe("Crear Menu", () => {
     cy.get("td").should("contain", "5");
   });
   it("debería mostrar las reservas iniciales en 0", () => {
-    cy.visit("/");
+    cy.visit("index.html");
     cy.get("#input-nombre-creada").type("Sopa");
     cy.get("#input-descripcion-creada").type("Sopa de fideo");
     cy.get("#input-precio-creada").type(5);
@@ -54,7 +54,7 @@ describe("Crear Menu", () => {
   // });
 describe("Reservas menu", () => {
   it("debería mostrar las reservas en el menu", () => {
-    cy.visit("/");
+    cy.visit("index.html");
     cy.get("#input-nombre-creada").type("Sopa");
     cy.get("#input-descripcion-creada").type("Sopa de fideo");
     cy.get("#input-precio-creada").type(5);
@@ -65,7 +65,7 @@ describe("Reservas menu", () => {
     cy.get("#cuerpoTabla").should("contain", "1");
   });
   it("Debería mostrar un mensaje si es que el plato no esta disponible", () => {
-    cy.visit("/");
+    cy.visit("index.html");
     cy.get("#input-nombre-creada").type("Sopa");
     cy.get("#input-descripcion-creada").type("Sopa de fideo");
     cy.get("#input-precio-creada").type(5);
@@ -79,7 +79,7 @@ describe("Reservas menu", () => {
 });
 describe("Editar menu", () => {
   it("debería mostrar el boton de edicion en el menu", () => {
-    cy.visit("/");
+    cy.visit("index.html");
     cy.get("#input-nombre-creada").type("Sopa");
     cy.get("#input-descripcion-creada").type("Sopa de fideo");
     cy.get("#input-precio-creada").type(5);
@@ -89,7 +89,7 @@ describe("Editar menu", () => {
     cy.get("#cuerpoTabla").should("contain", "Editar");
   });
   it("debería recuperar los datos del item a editar en el formulario de edicion", () => {
-    cy.visit("/");
+    cy.visit("index.html");
     cy.get("#input-nombre-creada").type("Sopa");
     cy.get("#input-descripcion-creada").type("Sopa de fideo");
     cy.get("#input-precio-creada").type(5);
