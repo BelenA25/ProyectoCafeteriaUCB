@@ -7,6 +7,14 @@ const formEditarMenu = document.querySelector("#editar-menu-form");
 let pedidos = new Array();
 let items = new Array();
 
+function editarItem(elementoEncontrado){
+  document.getElementById("input-nombre-editado").value =  elementoEncontrado.nombre;
+  document.getElementById("input-descripcion-editado").value =  elementoEncontrado.descripcion;
+  document.getElementById("input-precio-editado").value =  elementoEncontrado.precio;
+  document.getElementById("input-categoria-editado").value =  elementoEncontrado.categoria;
+  document.getElementById("input-stock-editado").value =  elementoEncontrado.stock;
+}
+
 function mostrarPedidos(){
   var tabla = document.getElementById("cuerpoTablaPedidos");
  
@@ -116,7 +124,22 @@ function mostrarMenu() {
       }
     });
   }
+  var botonesE = document.getElementsByClassName("editar-item");
+
+  for (var i = 0; i < botonesE.length; i++) {
+    botonesE[i].addEventListener("click", function(event) {
+      var botonID = event.target.id;
+      var elementoEncontrado = items.find(function(item) {
+        return parseInt(item.id) === parseInt(botonID);
+      });
+      if (elementoEncontrado) {
+        editarItem(elementoEncontrado);
+        mostrarMenu();
+      }
+    });
+  }
 }
+
 
 window.addEventListener("load", mostrarMenu);
 
@@ -139,8 +162,8 @@ formCrearItem.addEventListener("submit", (event) => {
   items.push(item);
   mostrarMenu();
 });
-formEditarMenu.addEventListener("submit", (event) => {
+formEditarMenu.addEventListener("click", (event) => {
   event.preventDefault();
   
-  mostrarMenu();
+  
 });
