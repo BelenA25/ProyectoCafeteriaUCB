@@ -5,6 +5,10 @@ const usuario = document.querySelector("#inputUsername");
 const password = document.querySelector("#inputpassword");
 
 formulario.addEventListener("submit", (event) => {
-  event.preventDefault();
-  div.innerHTML = usuario.value + password.value;
+    event.preventDefault();
+    var admin = new Admin(usuario.value, password.value);
+    if (admin.Admin()) {
+    window.location.href = "index.html";
+    alert("Welcome Admin!");
+  }
 });
