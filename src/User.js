@@ -9,7 +9,7 @@ class User{
     Usuario() {
         return this.username == "user" && this.password == "contra";
     }
-    validarDatos(){
+    VerifyData(){
         return this.username != "" && this.password != "";
     }
 }
