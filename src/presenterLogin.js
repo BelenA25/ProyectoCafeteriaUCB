@@ -14,7 +14,7 @@ formulario.addEventListener("submit", (event) => {
         alert("Welcome Admin!");
     }
     else if(!admin.validarDatos()){
-        alert("Datos Invalidos");
+        alert("Un campo esta vacío o incorrecto, Inténtelo nuevamente!");
         window.location.reload();
     }
     else if(user.Usuario()){
@@ -22,7 +22,7 @@ formulario.addEventListener("submit", (event) => {
         alert("Welcome User!");
     }
     else if(user.VerifyData()){
-        alert("Datos Invalidos");
+        alert("Un campo esta vacío o incorrecto, Inténtelo nuevamente!");
         window.location.reload();
     }
 });
