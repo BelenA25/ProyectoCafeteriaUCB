@@ -1,5 +1,4 @@
 import Pedido from "./pedido.js";
-import Menu from "./menu.js";
 
 describe("Apartado de mis pedidos", () => {
     it("deberia devolver el valor de mi reserva de la sopa", () => {

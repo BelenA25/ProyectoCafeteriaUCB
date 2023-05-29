@@ -1,6 +1,4 @@
-import Menu from "./menu.js";
 import Pedido from "./pedido.js";
-import Reservas from "./reservas.js";
 import Item from "./item.js";
 
 const formCrearItem = document.querySelector("#crear-menu-form");
@@ -110,7 +108,6 @@ function mostrarMenu() {
         pedidos.push(pedido);
         mostrarPedidos();
         mostrarMenu();
-
       }
     });
   }
