@@ -19,10 +19,10 @@ formulario.addEventListener("submit", (event) => {
         window.location.reload();
     }
     else if(user.Usuario()){
-        window.location.href = "/indexUser.html";
+        window.location.href = "index.html";
         alert("Welcome User!");
     }
-    else if(user.VerifyData()){
+    else if(!user.VerifyData()){
         alert("Un campo esta vacío o incorrecto, Inténtelo nuevamente!");
         window.location.reload();
     }
