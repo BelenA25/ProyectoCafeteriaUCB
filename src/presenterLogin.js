@@ -11,6 +11,7 @@ formulario.addEventListener("submit", (event) => {
     var user = new User(usuario.value, password.value);
     if (admin.Admin()) {
         window.location.href = "index.html";
+        localStorage.setItem("admin", JSON.stringify(admin));
         alert("Welcome Admin!");
     }
     else if(!admin.validarDatos()){
@@ -18,7 +19,7 @@ formulario.addEventListener("submit", (event) => {
         window.location.reload();
     }
     else if(user.Usuario()){
-        window.location.href = "index.html";
+        window.location.href = "/indexUser.html";
         alert("Welcome User!");
     }
     else if(user.VerifyData()){
@@ -26,3 +27,4 @@ formulario.addEventListener("submit", (event) => {
         window.location.reload();
     }
 });
+

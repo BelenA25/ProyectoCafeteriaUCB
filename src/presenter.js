@@ -1,6 +1,8 @@
 import Pedido from "./pedido.js";
 import Item from "./item.js";
 
+const user = localStorage.getItem("user");
+
 const formCrearItem = document.querySelector("#crear-menu-form");
 const formEditarMenu = document.querySelector("#editar-menu-form");
 
