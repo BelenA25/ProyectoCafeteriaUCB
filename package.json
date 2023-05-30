@@ -2,10 +2,10 @@
   "name": "parcelbase",
   "version": "1.0.0",
   "description": "npm install",
-  "default": "index.html",
+  "default": "login.html",
   "scripts": {
     "start": "parcel login.html",
-    "build": "parcel build index.html",
+    "build": "parcel build login.html",
     "test": "jest --watch",
     "test-once": "jest --verbose --coverage",
     "cypress": "cypress open",
