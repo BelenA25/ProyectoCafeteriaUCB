@@ -13,6 +13,7 @@ let pedidos = new Array();
 
 
 function editarItem(elementoEncontrado){
+  
   document.getElementById("input-nombre-editado").value =  elementoEncontrado.nombre;
   document.getElementById("input-descripcion-editado").value =  elementoEncontrado.descripcion;
   document.getElementById("input-precio-editado").value =  elementoEncontrado.precio;
@@ -35,7 +36,7 @@ function editarItem(elementoEncontrado){
     elementoEncontrado.stock=stock;
     
     console.log("Cambie items: ", items);
-   mostrarMenu();
+    mostrarMenu();
   });
 }
 

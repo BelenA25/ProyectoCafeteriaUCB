@@ -18,21 +18,6 @@ class Item {
     decrementarReservas() {
         this.reservas = this.reservas - 1;
     }
-    actualizarNombre(nuevoNombre) {
-        this.nombre = nuevoNombre;
-    }
-    actualizarDescripcion(nuevaDescripcion) {
-        this.descripcion = nuevaDescripcion;
-    }
-    actualizarPrecio(nuevoPrecio) {
-        this.precio = nuevoPrecio;
-    }
-    actualizarCategoria(nuevaCategoria) {
-        this.categoria = nuevaCategoria;
-    }
-    actualizarStock(nuevoStock) {
-        this.stock = nuevoStock;
-    }
     eliminar() {
         const index = items.findIndex(item => item.id === this.id);
         if (index !== -1) {
