@@ -62,5 +62,17 @@ describe("Eliminar Item", () => {
         expect(Item.items[0].id).toBe(1);
         expect(Item.items[1].id).toBe(3);
       });
-      
+      it("debería actualizar correctamente los atributos del objeto eliminado", () => {
+        const item = new Item(1, "Papitas", "Picantes", 10, "Frituras", 5);
+        Item.items.push(item);
+        expect(Item.items.length).toBe(1);
+        item.eliminar();
+        expect(Item.items.length).toBe(0);
+        expect(item.id).toBeUndefined();
+        expect(item.nombre).toBeUndefined();
+        expect(item.descripcion).toBeUndefined();
+        expect(item.precio).toBeUndefined();
+        expect(item.categoria).toBeUndefined();
+        expect(item.stock).toBeUndefined();
+      });
   });
