@@ -1,5 +1,6 @@
+let items = new Array();
 class Item {
-    static items = [];
+    
     constructor(id, nombre, descripcion, precio, categoria, stock) {
         this.id = id;
         this.nombre = nombre;
@@ -33,14 +34,13 @@ class Item {
         this.stock = nuevoStock;
     }
     eliminar() {
-        const index = Item.items.findIndex(item => item.id === this.id);
+        const index = items.findIndex(item => item.id === this.id);
         if (index !== -1) {
-            Item.items.splice(index, 1);
-            Object.getOwnPropertyNames(this).forEach(prop => {
-                this[prop] = undefined;
-              });
+          items.splice(index, 1);
+          Object.getOwnPropertyNames(this).forEach(prop => {
+            this[prop] = undefined;
+          });
         }
-      
-    }
+      }
 }
-export default Item;
+export { Item, items };

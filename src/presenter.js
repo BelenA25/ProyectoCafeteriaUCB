@@ -1,8 +1,8 @@
 import Pedido from "./pedido.js";
-import Item from "./item.js";
+
 import Admin from "./Admin";
 import User from "./User";
-
+import { Item, items } from './item';
 const formulario = document.querySelector("#loginForm");
 const usuario = document.querySelector("#inputUsername");
 const password = document.querySelector("#inputpassword");
@@ -10,7 +10,6 @@ const formCrearItem = document.querySelector("#crear-menu-form");
 const formEditarMenu = document.querySelector("#editar-menu-form");
 
 let pedidos = new Array();
-let items = new Array();
 
 
 function editarItem(elementoEncontrado){
@@ -69,6 +68,7 @@ function mostrarPedidos(){
       var elementoEncontrado = pedidos.find(function(pedido) {
         return parseInt(pedido.id) === parseInt(botonID);
       });
+
       if (elementoEncontrado) {
         items.find(function(item) {
           return parseInt(item.id) === parseInt(elementoEncontrado.id_item);
@@ -133,7 +133,12 @@ function mostrarMenu() {
       boton_editar.classList.add("editar-item");
       fila.appendChild(boton_editar);
       tabla.appendChild(fila);
-    
+
+      var boton_eliminar = document.createElement("button");
+      boton_eliminar.textContent = "Eliminar";
+      boton_eliminar.id = item;
+      boton_eliminar.classList.add("eliminar-item");
+      fila.appendChild(boton_eliminar);
   }
 
   var botones = document.getElementsByClassName("reservas-items");

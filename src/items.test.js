@@ -1,4 +1,4 @@
-import Item from "./item.js";
+import { Item, items } from './item';
 
 describe("Crear item", () => {
     it("debería crear un item de la cafeteria", () => {
@@ -12,67 +12,62 @@ describe("Crear item", () => {
 });
 
 describe("Eliminar Item", () => {
+    let item1, item2, item3;
+  
     beforeEach(() => {
-        Item.items = []; 
-      });
-    it("debería eliminar un producto creado", () => {
-      const item = new Item(1, "Papitas", "Picantes", 10, "Frituras", 5);
-      Item.items.push(item);
-      expect(Item.items.length).toBe(1);
-      item.eliminar();
-      expect(Item.items.length).toBe(0);
+      items.length = 0;
+      item1 = new Item(1, "Papitas", "Picantes", 10, "Frituras", 5);
+      item2 = new Item(2, "Galletas", "Vainilla", 8, "Dulces", 3);
+      item3 = new Item(3, "Refresco", "Cola", 15, "Bebidas", 7);
+      items.push(item1, item2, item3);
     });
-    it("no debería eliminar un producto si no existe en la lista", () => {
-        const item = new Item(1, "Papitas", "Picantes", 10, "Frituras", 5);
-        Item.items.push(item);
-        expect(Item.items.length).toBe(1);
-        const itemNoExistente = new Item(2, "Galletas", "Vainilla", 8, "Dulces", 3);
-        itemNoExistente.eliminar();
-        expect(Item.items.length).toBe(1);
-      });
-      it("debería eliminar el producto correcto cuando hay varios en la lista", () => {
-        const item1 = new Item(1, "Papitas", "Picantes", 10, "Frituras", 5);
-        const item2 = new Item(2, "Galletas", "Vainilla", 8, "Dulces", 3);
-        const item3 = new Item(3, "Refresco", "Cola", 15, "Bebidas", 7);
-        Item.items.push(item1, item2, item3);
-        expect(Item.items.length).toBe(3);
-        item2.eliminar();
-        expect(Item.items.length).toBe(2);
-        expect(Item.items).not.toContain(item2);
-      });
-      it("debería poder eliminar varios productos de la lista", () => {
-        const item1 = new Item(1, "Papitas", "Picantes", 10, "Frituras", 5);
-        const item2 = new Item(2, "Chocolate", "Amargo", 20, "Dulces", 3);
-        const item3 = new Item(3, "Refresco", "Cola", 15, "Bebidas", 7);
-        Item.items.push(item1, item2, item3);
-        expect(Item.items.length).toBe(3);
-        item1.eliminar();
-        item3.eliminar();
-        expect(Item.items.length).toBe(1);
-        expect(Item.items[0].id).toBe(2);
-      });
-      it("debería eliminar correctamente productos en diferentes posiciones de la lista", () => {
-        const item1 = new Item(1, "Papitas", "Picantes", 10, "Frituras", 5);
-        const item2 = new Item(2, "Chocolate", "Amargo", 20, "Dulces", 3);
-        const item3 = new Item(3, "Refresco", "Cola", 15, "Bebidas", 7);
-        Item.items.push(item1, item2, item3);
-        expect(Item.items.length).toBe(3);
-        item2.eliminar();
-        expect(Item.items.length).toBe(2);
-        expect(Item.items[0].id).toBe(1);
-        expect(Item.items[1].id).toBe(3);
-      });
-      it("debería actualizar correctamente los atributos del objeto eliminado", () => {
-        const item = new Item(1, "Papitas", "Picantes", 10, "Frituras", 5);
-        Item.items.push(item);
-        expect(Item.items.length).toBe(1);
-        item.eliminar();
-        expect(Item.items.length).toBe(0);
-        expect(item.id).toBeUndefined();
-        expect(item.nombre).toBeUndefined();
-        expect(item.descripcion).toBeUndefined();
-        expect(item.precio).toBeUndefined();
-        expect(item.categoria).toBeUndefined();
-        expect(item.stock).toBeUndefined();
-      });
+  
+    it("deberia eliminar un producto creado", () => {
+      expect(items.length).toBe(3);
+      item1.eliminar();
+      expect(items.length).toBe(2);
+      expect(items).not.toContain(item1);
+    });
+  
+    it("no deberia eliminar un producto si no existe en la lista", () => {
+      const itemNoExistente = new Item(4, "Galletas", "Chocolate", 12, "Dulces", 4);
+      expect(items.length).toBe(3);
+      itemNoExistente.eliminar();
+      expect(items.length).toBe(3);
+    });
+  
+    it("deberia eliminar el producto correcto cuando hay varios en la lista", () => {
+      expect(items.length).toBe(3);
+      item2.eliminar();
+      expect(items.length).toBe(2);
+      expect(items).not.toContain(item2);
+    });
+  
+    it("deberia poder eliminar varios productos de la lista", () => {
+      expect(items.length).toBe(3);
+      item1.eliminar();
+      item3.eliminar();
+      expect(items.length).toBe(1);
+      expect(items[0].id).toBe(2);
+    });
+  
+    it("deberia eliminar correctamente productos en diferentes posiciones de la lista", () => {
+      expect(items.length).toBe(3);
+      item2.eliminar();
+      expect(items.length).toBe(2);
+      expect(items[0].id).toBe(1);
+      expect(items[1].id).toBe(3);
+    });
+  
+    it("deberia actualizar correctamente los atributos del objeto eliminado", () => {
+      expect(items.length).toBe(3);
+      item1.eliminar();
+      expect(items.length).toBe(2);
+      expect(item1.id).toBeUndefined();
+      expect(item1.nombre).toBeUndefined();
+      expect(item1.descripcion).toBeUndefined();
+      expect(item1.precio).toBeUndefined();
+      expect(item1.categoria).toBeUndefined();
+      expect(item1.stock).toBeUndefined();
+    });
   });
