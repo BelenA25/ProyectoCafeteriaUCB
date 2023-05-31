@@ -34,7 +34,9 @@ class Item {
     }
     eliminar() {
         const index = Item.items.findIndex(item => item.id === this.id);
-        Item.items.splice(index, 1);  
+        if (index !== -1) {
+            Item.items.splice(index, 1);
+        }  
     }
 }
 export default Item;

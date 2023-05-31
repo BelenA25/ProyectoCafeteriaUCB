@@ -19,4 +19,12 @@ describe("Eliminar Item", () => {
       item.eliminar();
       expect(Item.items.length).toBe(0);
     });
+    it("no debería eliminar un producto si no existe en la lista", () => {
+        const item = new Item(1, "Papitas", "Picantes", 10, "Frituras", 5);
+        Item.items.push(item);
+        expect(Item.items.length).toBe(1);
+        const itemNoExistente = new Item(2, "Galletas", "Vainilla", 8, "Dulces", 3);
+        itemNoExistente.eliminar();
+        expect(Item.items.length).toBe(1);
+      });
   });
