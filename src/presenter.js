@@ -93,6 +93,7 @@ function mostrarMenu() {
   while (tabla.firstChild) {
     tabla.removeChild(tabla.firstChild);
   }
+  
   for (var item in items) {
     var fila = document.createElement("tr");
     var celda_nombre = document.createElement("td");
@@ -113,6 +114,7 @@ function mostrarMenu() {
     var celda_reservas = document.createElement("td");
     celda_reservas.textContent = items[item]["reservas"];
     fila.appendChild(celda_reservas);
+
     
     if(items[item]["reservas"] < items[item]["stock"])
     {
@@ -133,6 +135,13 @@ function mostrarMenu() {
       boton_editar.id = item;
       boton_editar.classList.add("editar-item");
       fila.appendChild(boton_editar);
+      tabla.appendChild(fila);
+
+      var boton_categoria = document.createElement("select");
+      boton_categoria.textContent = "categorias";
+      boton_categoria.id = item;
+      boton_categoria.classList.add("categorizar-item");
+      fila.appendChild(boton_categoria);
       tabla.appendChild(fila);
 
       var boton_eliminar = document.createElement("button");
@@ -198,8 +207,19 @@ function mostrarMenu() {
       }
     });
   }
+  var botonesE = document.getElementsByClassName("categorizar-item");
 
-
+  for (var i = 0; i < botonesE.length; i++) {
+    botonesE[i].addEventListener("click", function(event) {
+      var botonID = event.target.id;
+      var elementoEncontrado = items.find(function(item) {
+        return parseInt(item.id) === parseInt(botonID);
+      });
+      if (elementoEncontrado instanceof Item) {
+        elementoEncontrado.categorizarItems();
+      }
+    });
+  }
 }
 
 function mostrarContenidoAdmin(esAdmin) {
@@ -234,8 +254,10 @@ function mostrarContenidoUsuario(esUsuario) {
     }
   }
 }
+
 formCrearItem.addEventListener("submit", (event) => {
   event.preventDefault();
+
   const nombre = document.getElementById("input-nombre-creada");
   const descripcion = document.getElementById("input-descripcion-creada");
   const precio = document.getElementById("input-precio-creada");
