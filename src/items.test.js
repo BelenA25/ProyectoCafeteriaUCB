@@ -10,3 +10,13 @@ describe("Crear item", () => {
         expect(item.stock).toBe(25);
     });
 });
+
+describe("Eliminar Item", () => {
+    it("debería eliminar un producto creado", () => {
+      const item = new Item(1, "Papitas", "Picantes", 10, "Frituras", 5);
+      Item.items.push(item);
+      expect(Item.items.length).toBe(1);
+      item.eliminar();
+      expect(Item.items.length).toBe(0);
+    });
+  });

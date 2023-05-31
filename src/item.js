@@ -1,4 +1,5 @@
 class Item {
+    static items = [];
     constructor(id, nombre, descripcion, precio, categoria, stock) {
         this.id = id;
         this.nombre = nombre;
@@ -30,6 +31,10 @@ class Item {
     }
     actualizarStock(nuevoStock) {
         this.stock = nuevoStock;
+    }
+    eliminar() {
+        const index = Item.items.findIndex(item => item.id === this.id);
+        Item.items.splice(index, 1);  
     }
 }
 export default Item;

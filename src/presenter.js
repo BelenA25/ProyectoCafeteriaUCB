@@ -126,13 +126,14 @@ function mostrarMenu() {
       celda_restrictiva.textContent = "Ya no se permiten mas reservas";
       fila.appendChild(celda_restrictiva);
     }
+   
+      var boton_editar = document.createElement("button");
+      boton_editar.textContent = "Editar";
+      boton_editar.id = item;
+      boton_editar.classList.add("editar-item");
+      fila.appendChild(boton_editar);
+      tabla.appendChild(fila);
     
-    var boton_editar = document.createElement("button");
-    boton_editar.textContent = "Editar";
-    boton_editar.id = item;
-    boton_editar.classList.add("editar-item");
-    fila.appendChild(boton_editar);
-    tabla.appendChild(fila);
   }
 
   var botones = document.getElementsByClassName("reservas-items");
@@ -168,9 +169,6 @@ function mostrarMenu() {
   }
 
 }
-
-
-
 
 function mostrarContenidoAdmin(esAdmin) {
   const elementosAdmin = document.getElementsByClassName("admin-only");
