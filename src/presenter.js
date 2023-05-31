@@ -182,8 +182,12 @@ function mostrarMenu() {
         return parseInt(item.id) === parseInt(botonID);
       });
       if (elementoEncontrado instanceof Item) {
-        elementoEncontrado.eliminar();
-        mostrarMenu(); 
+        var confirmacion = confirm("¿Estás seguro de eliminar este item?");
+        if (confirmacion) {
+          elementoEncontrado.eliminar();
+          alert("El item se eliminó correctamente");
+          mostrarMenu();
+        }
       }
     });
   }
