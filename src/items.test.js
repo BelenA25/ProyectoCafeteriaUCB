@@ -71,3 +71,24 @@ describe("Eliminar Item", () => {
       expect(item1.stock).toBeUndefined();
     });
   });
+
+
+  describe("Mostrar categorias", () => {
+    it("deberia poder elegir una categoria del menu", () => {
+    
+      const item1 = new Item(1, "Coca cola", "3 litros", 10, "Gaseosas", 5);
+      const item2 = new Item(2, "Alfafor", "Chocolate", 20, "Postre", 3);
+      const item3 = new Item(3, "Fanta", "Descripción 3", 15, "Gaseosas", 2);
+      items.push(item1, item2, item3);
+
+      const categorias = item1.categorizarItems();
+
+      expect(categorias).toHaveProperty("Gaseosas");
+      expect(categorias).toHaveProperty("Postre");
+   
+      expect(categorias["Gaseosas"]).toContain(item1);
+      expect(categorias["Gaseosas"]).toContain(item3);
+      expect(categorias["Postre"]).toContain(item2);
+    });
+
+  });

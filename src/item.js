@@ -27,5 +27,16 @@ class Item {
           });
         }
       }
+    categorizarItems() { 
+        const categorias = {};
+        for (const item of items) {
+          if (categorias[item.categoria]) { 
+            categorias[item.categoria].push(item);
+          } else {
+            categorias[item.categoria] = [item];
+          }
+        }
+        return categorias;
+      }
 }
 export { Item, items };
