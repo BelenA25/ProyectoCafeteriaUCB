@@ -101,5 +101,29 @@ describe("Eliminar Item", () => {
       expect(categorias).not.toHaveProperty("Postre");
 
     });
+    it("deberia poder categorizar los items del menu correctamente", () => {
+
+      const item1 = new Item(1, "Sopa de Mani", "sopa caliente", 10, "Almuerzo", 5);
+      const item2= new Item(2, "Silpancho", "carne con papas y huevo", 10, "Segundo", 5);
+      const item3 = new Item(3, "Cafe", "cafe express", 10, "Cafe", 5);
+      const item4 = new Item(4, "Papas fritas", "picantes", 10, "Frituras", 5);
+      const item5 = new Item(5, "Panini", "jamon y queso", 10, "Comida", 5);
+      items.push(item1,item2,item3,item4,item5);
+      
+      const categorias = item1.categorizarItems();
+
+      expect(categorias).toHaveProperty("Almuerzo");
+      expect(categorias).toHaveProperty("Segundo");
+      expect(categorias).toHaveProperty("Cafe");
+      expect(categorias).toHaveProperty("Frituras");
+      expect(categorias).toHaveProperty("Comida");
+
+      expect(categorias["Almuerzo"]).toContain(item1);
+      expect(categorias["Segundo"]).toContain(item2);
+      expect(categorias["Cafe"]).toContain(item3);
+      expect(categorias["Frituras"]).toContain(item4);
+      expect(categorias["Comida"]).toContain(item5);
+
+    });
 
   });

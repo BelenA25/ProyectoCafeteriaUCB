@@ -38,5 +38,6 @@ class Item {
         }
         return categorias;
       }
+      
 }
 export { Item, items };
