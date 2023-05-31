@@ -173,6 +173,22 @@ function mostrarMenu() {
     });
   }
 
+  var botonesE = document.getElementsByClassName("eliminar-item");
+
+  for (var i = 0; i < botonesE.length; i++) {
+    botonesE[i].addEventListener("click", function() {
+      var botonID = this.id;
+      var elementoEncontrado = items.find(function(item) {
+        return parseInt(item.id) === parseInt(botonID);
+      });
+      if (elementoEncontrado instanceof Item) {
+        elementoEncontrado.eliminar();
+        mostrarMenu(); 
+      }
+    });
+  }
+
+
 }
 
 function mostrarContenidoAdmin(esAdmin) {
