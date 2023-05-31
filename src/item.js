@@ -36,13 +36,11 @@ class Item {
         const index = Item.items.findIndex(item => item.id === this.id);
         if (index !== -1) {
             Item.items.splice(index, 1);
+            Object.getOwnPropertyNames(this).forEach(prop => {
+                this[prop] = undefined;
+              });
         }
-        this.id = undefined;
-        this.nombre = undefined;
-        this.descripcion = undefined;
-        this.precio = undefined;
-        this.categoria = undefined;
-        this.stock = undefined;  
+      
     }
 }
 export default Item;
