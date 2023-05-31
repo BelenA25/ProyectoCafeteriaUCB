@@ -185,8 +185,14 @@ function mostrarMenu() {
         var confirmacion = confirm("¿Estás seguro de eliminar este item?");
         if (confirmacion) {
           elementoEncontrado.eliminar();
-          alert("El item se eliminó correctamente");
-          mostrarMenu();
+          if (items.indexOf(elementoEncontrado) === -1) {
+            alert("El item se eliminó correctamente");
+            mostrarMenu();
+          }else {
+            alert("Error al eliminar el item"); 
+          }
+        }else {
+          alert("La eliminación del item ha sido cancelada");
         }
       }
     });
