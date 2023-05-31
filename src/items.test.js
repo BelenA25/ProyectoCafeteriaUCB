@@ -40,4 +40,16 @@ describe("Eliminar Item", () => {
         expect(Item.items.length).toBe(2);
         expect(Item.items).not.toContain(item2);
       });
+      it("debería eliminar varios productos de la lista", () => {
+        const item1 = new Item(1, "Papitas", "Picantes", 10, "Frituras", 5);
+        const item2 = new Item(2, "Chocolate", "Amargo", 20, "Dulces", 3);
+        const item3 = new Item(3, "Refresco", "Cola", 15, "Bebidas", 7);
+        Item.items.push(item1, item2, item3);
+        expect(Item.items.length).toBe(3);
+        item1.eliminar();
+        item3.eliminar();
+        expect(Item.items.length).toBe(1);
+        expect(Item.items[0].id).toBe(2);
+      });
+      
   });
