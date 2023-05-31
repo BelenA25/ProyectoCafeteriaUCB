@@ -74,6 +74,9 @@ describe("Eliminar Item", () => {
 
 
   describe("Mostrar categorias", () => {
+    beforeEach(() => {
+      items.length = 0;
+    });
     it("deberia poder elegir una categoria del menu", () => {
     
       const item1 = new Item(1, "Coca cola", "3 litros", 10, "Gaseosas", 5);
@@ -89,6 +92,14 @@ describe("Eliminar Item", () => {
       expect(categorias["Gaseosas"]).toContain(item1);
       expect(categorias["Gaseosas"]).toContain(item3);
       expect(categorias["Postre"]).toContain(item2);
+    });
+    it("deberia poder usar solo las categorias que tengo creadas", () => {
+      const item1 = new Item(1, "Coca cola", "3 litros", 10, "Gaseosas", 5);
+      items.push(item1);
+      const categorias = item1.categorizarItems();
+      expect(categorias).toHaveProperty("Gaseosas");
+      expect(categorias).not.toHaveProperty("Postre");
+
     });
 
   });
