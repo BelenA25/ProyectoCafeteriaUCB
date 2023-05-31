@@ -12,6 +12,7 @@ const formEditarMenu = document.querySelector("#editar-menu-form");
 let pedidos = new Array();
 let items = new Array();
 
+
 function editarItem(elementoEncontrado){
   document.getElementById("input-nombre-editado").value =  elementoEncontrado.nombre;
   document.getElementById("input-descripcion-editado").value =  elementoEncontrado.descripcion;
@@ -22,10 +23,6 @@ function editarItem(elementoEncontrado){
   formEditarMenu.addEventListener("submit", (event) => {
     event.preventDefault();
     
-    // items = items.filter(function(elemento) {
-    //   return elemento.id !== elementoEncontrado.id;
-    // });
-    // console.log(items);
     let nombre = document.getElementById("input-nombre-editado").value;
     let descripcion = document.getElementById("input-descripcion-editado").value;
     let precio = document.getElementById("input-precio-editado").value;
@@ -40,12 +37,6 @@ function editarItem(elementoEncontrado){
     
     console.log("Cambie items: ", items);
    mostrarMenu();
-  // document.getElementById("input-nombre-editado").value= "";
-  // document.getElementById("input-descripcion-editado").value =   "";
-  // document.getElementById("input-precio-editado").value = "";
-  // document.getElementById("input-categoria-editado").value = "";
-  // document.getElementById("input-stock-editado").value = "";
-  
   });
 }
 
@@ -85,8 +76,10 @@ function mostrarPedidos(){
         pedidos = pedidos.filter(function(elemento) {
         return elemento !== elementoEncontrado;
       });
-      mostrarPedidos();
-      mostrarMenu();
+      
+        mostrarMenu();
+        mostrarPedidos();
+      
       }
     });
   }
@@ -119,6 +112,7 @@ function mostrarMenu() {
     var celda_reservas = document.createElement("td");
     celda_reservas.textContent = items[item]["reservas"];
     fila.appendChild(celda_reservas);
+    
     if(items[item]["reservas"] < items[item]["stock"])
     {
       var boton_reservar = document.createElement("button");
@@ -127,11 +121,12 @@ function mostrarMenu() {
       boton_reservar.classList.add("reservas-items");
       fila.appendChild(boton_reservar);
     }
-    else {
+    else{
       var celda_restrictiva = document.createElement("td");
       celda_restrictiva.textContent = "Ya no se permiten mas reservas";
       fila.appendChild(celda_restrictiva);
     }
+    
     var boton_editar = document.createElement("button");
     boton_editar.textContent = "Editar";
     boton_editar.id = item;
@@ -171,11 +166,44 @@ function mostrarMenu() {
       }
     });
   }
+
 }
 
 
-window.addEventListener("load", mostrarMenu);
 
+
+function mostrarContenidoAdmin(esAdmin) {
+  const elementosAdmin = document.getElementsByClassName("admin-only");
+  if (esAdmin) {
+    for (let i = 0; i < elementosAdmin.length; i++) {
+        elementosAdmin[i].style.display = "block";
+     }
+    formCrearItem.style.display = "block";
+    formEditarMenu.style.display = "block";
+  } else {
+    for (let i = 0; i < elementosAdmin.length; i++) {
+      elementosAdmin[i].style.display = "none";
+    }
+    formCrearItem.style.display = "none";
+    formEditarMenu.style.display = "none";
+
+  }
+}
+function mostrarContenidoUsuario(esUsuario) {
+  const elementosUsuario = document.getElementsByClassName("user-only");
+
+  if (esUsuario) {
+    for (let i = 0; i < elementosUsuario.length; i++) {
+     // elementosUsuario[i].style.display = "block";
+      elementosUsuario[i].style.display = "table-cell";
+      elementosUsuario[i].setAttribute("valign", "middle");
+    }
+  } else {
+    for (let i = 0; i < elementosUsuario.length; i++) {
+      elementosUsuario[i].style.display = "none";
+    }
+  }
+}
 formCrearItem.addEventListener("submit", (event) => {
   event.preventDefault();
   const nombre = document.getElementById("input-nombre-creada");
@@ -202,16 +230,21 @@ formulario.addEventListener("submit", (event) => {
   var user = new User(usuario.value, password.value);
   if (admin.Admin()) {
       alert("Welcome Admin!");
+      mostrarContenidoAdmin(true);
+      mostrarContenidoUsuario(false);
   }
   else if(!admin.validarDatos()){
       alert("Un campo esta vacío o incorrecto, Inténtelo nuevamente!");
-      window.location.reload();
+      
   }
   else if(user.Usuario()){
       alert("Welcome User!");
+      mostrarContenidoAdmin(false);
+      mostrarContenidoUsuario(true);
   }
   else if(user.VerifyData()){
       alert("Un campo esta vacío o incorrecto, Inténtelo nuevamente!");
-      window.location.reload();
+      
   }
 });
+

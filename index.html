@@ -16,8 +16,9 @@
 
   <h1>Cato-Break</h1>
   <center>
-    <h3 id="tittle-mis-pedidos">Mis pedidos:</h1>
-      <table id="mis-pedidos">
+    
+    <h3 id="tittle-mis-pedidos" class="user-only">Mis pedidos:</h1>
+      <table id="mis-pedidos" class="user-only">
         <thead>
           <tr>
 
@@ -52,7 +53,7 @@
         </tbody>
       </table>
 
-      <h3>Crear Item</h3>
+      <h3  class="admin-only">Crear Item</h3>
       <form id="crear-menu-form">
         <div id="crear-nombre">Nombre:</div>
         <input type="text" id="input-nombre-creada" />
@@ -68,7 +69,7 @@
         <input type="submit" value="Crear" id="crear-menu-button" />
       </form>
 
-      <h3>Editar</h3>
+      <h3 class="admin-only">Editar</h3>
       <form id="editar-menu-form">
         <div id="editar-nombre">Nombre:</div>
         <input type="text" id="input-nombre-editado" />
