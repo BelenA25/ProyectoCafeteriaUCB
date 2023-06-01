@@ -27,19 +27,7 @@ function añadirBotonATabla(fila, nombre, id, clase) {
   boton.classList.add(clase);
   fila.appendChild(boton);
 }
-
-function editarItem(elementoEncontrado) {
-  document.getElementById("input-nombre-editado").value =
-    elementoEncontrado.nombre;
-  document.getElementById("input-descripcion-editado").value =
-    elementoEncontrado.descripcion;
-  document.getElementById("input-precio-editado").value =
-    elementoEncontrado.precio;
-  document.getElementById("input-categoria-editado").value =
-    elementoEncontrado.categoria;
-  document.getElementById("input-stock-editado").value =
-    elementoEncontrado.stock;
-
+function escuchaBotonEdicion(elementoEncontrado) {
   formEditarMenu.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -60,6 +48,20 @@ function editarItem(elementoEncontrado) {
     mostrarMenu();
   });
 }
+function editarItem(elementoEncontrado) {
+  document.getElementById("input-nombre-editado").value =
+    elementoEncontrado.nombre;
+  document.getElementById("input-descripcion-editado").value =
+    elementoEncontrado.descripcion;
+  document.getElementById("input-precio-editado").value =
+    elementoEncontrado.precio;
+  document.getElementById("input-categoria-editado").value =
+    elementoEncontrado.categoria;
+  document.getElementById("input-stock-editado").value =
+    elementoEncontrado.stock;
+
+  escuchaBotonEdicion(elementoEncontrado);
+}
 
 function mostrarPedidos() {
   var tabla = document.getElementById("cuerpoTablaPedidos");
@@ -74,35 +76,36 @@ function mostrarPedidos() {
     añadirBotonATabla(fila, "Eliminar", pedido, "eliminar-reservas");
     tabla.appendChild(fila);
   }
-  eliminacionPedido();
+  realizarAccion(pedidos, "eliminar-reservas", eliminarPedido);
 }
-
-function eliminacionPedido() {
-  var botones = document.getElementsByClassName("eliminar-reservas");
+function realizarAccion(array, claseBotones, accion) {
+  var botones = document.getElementsByClassName(claseBotones);
 
   for (var i = 0; i < botones.length; i++) {
     botones[i].addEventListener("click", function (event) {
       var botonID = event.target.id;
-      var elementoEncontrado = pedidos.find(function (pedido) {
-        return parseInt(pedido.id) === parseInt(botonID);
+      var elementoEncontrado = array.find(function (item) {
+        return parseInt(item.id) === parseInt(botonID);
       });
-
       if (elementoEncontrado) {
-        items
-          .find(function (item) {
-            return parseInt(item.id) === parseInt(elementoEncontrado.id_item);
-          })
-          .decrementarReservas();
-        pedidos = pedidos.filter(function (elemento) {
-          return elemento !== elementoEncontrado;
-        });
-        mostrarMenu();
-        mostrarPedidos();
+        accion(elementoEncontrado);
       }
     });
   }
 }
-function eliminarItem(elementoEncontrado){
+function eliminarPedido(elementoEncontrado) {
+  items
+    .find(function (item) {
+      return parseInt(item.id) === parseInt(elementoEncontrado.id_item);
+    })
+    .decrementarReservas();
+  pedidos = pedidos.filter(function (elemento) {
+    return elemento !== elementoEncontrado;
+  });
+  mostrarMenu();
+  mostrarPedidos();
+}
+function eliminarItem(elementoEncontrado) {
   var confirmacion = confirm("¿Estás seguro de eliminar este item?");
   if (confirmacion) {
     elementoEncontrado.eliminar();
@@ -127,21 +130,6 @@ function realizarReservaItem(elementoEncontrado) {
   pedidos.push(pedido);
   mostrarPedidos();
   mostrarMenu();
-}
-function realizarAccion(claseBotones, accion){
-  var botones = document.getElementsByClassName(claseBotones);
-
-  for (var i = 0; i < botones.length; i++) {
-    botones[i].addEventListener("click", function (event) {
-      var botonID = event.target.id;
-      var elementoEncontrado = items.find(function (item) {
-        return parseInt(item.id) === parseInt(botonID);
-      });
-      if (elementoEncontrado) {
-        accion(elementoEncontrado);
-      }
-    });
-  }
 }
 function actualizarMenu() {
   var tabla = document.getElementById("cuerpoTabla");
@@ -171,33 +159,9 @@ function actualizarMenu() {
       tabla.appendChild(fila);
     }
   }
-  realizarAccion("reservas-items", realizarReservaItem);
-  realizarAccion("editar-item", editarItem);
-  realizarAccion("eliminar-item", eliminarItem);
-  // var botonesE = document.getElementsByClassName("eliminar-item");
-
-  // for (var i = 0; i < botonesE.length; i++) {
-  //   botonesE[i].addEventListener("click", function () {
-  //     var botonID = this.id;
-  //     var elementoEncontrado = items.find(function (item) {
-  //       return parseInt(item.id) === parseInt(botonID);
-  //     });
-  //     if (elementoEncontrado instanceof Item) {
-  //       var confirmacion = confirm("¿Estás seguro de eliminar este item?");
-  //       if (confirmacion) {
-  //         elementoEncontrado.eliminar();
-  //         if (items.indexOf(elementoEncontrado) === -1) {
-  //           alert("El item se eliminó correctamente");
-  //           mostrarMenu();
-  //         } else {
-  //           alert("Error al eliminar el item");
-  //         }
-  //       } else {
-  //         alert("La eliminación del item ha sido cancelada");
-  //       }
-  //     }
-  //   });
-  // }
+  realizarAccion(items, "reservas-items", realizarReservaItem);
+  realizarAccion(items, "editar-item", editarItem);
+  realizarAccion(items, "eliminar-item", eliminarItem);
 }
 
 function mostrarMenu() {
