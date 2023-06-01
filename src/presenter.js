@@ -9,7 +9,9 @@ const usuario = document.querySelector("#inputUsername");
 const password = document.querySelector("#inputpassword");
 const formCrearItem = document.querySelector("#crear-menu-form");
 const formEditarMenu = document.querySelector("#editar-menu-form");
+var categoriaSelected = document.getElementById("select-categoria");
 
+categoriaSelected.addEventListener("change", actualizarMenu);
 let pedidos = new Array();
 
 function editarItem(elementoEncontrado) {
@@ -94,8 +96,12 @@ function eliminacionPedido() {
     });
   }
 }
-var categoriaSelected = document.getElementById("select-categoria");
-categoriaSelected.addEventListener("change", actualizarMenu);
+function añadirElementoATabla(fila, clave, items, item)
+{
+  var celda = document.createElement("td");
+  celda.textContent = items[item][clave];
+  fila.appendChild(celda);
+}
 function actualizarMenu() {
   var tabla = document.getElementById("cuerpoTabla");
 
@@ -106,21 +112,11 @@ function actualizarMenu() {
   for (var item in items) {
     if (items[item]["categoria"] == categoriaSelected.value) {
       var fila = document.createElement("tr");
-      var celda_nombre = document.createElement("td");
-      celda_nombre.textContent = items[item]["nombre"];
-      fila.appendChild(celda_nombre);
-      var celda_descripcion = document.createElement("td");
-      celda_descripcion.textContent = items[item]["descripcion"];
-      fila.appendChild(celda_descripcion);
-      var celda_precio = document.createElement("td");
-      celda_precio.textContent = items[item]["precio"];
-      fila.appendChild(celda_precio);
-      var celda_stock = document.createElement("td");
-      celda_stock.textContent = items[item]["stock"];
-      fila.appendChild(celda_stock);
-      var celda_reservas = document.createElement("td");
-      celda_reservas.textContent = items[item]["reservas"];
-      fila.appendChild(celda_reservas);
+      añadirElementoATabla(fila, "nombre", items, item);
+      añadirElementoATabla(fila, "descripcion", items, item);
+      añadirElementoATabla(fila, "precio", items, item);
+      añadirElementoATabla(fila, "stock", items, item);
+      añadirElementoATabla(fila, "reservas", items, item);
 
       if (items[item]["reservas"] < items[item]["stock"]) {
         var boton_reservar = document.createElement("button");
