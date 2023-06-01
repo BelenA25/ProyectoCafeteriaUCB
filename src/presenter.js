@@ -86,22 +86,134 @@ function mostrarPedidos(){
   }
 }
 var categoriaSelected = document.getElementById("select-categoria");
-categoriaSelected.addEventListener('change', mostrarMenu(categoriaSelected.value));
-
-
-function mostrarMenu(categoriaSeleccionada) {
-
+categoriaSelected.addEventListener('change', actualizarMenu);
+function actualizarMenu(){
+  console.log(categoriaSelected.value)
+  var tabla = document.getElementById("cuerpoTabla");
+ 
+  while (tabla.firstChild) {
+    tabla.removeChild(tabla.firstChild);
+  }
   
+  for (var item in items) {
+    if(items[item]["categoria"] == categoriaSelected.value){
+      var fila = document.createElement("tr");
+      var celda_nombre = document.createElement("td");
+      celda_nombre.textContent = items[item]["nombre"];
+      fila.appendChild(celda_nombre);
+      var celda_descripcion = document.createElement("td");
+      celda_descripcion.textContent = items[item]["descripcion"];
+      fila.appendChild(celda_descripcion);
+      var celda_precio = document.createElement("td");
+      celda_precio.textContent = items[item]["precio"];
+      fila.appendChild(celda_precio);
+      var celda_stock = document.createElement("td");
+      celda_stock.textContent = items[item]["stock"];
+      fila.appendChild(celda_stock);
+      var celda_reservas = document.createElement("td");
+      celda_reservas.textContent = items[item]["reservas"];
+      fila.appendChild(celda_reservas);
+  
+      
+      if(items[item]["reservas"] < items[item]["stock"])
+      {
+        var boton_reservar = document.createElement("button");
+        boton_reservar.textContent = "+1";
+        boton_reservar.id = item;
+        boton_reservar.classList.add("reservas-items");
+        fila.appendChild(boton_reservar);
+      }
+      else{
+        var celda_restrictiva = document.createElement("td");
+        celda_restrictiva.textContent = "Ya no se permiten mas reservas";
+        fila.appendChild(celda_restrictiva);
+      }
+     
+        var boton_editar = document.createElement("button");
+        boton_editar.textContent = "Editar";
+        boton_editar.id = item;
+        boton_editar.classList.add("editar-item");
+        fila.appendChild(boton_editar);
+        tabla.appendChild(fila);
+  
+        var boton_eliminar = document.createElement("button");
+        boton_eliminar.textContent = "Eliminar";
+        boton_eliminar.id = item;
+        boton_eliminar.classList.add("eliminar-item");
+        fila.appendChild(boton_eliminar);
+    }
+   
+  }
+
+  var botones = document.getElementsByClassName("reservas-items");
+
+  for (var i = 0; i < botones.length; i++) {
+    botones[i].addEventListener("click", function(event) {
+      var botonID = event.target.id;
+      var elementoEncontrado = items.find(function(item) {
+        return parseInt(item.id) === parseInt(botonID);
+      });
+      if (elementoEncontrado) {
+        elementoEncontrado.agregarReserva(1);
+        let pedido = new Pedido(pedidos.length, elementoEncontrado.nombre, elementoEncontrado.id);
+        pedido.agregarReserva();
+        pedidos.push(pedido);
+        mostrarPedidos();
+        mostrarMenu();
+      }
+    });
+  }
+  var botonesE = document.getElementsByClassName("editar-item");
+
+  for (var i = 0; i < botonesE.length; i++) {
+    botonesE[i].addEventListener("click", function(event) {
+      var botonID = event.target.id;
+      var elementoEncontrado = items.find(function(item) {
+        return parseInt(item.id) === parseInt(botonID);
+      });
+      if (elementoEncontrado) {
+        editarItem(elementoEncontrado);
+      }
+    });
+  }
+
+  var botonesE = document.getElementsByClassName("eliminar-item");
+
+  for (var i = 0; i < botonesE.length; i++) {
+    botonesE[i].addEventListener("click", function() {
+      var botonID = this.id;
+      var elementoEncontrado = items.find(function(item) {
+        return parseInt(item.id) === parseInt(botonID);
+      });
+      if (elementoEncontrado instanceof Item) {
+        var confirmacion = confirm("¿Estás seguro de eliminar este item?");
+        if (confirmacion) {
+          elementoEncontrado.eliminar();
+          if (items.indexOf(elementoEncontrado) === -1) {
+            alert("El item se eliminó correctamente");
+            mostrarMenu();
+          }else {
+            alert("Error al eliminar el item"); 
+          }
+        }else {
+          alert("La eliminación del item ha sido cancelada");
+        }
+      }
+    });
+  }
+}
+
+function mostrarMenu() {
+
   categoriaSelected.innerHTML = ""; 
   var categorias = [...new Set(items.map(Item=> Item.categoria))];
 
   categorias.forEach(function(valor) {
     var optionElement = document.createElement('option');
     optionElement.text = valor;
-   optionElement.value = valor;
-   categoriaSelected.appendChild(optionElement);
+    optionElement.value = valor;
+    categoriaSelected.appendChild(optionElement);
   });
-
 
   var tabla = document.getElementById("cuerpoTabla");
  
@@ -110,8 +222,7 @@ function mostrarMenu(categoriaSeleccionada) {
   }
   
   for (var item in items) {
-
-    if(item.categoria == categoriaSeleccionada){
+    if(items[item]["categoria"] == categoriaSelected.value){
       var fila = document.createElement("tr");
       var celda_nombre = document.createElement("td");
       celda_nombre.textContent = items[item]["nombre"];
