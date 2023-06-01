@@ -20,6 +20,14 @@ function añadirElementoATabla(fila, clave, items, item) {
   fila.appendChild(celda);
 }
 
+function añadirBotonATabla(fila, nombre, id, clase) {
+  var boton = document.createElement("button");
+  boton.textContent = nombre;
+  boton.id = id;
+  boton.classList.add(clase);
+  fila.appendChild(boton);
+}
+
 function editarItem(elementoEncontrado) {
   document.getElementById("input-nombre-editado").value =
     elementoEncontrado.nombre;
@@ -94,15 +102,33 @@ function eliminacionPedido() {
     });
   }
 }
-
-function añadirBotonATabla(fila, nombre, id, clase) {
-  var boton= document.createElement("button");
-  boton.textContent = nombre;
-  boton.id = id;
-  boton.classList.add(clase);
-  fila.appendChild(boton);
+function realizarReservaItem(elementoEncontrado) {
+  elementoEncontrado.agregarReserva(1);
+  let pedido = new Pedido(
+    pedidos.length,
+    elementoEncontrado.nombre,
+    elementoEncontrado.id
+  );
+  pedido.agregarReserva();
+  pedidos.push(pedido);
+  mostrarPedidos();
+  mostrarMenu();
 }
+function realizarAccion(claseBotones, accion){
+  var botones = document.getElementsByClassName(claseBotones);
 
+  for (var i = 0; i < botones.length; i++) {
+    botones[i].addEventListener("click", function (event) {
+      var botonID = event.target.id;
+      var elementoEncontrado = items.find(function (item) {
+        return parseInt(item.id) === parseInt(botonID);
+      });
+      if (elementoEncontrado) {
+        accion(elementoEncontrado);
+      }
+    });
+  }
+}
 function actualizarMenu() {
   var tabla = document.getElementById("cuerpoTabla");
 
@@ -131,42 +157,8 @@ function actualizarMenu() {
       tabla.appendChild(fila);
     }
   }
-
-  var botones = document.getElementsByClassName("reservas-items");
-
-  for (var i = 0; i < botones.length; i++) {
-    botones[i].addEventListener("click", function (event) {
-      var botonID = event.target.id;
-      var elementoEncontrado = items.find(function (item) {
-        return parseInt(item.id) === parseInt(botonID);
-      });
-      if (elementoEncontrado) {
-        elementoEncontrado.agregarReserva(1);
-        let pedido = new Pedido(
-          pedidos.length,
-          elementoEncontrado.nombre,
-          elementoEncontrado.id
-        );
-        pedido.agregarReserva();
-        pedidos.push(pedido);
-        mostrarPedidos();
-        mostrarMenu();
-      }
-    });
-  }
-  var botonesE = document.getElementsByClassName("editar-item");
-
-  for (var i = 0; i < botonesE.length; i++) {
-    botonesE[i].addEventListener("click", function (event) {
-      var botonID = event.target.id;
-      var elementoEncontrado = items.find(function (item) {
-        return parseInt(item.id) === parseInt(botonID);
-      });
-      if (elementoEncontrado) {
-        editarItem(elementoEncontrado);
-      }
-    });
-  }
+  realizarAccion("reservas-items", realizarReservaItem);
+  realizarAccion("editar-item", editarItem);
 
   var botonesE = document.getElementsByClassName("eliminar-item");
 
