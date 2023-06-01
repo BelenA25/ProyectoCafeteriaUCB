@@ -102,6 +102,20 @@ function eliminacionPedido() {
     });
   }
 }
+function eliminarItem(elementoEncontrado){
+  var confirmacion = confirm("¿Estás seguro de eliminar este item?");
+  if (confirmacion) {
+    elementoEncontrado.eliminar();
+    if (items.indexOf(elementoEncontrado) === -1) {
+      alert("El item se eliminó correctamente");
+      mostrarMenu();
+    } else {
+      alert("Error al eliminar el item");
+    }
+  } else {
+    alert("La eliminación del item ha sido cancelada");
+  }
+}
 function realizarReservaItem(elementoEncontrado) {
   elementoEncontrado.agregarReserva(1);
   let pedido = new Pedido(
@@ -159,31 +173,31 @@ function actualizarMenu() {
   }
   realizarAccion("reservas-items", realizarReservaItem);
   realizarAccion("editar-item", editarItem);
+  realizarAccion("eliminar-item", eliminarItem);
+  // var botonesE = document.getElementsByClassName("eliminar-item");
 
-  var botonesE = document.getElementsByClassName("eliminar-item");
-
-  for (var i = 0; i < botonesE.length; i++) {
-    botonesE[i].addEventListener("click", function () {
-      var botonID = this.id;
-      var elementoEncontrado = items.find(function (item) {
-        return parseInt(item.id) === parseInt(botonID);
-      });
-      if (elementoEncontrado instanceof Item) {
-        var confirmacion = confirm("¿Estás seguro de eliminar este item?");
-        if (confirmacion) {
-          elementoEncontrado.eliminar();
-          if (items.indexOf(elementoEncontrado) === -1) {
-            alert("El item se eliminó correctamente");
-            mostrarMenu();
-          } else {
-            alert("Error al eliminar el item");
-          }
-        } else {
-          alert("La eliminación del item ha sido cancelada");
-        }
-      }
-    });
-  }
+  // for (var i = 0; i < botonesE.length; i++) {
+  //   botonesE[i].addEventListener("click", function () {
+  //     var botonID = this.id;
+  //     var elementoEncontrado = items.find(function (item) {
+  //       return parseInt(item.id) === parseInt(botonID);
+  //     });
+  //     if (elementoEncontrado instanceof Item) {
+  //       var confirmacion = confirm("¿Estás seguro de eliminar este item?");
+  //       if (confirmacion) {
+  //         elementoEncontrado.eliminar();
+  //         if (items.indexOf(elementoEncontrado) === -1) {
+  //           alert("El item se eliminó correctamente");
+  //           mostrarMenu();
+  //         } else {
+  //           alert("Error al eliminar el item");
+  //         }
+  //       } else {
+  //         alert("La eliminación del item ha sido cancelada");
+  //       }
+  //     }
+  //   });
+  // }
 }
 
 function mostrarMenu() {
