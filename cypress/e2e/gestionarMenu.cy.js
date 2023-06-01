@@ -110,6 +110,39 @@ describe("Categorias del menu", () => {
     cy.get("#input-stock-creada").type(20);
     cy.get("#crear-menu-button").click();
   });
+
+  it("debería mostrar una categoria en especifico", () => {
+    cy.visit("/");
+    cy.get("#inputUsername").type("admin");
+    cy.get("#inputpassword").type("password");
+    cy.get("#login-button").click();
+  
+    cy.get("#input-nombre-creada").type("Sopa");
+    cy.get("#input-descripcion-creada").type("Sopa de fideo");
+    cy.get("#input-precio-creada").type(5);
+    cy.get("#input-categoria-creada").type("Almuerzo cotidiano");
+    cy.get("#input-stock-creada").type(20);
+
+    cy.get("#crear-menu-button").click();
+
+    cy.get("#input-nombre-creada").clear();
+    cy.get("#input-descripcion-creada").clear();
+    cy.get("#input-precio-creada").clear();
+    cy.get("#input-categoria-creada").clear();
+    cy.get("#input-stock-creada").clear();
+
+
+    cy.get("#input-nombre-creada").type("Papas");
+    cy.get("#input-descripcion-creada").type("Picantes");
+    cy.get("#input-precio-creada").type(5);
+    cy.get("#input-categoria-creada").type("Frituras");
+    cy.get("#input-stock-creada").type(20);
+
+    cy.get("#crear-menu-button").click();
+
+    cy.get("#select-categoria").should("contain", "Frituras");
+
+  });
 });
 
 
