@@ -55,12 +55,8 @@ function mostrarPedidos() {
   }
   for (var pedido in pedidos) {
     var fila = document.createElement("tr");
-    var celda_nombre = document.createElement("td");
-    celda_nombre.textContent = pedidos[pedido]["nombre"];
-    fila.appendChild(celda_nombre);
-    var celda_cantidad = document.createElement("td");
-    celda_cantidad.textContent = pedidos[pedido]["numero"];
-    fila.appendChild(celda_cantidad);
+    añadirElementoATabla(fila, "nombre", pedidos, pedido)
+    añadirElementoATabla(fila, "numero", pedidos, pedido)
     var boton_eliminar = document.createElement("button");
     boton_eliminar.textContent = "Eliminar";
     boton_eliminar.id = pedido;
