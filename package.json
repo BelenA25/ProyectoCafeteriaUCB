@@ -6,7 +6,6 @@
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
-    "build:css": "postcss style.css -o dist/style.css",
     "test": "jest --watch",
     "test-once": "jest --verbose --coverage",
     "cypress": "cypress open",
@@ -15,8 +14,6 @@
   "author": "Israel Antezana R.",
   "license": "ISC",
   "devDependencies": {
-    "postcss": "^8.3.9",
-    "autoprefixer": "^10.4.0",
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.8",
     "babel-jest": "^27.4.6",
