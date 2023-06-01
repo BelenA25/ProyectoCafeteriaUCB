@@ -32,6 +32,7 @@ function añadirBotonATabla(fila, nombre, id, clase, esAdmin) {
   }
   fila.appendChild(boton);
 }
+
 function escuchaBotonEdicion(elementoEncontrado) {
   formEditarMenu.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -78,6 +79,7 @@ function mostrarPedidos() {
     var fila = document.createElement("tr");
     añadirElementoATabla(fila, "nombre", pedidos, pedido);
     añadirElementoATabla(fila, "numero", pedidos, pedido);
+    añadirElementoATabla(fila, "hora", pedidos, pedido);
     añadirBotonATabla(fila, "Eliminar", pedido, "eliminar-reservas", false);
     tabla.appendChild(fila);
   }
@@ -132,6 +134,7 @@ function realizarReservaItem(elementoEncontrado) {
     elementoEncontrado.id
   );
   pedido.agregarReserva();
+  pedido.agregarHora();
   pedidos.push(pedido);
   mostrarPedidos();
   mostrarMenu();
