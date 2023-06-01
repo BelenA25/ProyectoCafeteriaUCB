@@ -14,6 +14,12 @@ var categoriaSelected = document.getElementById("select-categoria");
 categoriaSelected.addEventListener("change", actualizarMenu);
 let pedidos = new Array();
 
+function añadirElementoATabla(fila, clave, items, item) {
+  var celda = document.createElement("td");
+  celda.textContent = items[item][clave];
+  fila.appendChild(celda);
+}
+
 function editarItem(elementoEncontrado) {
   document.getElementById("input-nombre-editado").value =
     elementoEncontrado.nombre;
@@ -55,13 +61,9 @@ function mostrarPedidos() {
   }
   for (var pedido in pedidos) {
     var fila = document.createElement("tr");
-    añadirElementoATabla(fila, "nombre", pedidos, pedido)
-    añadirElementoATabla(fila, "numero", pedidos, pedido)
-    var boton_eliminar = document.createElement("button");
-    boton_eliminar.textContent = "Eliminar";
-    boton_eliminar.id = pedido;
-    boton_eliminar.classList.add("eliminar-reservas");
-    fila.appendChild(boton_eliminar);
+    añadirElementoATabla(fila, "nombre", pedidos, pedido);
+    añadirElementoATabla(fila, "numero", pedidos, pedido);
+    añadirBotonATabla(fila, "Eliminar", pedido, "eliminar-reservas");
     tabla.appendChild(fila);
   }
   eliminacionPedido();
@@ -92,12 +94,15 @@ function eliminacionPedido() {
     });
   }
 }
-function añadirElementoATabla(fila, clave, items, item)
-{
-  var celda = document.createElement("td");
-  celda.textContent = items[item][clave];
-  fila.appendChild(celda);
+
+function añadirBotonATabla(fila, nombre, id, clase) {
+  var boton= document.createElement("button");
+  boton.textContent = nombre;
+  boton.id = id;
+  boton.classList.add(clase);
+  fila.appendChild(boton);
 }
+
 function actualizarMenu() {
   var tabla = document.getElementById("cuerpoTabla");
 
@@ -115,29 +120,15 @@ function actualizarMenu() {
       añadirElementoATabla(fila, "reservas", items, item);
 
       if (items[item]["reservas"] < items[item]["stock"]) {
-        var boton_reservar = document.createElement("button");
-        boton_reservar.textContent = "+1";
-        boton_reservar.id = item;
-        boton_reservar.classList.add("reservas-items");
-        fila.appendChild(boton_reservar);
+        añadirBotonATabla(fila, "+1", item, "reservas-items");
       } else {
         var celda_restrictiva = document.createElement("td");
         celda_restrictiva.textContent = "Ya no se permiten mas reservas";
         fila.appendChild(celda_restrictiva);
       }
-
-      var boton_editar = document.createElement("button");
-      boton_editar.textContent = "Editar";
-      boton_editar.id = item;
-      boton_editar.classList.add("editar-item");
-      fila.appendChild(boton_editar);
+      añadirBotonATabla(fila, "Editar", item, "editar-item");
+      añadirBotonATabla(fila, "Eliminar", item, "eliminar-item");
       tabla.appendChild(fila);
-
-      var boton_eliminar = document.createElement("button");
-      boton_eliminar.textContent = "Eliminar";
-      boton_eliminar.id = item;
-      boton_eliminar.classList.add("eliminar-item");
-      fila.appendChild(boton_eliminar);
     }
   }
 
