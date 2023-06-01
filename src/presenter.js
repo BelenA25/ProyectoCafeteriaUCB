@@ -2,7 +2,8 @@ import Pedido from "./pedido.js";
 
 import Admin from "./Admin";
 import User from "./User";
-import { Item, items } from './item';
+import { Item, items } from "./item";
+
 const formulario = document.querySelector("#loginForm");
 const usuario = document.querySelector("#inputUsername");
 const password = document.querySelector("#inputpassword");
@@ -11,38 +12,42 @@ const formEditarMenu = document.querySelector("#editar-menu-form");
 
 let pedidos = new Array();
 
+function editarItem(elementoEncontrado) {
+  document.getElementById("input-nombre-editado").value =
+    elementoEncontrado.nombre;
+  document.getElementById("input-descripcion-editado").value =
+    elementoEncontrado.descripcion;
+  document.getElementById("input-precio-editado").value =
+    elementoEncontrado.precio;
+  document.getElementById("input-categoria-editado").value =
+    elementoEncontrado.categoria;
+  document.getElementById("input-stock-editado").value =
+    elementoEncontrado.stock;
 
-function editarItem(elementoEncontrado){
-  
-  document.getElementById("input-nombre-editado").value =  elementoEncontrado.nombre;
-  document.getElementById("input-descripcion-editado").value =  elementoEncontrado.descripcion;
-  document.getElementById("input-precio-editado").value =  elementoEncontrado.precio;
-  document.getElementById("input-categoria-editado").value =  elementoEncontrado.categoria;
-  document.getElementById("input-stock-editado").value =  elementoEncontrado.stock;
-  
   formEditarMenu.addEventListener("submit", (event) => {
     event.preventDefault();
-    
+
     let nombre = document.getElementById("input-nombre-editado").value;
-    let descripcion = document.getElementById("input-descripcion-editado").value;
+    let descripcion = document.getElementById(
+      "input-descripcion-editado"
+    ).value;
     let precio = document.getElementById("input-precio-editado").value;
     let categoria = document.getElementById("input-categoria-editado").value;
     let stock = document.getElementById("input-stock-editado").value;
-  
-    elementoEncontrado.nombre=nombre;
-    elementoEncontrado.descripcion=descripcion;
-    elementoEncontrado.precio=precio;
-    elementoEncontrado.categoria=categoria;
-    elementoEncontrado.stock=stock;
-    
-    console.log("Cambie items: ", items);
+
+    elementoEncontrado.nombre = nombre;
+    elementoEncontrado.descripcion = descripcion;
+    elementoEncontrado.precio = precio;
+    elementoEncontrado.categoria = categoria;
+    elementoEncontrado.stock = stock;
+
     mostrarMenu();
   });
 }
 
-function mostrarPedidos(){
+function mostrarPedidos() {
   var tabla = document.getElementById("cuerpoTablaPedidos");
- 
+
   while (tabla.firstChild) {
     tabla.removeChild(tabla.firstChild);
   }
@@ -61,42 +66,45 @@ function mostrarPedidos(){
     fila.appendChild(boton_eliminar);
     tabla.appendChild(fila);
   }
+  eliminacionPedido();
+}
+
+function eliminacionPedido() {
   var botones = document.getElementsByClassName("eliminar-reservas");
 
   for (var i = 0; i < botones.length; i++) {
-    botones[i].addEventListener("click", function(event) {
+    botones[i].addEventListener("click", function (event) {
       var botonID = event.target.id;
-      var elementoEncontrado = pedidos.find(function(pedido) {
+      var elementoEncontrado = pedidos.find(function (pedido) {
         return parseInt(pedido.id) === parseInt(botonID);
       });
 
       if (elementoEncontrado) {
-        items.find(function(item) {
-          return parseInt(item.id) === parseInt(elementoEncontrado.id_item);
-        }).decrementarReservas();
-        pedidos = pedidos.filter(function(elemento) {
-        return elemento !== elementoEncontrado;
-      });
-      
+        items
+          .find(function (item) {
+            return parseInt(item.id) === parseInt(elementoEncontrado.id_item);
+          })
+          .decrementarReservas();
+        pedidos = pedidos.filter(function (elemento) {
+          return elemento !== elementoEncontrado;
+        });
         mostrarMenu();
         mostrarPedidos();
-      
       }
     });
   }
 }
 var categoriaSelected = document.getElementById("select-categoria");
-categoriaSelected.addEventListener('change', actualizarMenu);
-function actualizarMenu(){
-  console.log(categoriaSelected.value)
+categoriaSelected.addEventListener("change", actualizarMenu);
+function actualizarMenu() {
   var tabla = document.getElementById("cuerpoTabla");
- 
+
   while (tabla.firstChild) {
     tabla.removeChild(tabla.firstChild);
   }
-  
+
   for (var item in items) {
-    if(items[item]["categoria"] == categoriaSelected.value){
+    if (items[item]["categoria"] == categoriaSelected.value) {
       var fila = document.createElement("tr");
       var celda_nombre = document.createElement("td");
       celda_nombre.textContent = items[item]["nombre"];
@@ -113,49 +121,49 @@ function actualizarMenu(){
       var celda_reservas = document.createElement("td");
       celda_reservas.textContent = items[item]["reservas"];
       fila.appendChild(celda_reservas);
-  
-      
-      if(items[item]["reservas"] < items[item]["stock"])
-      {
+
+      if (items[item]["reservas"] < items[item]["stock"]) {
         var boton_reservar = document.createElement("button");
         boton_reservar.textContent = "+1";
         boton_reservar.id = item;
         boton_reservar.classList.add("reservas-items");
         fila.appendChild(boton_reservar);
-      }
-      else{
+      } else {
         var celda_restrictiva = document.createElement("td");
         celda_restrictiva.textContent = "Ya no se permiten mas reservas";
         fila.appendChild(celda_restrictiva);
       }
-     
-        var boton_editar = document.createElement("button");
-        boton_editar.textContent = "Editar";
-        boton_editar.id = item;
-        boton_editar.classList.add("editar-item");
-        fila.appendChild(boton_editar);
-        tabla.appendChild(fila);
-  
-        var boton_eliminar = document.createElement("button");
-        boton_eliminar.textContent = "Eliminar";
-        boton_eliminar.id = item;
-        boton_eliminar.classList.add("eliminar-item");
-        fila.appendChild(boton_eliminar);
+
+      var boton_editar = document.createElement("button");
+      boton_editar.textContent = "Editar";
+      boton_editar.id = item;
+      boton_editar.classList.add("editar-item");
+      fila.appendChild(boton_editar);
+      tabla.appendChild(fila);
+
+      var boton_eliminar = document.createElement("button");
+      boton_eliminar.textContent = "Eliminar";
+      boton_eliminar.id = item;
+      boton_eliminar.classList.add("eliminar-item");
+      fila.appendChild(boton_eliminar);
     }
-   
   }
 
   var botones = document.getElementsByClassName("reservas-items");
 
   for (var i = 0; i < botones.length; i++) {
-    botones[i].addEventListener("click", function(event) {
+    botones[i].addEventListener("click", function (event) {
       var botonID = event.target.id;
-      var elementoEncontrado = items.find(function(item) {
+      var elementoEncontrado = items.find(function (item) {
         return parseInt(item.id) === parseInt(botonID);
       });
       if (elementoEncontrado) {
         elementoEncontrado.agregarReserva(1);
-        let pedido = new Pedido(pedidos.length, elementoEncontrado.nombre, elementoEncontrado.id);
+        let pedido = new Pedido(
+          pedidos.length,
+          elementoEncontrado.nombre,
+          elementoEncontrado.id
+        );
         pedido.agregarReserva();
         pedidos.push(pedido);
         mostrarPedidos();
@@ -166,9 +174,9 @@ function actualizarMenu(){
   var botonesE = document.getElementsByClassName("editar-item");
 
   for (var i = 0; i < botonesE.length; i++) {
-    botonesE[i].addEventListener("click", function(event) {
+    botonesE[i].addEventListener("click", function (event) {
       var botonID = event.target.id;
-      var elementoEncontrado = items.find(function(item) {
+      var elementoEncontrado = items.find(function (item) {
         return parseInt(item.id) === parseInt(botonID);
       });
       if (elementoEncontrado) {
@@ -180,9 +188,9 @@ function actualizarMenu(){
   var botonesE = document.getElementsByClassName("eliminar-item");
 
   for (var i = 0; i < botonesE.length; i++) {
-    botonesE[i].addEventListener("click", function() {
+    botonesE[i].addEventListener("click", function () {
       var botonID = this.id;
-      var elementoEncontrado = items.find(function(item) {
+      var elementoEncontrado = items.find(function (item) {
         return parseInt(item.id) === parseInt(botonID);
       });
       if (elementoEncontrado instanceof Item) {
@@ -192,10 +200,10 @@ function actualizarMenu(){
           if (items.indexOf(elementoEncontrado) === -1) {
             alert("El item se eliminó correctamente");
             mostrarMenu();
-          }else {
-            alert("Error al eliminar el item"); 
+          } else {
+            alert("Error al eliminar el item");
           }
-        }else {
+        } else {
           alert("La eliminación del item ha sido cancelada");
         }
       }
@@ -204,137 +212,24 @@ function actualizarMenu(){
 }
 
 function mostrarMenu() {
+  categoriaSelected.innerHTML = "";
+  var categorias = [...new Set(items.map((Item) => Item.categoria))];
 
-  categoriaSelected.innerHTML = ""; 
-  var categorias = [...new Set(items.map(Item=> Item.categoria))];
-
-  categorias.forEach(function(valor) {
-    var optionElement = document.createElement('option');
+  categorias.forEach(function (valor) {
+    var optionElement = document.createElement("option");
     optionElement.text = valor;
     optionElement.value = valor;
     categoriaSelected.appendChild(optionElement);
   });
-
-  var tabla = document.getElementById("cuerpoTabla");
- 
-  while (tabla.firstChild) {
-    tabla.removeChild(tabla.firstChild);
-  }
-  
-  for (var item in items) {
-    if(items[item]["categoria"] == categoriaSelected.value){
-      var fila = document.createElement("tr");
-      var celda_nombre = document.createElement("td");
-      celda_nombre.textContent = items[item]["nombre"];
-      fila.appendChild(celda_nombre);
-      var celda_descripcion = document.createElement("td");
-      celda_descripcion.textContent = items[item]["descripcion"];
-      fila.appendChild(celda_descripcion);
-      var celda_precio = document.createElement("td");
-      celda_precio.textContent = items[item]["precio"];
-      fila.appendChild(celda_precio);
-      var celda_stock = document.createElement("td");
-      celda_stock.textContent = items[item]["stock"];
-      fila.appendChild(celda_stock);
-      var celda_reservas = document.createElement("td");
-      celda_reservas.textContent = items[item]["reservas"];
-      fila.appendChild(celda_reservas);
-  
-      
-      if(items[item]["reservas"] < items[item]["stock"])
-      {
-        var boton_reservar = document.createElement("button");
-        boton_reservar.textContent = "+1";
-        boton_reservar.id = item;
-        boton_reservar.classList.add("reservas-items");
-        fila.appendChild(boton_reservar);
-      }
-      else{
-        var celda_restrictiva = document.createElement("td");
-        celda_restrictiva.textContent = "Ya no se permiten mas reservas";
-        fila.appendChild(celda_restrictiva);
-      }
-     
-        var boton_editar = document.createElement("button");
-        boton_editar.textContent = "Editar";
-        boton_editar.id = item;
-        boton_editar.classList.add("editar-item");
-        fila.appendChild(boton_editar);
-        tabla.appendChild(fila);
-  
-        var boton_eliminar = document.createElement("button");
-        boton_eliminar.textContent = "Eliminar";
-        boton_eliminar.id = item;
-        boton_eliminar.classList.add("eliminar-item");
-        fila.appendChild(boton_eliminar);
-    }
-   
-  }
-
-  var botones = document.getElementsByClassName("reservas-items");
-
-  for (var i = 0; i < botones.length; i++) {
-    botones[i].addEventListener("click", function(event) {
-      var botonID = event.target.id;
-      var elementoEncontrado = items.find(function(item) {
-        return parseInt(item.id) === parseInt(botonID);
-      });
-      if (elementoEncontrado) {
-        elementoEncontrado.agregarReserva(1);
-        let pedido = new Pedido(pedidos.length, elementoEncontrado.nombre, elementoEncontrado.id);
-        pedido.agregarReserva();
-        pedidos.push(pedido);
-        mostrarPedidos();
-        mostrarMenu();
-      }
-    });
-  }
-  var botonesE = document.getElementsByClassName("editar-item");
-
-  for (var i = 0; i < botonesE.length; i++) {
-    botonesE[i].addEventListener("click", function(event) {
-      var botonID = event.target.id;
-      var elementoEncontrado = items.find(function(item) {
-        return parseInt(item.id) === parseInt(botonID);
-      });
-      if (elementoEncontrado) {
-        editarItem(elementoEncontrado);
-      }
-    });
-  }
-
-  var botonesE = document.getElementsByClassName("eliminar-item");
-
-  for (var i = 0; i < botonesE.length; i++) {
-    botonesE[i].addEventListener("click", function() {
-      var botonID = this.id;
-      var elementoEncontrado = items.find(function(item) {
-        return parseInt(item.id) === parseInt(botonID);
-      });
-      if (elementoEncontrado instanceof Item) {
-        var confirmacion = confirm("¿Estás seguro de eliminar este item?");
-        if (confirmacion) {
-          elementoEncontrado.eliminar();
-          if (items.indexOf(elementoEncontrado) === -1) {
-            alert("El item se eliminó correctamente");
-            mostrarMenu();
-          }else {
-            alert("Error al eliminar el item"); 
-          }
-        }else {
-          alert("La eliminación del item ha sido cancelada");
-        }
-      }
-    });
-  }
+  actualizarMenu();
 }
 
 function mostrarContenidoAdmin(esAdmin) {
   const elementosAdmin = document.getElementsByClassName("admin-only");
   if (esAdmin) {
     for (let i = 0; i < elementosAdmin.length; i++) {
-        elementosAdmin[i].style.display = "block";
-     }
+      elementosAdmin[i].style.display = "block";
+    }
     formCrearItem.style.display = "block";
     formEditarMenu.style.display = "block";
   } else {
@@ -343,7 +238,6 @@ function mostrarContenidoAdmin(esAdmin) {
     }
     formCrearItem.style.display = "none";
     formEditarMenu.style.display = "none";
-
   }
 }
 function mostrarContenidoUsuario(esUsuario) {
@@ -351,7 +245,7 @@ function mostrarContenidoUsuario(esUsuario) {
 
   if (esUsuario) {
     for (let i = 0; i < elementosUsuario.length; i++) {
-     // elementosUsuario[i].style.display = "block";
+      // elementosUsuario[i].style.display = "block";
       elementosUsuario[i].style.display = "table-cell";
       elementosUsuario[i].setAttribute("valign", "middle");
     }
@@ -388,22 +282,16 @@ formulario.addEventListener("submit", (event) => {
   var admin = new Admin(usuario.value, password.value);
   var user = new User(usuario.value, password.value);
   if (admin.Admin()) {
-      alert("Welcome Admin!");
-      mostrarContenidoAdmin(true);
-      mostrarContenidoUsuario(false);
-  }
-  else if(!admin.validarDatos()){
-      alert("Un campo esta vacío o incorrecto, Inténtelo nuevamente!");
-      
-  }
-  else if(user.Usuario()){
-      alert("Welcome User!");
-      mostrarContenidoAdmin(false);
-      mostrarContenidoUsuario(true);
-  }
-  else if(user.VerifyData()){
-      alert("Un campo esta vacío o incorrecto, Inténtelo nuevamente!");
-      
+    alert("Welcome Admin!");
+    mostrarContenidoAdmin(true);
+    mostrarContenidoUsuario(false);
+  } else if (!admin.validarDatos()) {
+    alert("Un campo esta vacío o incorrecto, Inténtelo nuevamente!");
+  } else if (user.Usuario()) {
+    alert("Welcome User!");
+    mostrarContenidoAdmin(false);
+    mostrarContenidoUsuario(true);
+  } else if (user.VerifyData()) {
+    alert("Un campo esta vacío o incorrecto, Inténtelo nuevamente!");
   }
 });
-
