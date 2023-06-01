@@ -85,8 +85,23 @@ function mostrarPedidos(){
     });
   }
 }
+var categoriaSelected = document.getElementById("select-categoria");
+categoriaSelected.addEventListener('change', mostrarMenu(categoriaSelected.value));
 
-function mostrarMenu() {
+
+function mostrarMenu(categoriaSeleccionada) {
+
+  
+  categoriaSelected.innerHTML = ""; 
+  var categorias = [...new Set(items.map(Item=> Item.categoria))];
+
+  categorias.forEach(function(valor) {
+    var optionElement = document.createElement('option');
+    optionElement.text = valor;
+   optionElement.value = valor;
+   categoriaSelected.appendChild(optionElement);
+  });
+
 
   var tabla = document.getElementById("cuerpoTabla");
  
@@ -95,60 +110,54 @@ function mostrarMenu() {
   }
   
   for (var item in items) {
-    var fila = document.createElement("tr");
-    var celda_nombre = document.createElement("td");
-    celda_nombre.textContent = items[item]["nombre"];
-    fila.appendChild(celda_nombre);
-    var celda_descripcion = document.createElement("td");
-    celda_descripcion.textContent = items[item]["descripcion"];
-    fila.appendChild(celda_descripcion);
-    var celda_precio = document.createElement("td");
-    celda_precio.textContent = items[item]["precio"];
-    fila.appendChild(celda_precio);
-    var celda_categoria = document.createElement("td");
-    celda_categoria.textContent = items[item]["categoria"];
-    fila.appendChild(celda_categoria);
-    var celda_stock = document.createElement("td");
-    celda_stock.textContent = items[item]["stock"];
-    fila.appendChild(celda_stock);
-    var celda_reservas = document.createElement("td");
-    celda_reservas.textContent = items[item]["reservas"];
-    fila.appendChild(celda_reservas);
 
-    
-    if(items[item]["reservas"] < items[item]["stock"])
-    {
-      var boton_reservar = document.createElement("button");
-      boton_reservar.textContent = "+1";
-      boton_reservar.id = item;
-      boton_reservar.classList.add("reservas-items");
-      fila.appendChild(boton_reservar);
-    }
-    else{
-      var celda_restrictiva = document.createElement("td");
-      celda_restrictiva.textContent = "Ya no se permiten mas reservas";
-      fila.appendChild(celda_restrictiva);
+    if(item.categoria == categoriaSeleccionada){
+      var fila = document.createElement("tr");
+      var celda_nombre = document.createElement("td");
+      celda_nombre.textContent = items[item]["nombre"];
+      fila.appendChild(celda_nombre);
+      var celda_descripcion = document.createElement("td");
+      celda_descripcion.textContent = items[item]["descripcion"];
+      fila.appendChild(celda_descripcion);
+      var celda_precio = document.createElement("td");
+      celda_precio.textContent = items[item]["precio"];
+      fila.appendChild(celda_precio);
+      var celda_stock = document.createElement("td");
+      celda_stock.textContent = items[item]["stock"];
+      fila.appendChild(celda_stock);
+      var celda_reservas = document.createElement("td");
+      celda_reservas.textContent = items[item]["reservas"];
+      fila.appendChild(celda_reservas);
+  
+      
+      if(items[item]["reservas"] < items[item]["stock"])
+      {
+        var boton_reservar = document.createElement("button");
+        boton_reservar.textContent = "+1";
+        boton_reservar.id = item;
+        boton_reservar.classList.add("reservas-items");
+        fila.appendChild(boton_reservar);
+      }
+      else{
+        var celda_restrictiva = document.createElement("td");
+        celda_restrictiva.textContent = "Ya no se permiten mas reservas";
+        fila.appendChild(celda_restrictiva);
+      }
+     
+        var boton_editar = document.createElement("button");
+        boton_editar.textContent = "Editar";
+        boton_editar.id = item;
+        boton_editar.classList.add("editar-item");
+        fila.appendChild(boton_editar);
+        tabla.appendChild(fila);
+  
+        var boton_eliminar = document.createElement("button");
+        boton_eliminar.textContent = "Eliminar";
+        boton_eliminar.id = item;
+        boton_eliminar.classList.add("eliminar-item");
+        fila.appendChild(boton_eliminar);
     }
    
-      var boton_editar = document.createElement("button");
-      boton_editar.textContent = "Editar";
-      boton_editar.id = item;
-      boton_editar.classList.add("editar-item");
-      fila.appendChild(boton_editar);
-      tabla.appendChild(fila);
-
-      var boton_categoria = document.createElement("select");
-      boton_categoria.textContent = "categorias";
-      boton_categoria.id = item;
-      boton_categoria.classList.add("categorizar-item");
-      fila.appendChild(boton_categoria);
-      tabla.appendChild(fila);
-
-      var boton_eliminar = document.createElement("button");
-      boton_eliminar.textContent = "Eliminar";
-      boton_eliminar.id = item;
-      boton_eliminar.classList.add("eliminar-item");
-      fila.appendChild(boton_eliminar);
   }
 
   var botones = document.getElementsByClassName("reservas-items");
@@ -204,19 +213,6 @@ function mostrarMenu() {
         }else {
           alert("La eliminación del item ha sido cancelada");
         }
-      }
-    });
-  }
-  var botonesE = document.getElementsByClassName("categorizar-item");
-
-  for (var i = 0; i < botonesE.length; i++) {
-    botonesE[i].addEventListener("click", function(event) {
-      var botonID = event.target.id;
-      var elementoEncontrado = items.find(function(item) {
-        return parseInt(item.id) === parseInt(botonID);
-      });
-      if (elementoEncontrado instanceof Item) {
-        elementoEncontrado.categorizarItems();
       }
     });
   }
