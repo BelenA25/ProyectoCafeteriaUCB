@@ -1,12 +1,9 @@
 import Pedido from "./pedido.js";
-
 import Admin from "./Admin";
 import User from "./User";
 import { Item, items } from "./item";
 
 const formulario = document.querySelector("#loginForm");
-const usuario = document.querySelector("#inputUsername");
-const password = document.querySelector("#inputpassword");
 const formCrearItem = document.querySelector("#crear-menu-form");
 const formEditarMenu = document.querySelector("#editar-menu-form");
 var categoriaSelected = document.getElementById("select-categoria");
@@ -44,7 +41,7 @@ function escuchaBotonEdicion(elementoEncontrado) {
     elementoEncontrado.precio = precio;
     elementoEncontrado.categoria = categoria;
     elementoEncontrado.stock = stock;
-
+    alert("Se edito el item con exito!", "Exito");
     mostrarMenu();
   });
 }
@@ -198,7 +195,6 @@ function mostrarContenidoUsuario(esUsuario) {
 
   if (esUsuario) {
     for (let i = 0; i < elementosUsuario.length; i++) {
-      // elementosUsuario[i].style.display = "block";
       elementosUsuario[i].style.display = "table-cell";
       elementosUsuario[i].setAttribute("valign", "middle");
     }
@@ -218,20 +214,18 @@ formCrearItem.addEventListener("submit", (event) => {
   const categoria = document.getElementById("input-categoria-creada");
   const stock = document.getElementById("input-stock-creada");
 
-  let item = new Item(
-    items.length,
-    nombre.value,
-    descripcion.value,
-    precio.value,
-    categoria.value,
-    stock.value
-  );
+  let item = new Item(items.length, nombre.value, descripcion.value, precio.value, categoria.value, stock.value);
   items.push(item);
+  alert("Se creo un nuevo item con exito!", "Exito");
   mostrarMenu();
 });
 
 formulario.addEventListener("submit", (event) => {
   event.preventDefault();
+
+  const usuario = document.querySelector("#inputUsername");
+  const password = document.querySelector("#inputpassword");
+
   var admin = new Admin(usuario.value, password.value);
   var user = new User(usuario.value, password.value);
   if (admin.Admin()) {
